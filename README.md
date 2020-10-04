@@ -1,3 +1,3 @@
-# Shop Earthly Body Combined Shopping Cart Website Redesign
+# Shop Earthly Body Combined Shopping Cart 2.0
 Redesign of Earthly Body Shop with A Focus on Mobile UX
-### URL: https://shop.earthlybody.com
+###### URL: https://shop.earthlybody.com
