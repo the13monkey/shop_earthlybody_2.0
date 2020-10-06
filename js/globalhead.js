@@ -6,11 +6,21 @@ jQuery( document ).ready( function($){
 
     } );
 
-    $( '.top-page-primary-menu .menu-item-has-children' ).click( function(){
+    $( '.top-page-primary-menu .menu-item-has-children' ).click( function(event){
+
+        event.preventDefault();
 
         $(this).find( '.sub-menu' ).slideToggle();
 
         $(this).toggleClass( 'submenu-opened' );
+
+        $(this).find( '.sub-menu .menu-item' ).click( function(event) {
+
+            var url = $(this).find('a').attr('href');
+
+            window.location.replace(url);
+
+        } );
 
     } );
 
