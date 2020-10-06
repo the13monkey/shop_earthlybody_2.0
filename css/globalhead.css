@@ -534,3 +534,21 @@ a.restore-item {
 .icon-marrakesh {
     color: #a51e35;
 }
+
+.brand-landing-featured .products {
+    padding-inline-start: 0px; 
+    flex: 0 0 100%; 
+    max-width: 100%; 
+    text-align: center; 
+}
+
+.brand-landing-featured .products .product {
+    display: inline-block !important; 
+    width: 49%; 
+}
+
+.brand-landing-featured .products .product .button.add_to_cart_button {
+    width: calc(100% - 2rem);
+    left: 1rem; 
+}
+
