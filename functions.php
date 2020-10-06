@@ -485,3 +485,7 @@ add_action( 'woocommerce_before_single_product_summary', 'my_yoast_breadcrumb', 
 // Remove single product meta tags
 
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+// Remove single product related products (cross-sells)
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );

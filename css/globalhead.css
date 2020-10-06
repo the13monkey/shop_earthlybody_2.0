@@ -471,3 +471,66 @@ a.restore-item {
     font-size: 0.85rem; 
     color: #000; 
 }
+
+.woocommerce-product-details__short-description *,
+.my-woo-product-tabs p {
+    color: #54595f;
+}
+
+.woocommerce-product-details__short-description p {
+    font-size: 0.9rem; 
+    margin-bottom: 2rem; 
+}
+
+.woocommerce-product-details__short-description h4 {
+    margin-bottom: 1rem; 
+}
+
+.woocommerce-product-details__short-description h4,
+.my-woo-product-tabs p {
+    font-size: 1rem; 
+    text-transform: uppercase; 
+}
+
+.woocommerce div.product .woocommerce-tabs, 
+.woocommerce-page div.product .woocommrece-tabs {
+    float: left; 
+}
+
+.my-woo-product-tabs p {
+    padding: 1rem; 
+    border-top: 1px solid #eee;
+    margin-bottom: 0; 
+}
+
+.my-woo-product-tabs p:last-child {
+    border-bottom: 1px solid #eee; 
+}
+
+.my-woo-product-tabs {
+    margin-bottom: 2rem; 
+}
+
+.up-sells h2 {
+    font-size: 1.25rem; 
+    text-align: center; 
+    color: #54595f;
+    text-transform: uppercase;
+    margin-bottom: 1rem;  
+}
+
+.icon-cbddaily {
+    color: #5d7041;
+}
+
+.icon-hempseed {
+    color: #683816;
+}
+
+.icon-emera {
+    color: #004c45;
+}
+
+.icon-marrakesh {
+    color: #a51e35;
+}

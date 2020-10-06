@@ -11,7 +11,7 @@
  * the readme will list any important changes.
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce/Templates
+ * @package WooCommerce\Templates
  * @version 3.8.0
  */
 
@@ -29,6 +29,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 $product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $product_tabs ) ) : ?>
+
+	<div class="my-woo-product-tabs px-3">
+
+		<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
+
+			<p class="d-flex justify-content-between align-items-center"><?php echo $product_tab['title']; ?><i class="fa fa-angle-down fa-2x" aria-hidden="true"></i></p>
+
+		<?php endforeach; ?>
+
+	</div>
 
 	<div class="woocommerce-tabs wc-tabs-wrapper">
 		<ul class="tabs wc-tabs" role="tablist">

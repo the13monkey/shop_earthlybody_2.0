@@ -12,18 +12,6 @@
 
     );
 
-    $colors = array(
-
-        'cbddaily' => '#5d7041',
-
-        'hempseed' => '#683816',
-
-        'emera' => '#004c45',
-
-        'marrakesh' => '#a51e35',
-
-    );
-
     $url = $_SERVER['REQUEST_URI'];
 
     $url_parts = explode( '/', $url );
@@ -34,19 +22,7 @@
 
             $name = $brand; 
 
-            foreach ( $colors as $color => $brand_color ) {
-
-                if ( $name == $color ) {
-    
-                    $text_color = $brand_color; 
-    
-                }
-    
-            }
-
         } 
-
-        
 
     }
 
@@ -67,11 +43,11 @@
 
     <button id="mobile-menu-toggle" class="btn">
         
-        <i class="fa fa-bars fa-2x" style="color:<?php echo $text_color; ?>;"></i>
+        <i class="fa fa-bars fa-2x icon-<?php echo $name; ?>"></i>
     
     </button>
 
-    <a href="<?php echo get_site_url() ?>" class="d-flex align-items-end justify-content-center flex-column text-decoration-none">
+    <a href="<?php echo get_site_url() ?>/<?php echo $name; ?>/" class="d-flex align-items-end justify-content-center flex-column text-decoration-none">
 
         <img src="<?php echo get_template_directory_uri() ?>/img/new_logos/<?php echo $name; ?>-logo.png" alt="<?php echo get_bloginfo( 'name' ) ?>" style="max-width: 212px; max-height: 55px;"/>
 
@@ -79,7 +55,7 @@
 
     <a id="mobile-shopping-bag" class="btn" style="margin-top: -8px;" href="<?php echo wc_get_cart_url(); ?>">
         
-        <i class="fa fa-shopping-bag fa-2x" aria-hidden="true" style="color:<?php echo $text_color; ?>"></i>
+        <i class="fa fa-shopping-bag fa-2x icon-<?php echo $name; ?>" aria-hidden="true"></i>
     
     </a>
 

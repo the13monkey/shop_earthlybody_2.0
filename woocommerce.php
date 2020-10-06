@@ -15,6 +15,8 @@
 
             endwhile;
 
+            
+
         } elseif ( is_product_category( array( 'Shop By Scent', 'Shop Fragrances', 'Fragrances', 'Our Fragrances' ) ) ) {
 
             wc_get_template_part( 'archive', 'fragrance' );

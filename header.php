@@ -56,6 +56,14 @@
 
                 'marrakesh-hair-care',
 
+                'cbddaily', 
+
+                'hempseed', 
+
+                'emera', 
+
+                'marrakesh',
+
             );
 
             $url = $_SERVER['REQUEST_URI'];

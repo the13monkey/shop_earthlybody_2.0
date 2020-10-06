@@ -20,7 +20,7 @@
 	
 		<div style="width: 50vw">
 			
-			<a href="<?php echo get_site_url() ?>/marrakesh-hair-care/">
+			<a href="<?php echo get_site_url() ?>/marrakesh/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/home/marrakesh1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
 			</a>
 
@@ -28,7 +28,7 @@
 
 		<div style="width: 50vw">
 			
-			<a href="<?php echo get_site_url() ?>/hemp-seed-body-care/">
+			<a href="<?php echo get_site_url() ?>/hempseed/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/home/home-hempseed1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
 			</a>
 
@@ -36,7 +36,7 @@
 
 		<div style="width: 50vw">
 		
-			<a href="<?php echo get_site_url() ?>/cbd-daily-products/">
+			<a href="<?php echo get_site_url() ?>/cbddaily/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/home/home-cbddaily1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
 			</a>
 
@@ -44,7 +44,7 @@
 
 		<div style="width: 50vw">
 		
-			<a href="<?php echo get_site_url() ?>/emera-cbd-hair-care/">
+			<a href="<?php echo get_site_url() ?>/emera/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/home/home-emera1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
 			</a>
 
