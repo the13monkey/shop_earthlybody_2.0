@@ -576,3 +576,54 @@ a.restore-item {
     left: 1rem; 
 }
 
+.woocommerce form .form-row {
+    padding: 0px; 
+}
+
+.woocommerce form.checkout.woocommerce-checkout .form-row label {
+    color: #54595f;
+    text-transform: capitalize;
+    display:flex; 
+    justify-content: space-between; 
+    width: calc(100% - 3.5rem);
+}
+
+.woocommerce form.checkout.woocommerce-checkout .form-row {
+    display: block; 
+}
+
+.woocommerce form.checkout.woocommerce-checkout .form-row input.input-text {
+    border: 1px solid #eee; 
+    padding: 10px; 
+}
+
+.woocommerce form.checkout.woocommerce-checkout .select2-container--default .select2-selection--single {
+    border-radius: 0px; 
+}
+
+.woocommerce form.checkout.woocommerce-checkout .select2-container .select2-selection--single {
+    height: 41px; 
+    border-color: #eee; 
+}
+
+.woocommerce form.checkout.woocommerce-checkout .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 41px; 
+}
+
+.woocommerce form.checkout.woocommerce-checkout .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 40px; 
+}
+
+.woocommerce form .form-row .required {
+    color: #54595f; 
+    margin-top: 5px; 
+}
+
+.woocommerce form .form-row .required::after {
+    content: 'Required';
+    color:#54595f; 
+    position: absolute; 
+    font-size: 0.75rem; 
+    font-weight: 400; 
+    margin-left: 3px; 
+}

@@ -493,3 +493,124 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_r
 // Remove WooCommerce sidebar from the catelogue page 
 
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+// Open ship to a different address by default 
+
+// add_filter( 'woocommerce_ship_to_different_address_checked', '__return_true' );
+
+function checkout_progress_flow() {
+
+  echo "<div class='container'>";
+
+    echo "<div class='row justify-content-center'>";
+
+      echo "<div class='text-center my-4'>
+              <div class='d-flex justify-content-center align-items-center'>
+                <span class='btn btn-dark rounded-circle' style='font-size:0.75rem;padding-left:0.75rem;padding-right:0.75rem;'>1</span>
+                <span style='width:4rem;height:2px;' class='bg-dark'></span>
+              </div>
+              
+            </div>";
+
+      echo "<div class='text-center my-4'>
+              <div class='d-flex justify-content-center align-items-center'>
+                <span class='btn btn-outline-dark rounded-circle' style='font-size:0.75rem;padding-left:0.75rem;padding-right:0.75rem;'>2</span>
+                <span style='width:4rem;height:2px;' class='bg-secondary'></span>
+              </div>
+              
+            </div>";
+
+      echo "<div class='text-center my-4'>
+              <div class='d-flex justify-content-center align-items-center'>
+                <span class='btn btn-outline-dark rounded-circle' style='font-size:0.75rem;padding-left:0.75rem;padding-right:0.75rem;'>3</span>
+              </div>
+              
+            </div>";
+
+    echo "</div>";
+
+  echo "</div>";
+
+}
+
+add_action( 'woocommerce_before_checkout_form', 'checkout_progress_flow', 1 );
+
+// Hide order notes section from checkout page 
+
+add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
+
+// Remove have a coupon? from checkout page 
+
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+
+// Swap shipping and billing address @checkout page 
+
+function wc_custom_addresses_labels( $translated_text, $text, $domain )
+{
+    switch ( $translated_text )
+    {
+        case 'Billing Address' : /* Front-end */
+            $translated_text = __( 'Shipping address', 'woocommerce' );
+            break;
+            
+        case 'Shipping Address' : /* Front-end */
+            $translated_text = __( 'Billing address', 'woocommerce' );
+            break;
+
+        case 'Billing details' : // Back-end
+            $translated_text = __( 'Shipping Info', 'woocommerce' );
+            break;
+
+        case 'Ship to a different address?' :
+            $translated_text = __( 'Bill to a different address?', 'woocommerce' );
+            break;
+
+        case 'Deliver to a different address?' :
+            $translated_text = __( 'Bill to a different address?', 'woocommerce' );
+            break;
+
+        case 'Shipping details' : // Back-end
+            $translated_text = __( 'Billing Info', 'woocommerce' );
+            break;
+
+        case 'Ship to' : // Back-end
+            $translated_text = __( 'Bill to', 'woocommerce' );
+            break;
+    }
+    return $translated_text;
+}
+
+add_filter( 'gettext', 'wc_custom_addresses_labels', 20, 3 );
+
+function customize_wc_errors( $error ) {
+
+  if ( strpos( $error, 'Billing ' ) !== false ) {
+
+    $error = str_replace("Billing ", "", $error);
+
+  } elseif ( strpos( $error, 'Shipping ' ) !== false ) {
+
+    $error = str_replace("Shipping ", "Billing ", $error);
+
+  }
+
+  return $error;
+
+}
+
+add_filter( 'woocommerce_add_error', 'customize_wc_errors' );
+
+ // Remove default state 
+
+add_filter( 'default_checkout_billing_state', 'change_default_checkout_state' );
+
+add_filter( 'default_checkout_shipping_state', 'change_default_checkout_state' );
+
+function change_default_checkout_state() {
+
+    return ''; //set state code if you want to set it otherwise leave it blank.
+
+}
+
+// Change * to required for form fields @checkout page
+
