@@ -12,6 +12,30 @@
 
     );
 
+    $cats = array(
+
+        'cbddaily' => 'CBD Daily Products',
+
+        'marrakesh' => 'Marrakesh Hair Care',
+
+        'hempseed' => 'Hemp Seed Body Care',
+
+        'emera' => 'EMERA CBD Hair Care', 
+
+    );
+
+    $websites = array(
+
+        'cbddaily' => 'https://cbddailyproducts.com',
+
+        'marrakesh' => 'https://marrakeshhaircare.com',
+
+        'hempseed' => 'https://hempseedbodycare.com',
+
+        'emera' => 'https://emerahaircare.com',
+
+    );
+
     $url = $_SERVER['REQUEST_URI'];
 
     $url_parts = explode( '/', $url );
@@ -92,13 +116,90 @@
 
         </div>
 
-        <div class="row flex-column p-3 mt-5">
+        <div class="row flex-column p-3 mt-5 brand-nav-list">
 
         <?php 
 
-            echo "Dynamic Brand Menu Items";
+            $category = $cats[$name];
 
-        ?>
+            $IdByName = get_term_by( 'name', $category, 'product_cat' );
+
+            $product_cat_ID = $IdByName->term_id; 
+
+            $args = array (
+
+                'hierarchical' => 1,
+
+                'show_option_none' => '',
+
+                'hide_empty' => 0,
+
+                'parent' => $product_cat_ID,
+
+                'taxonomy' => 'product_cat'
+
+            );
+
+            $subcats = get_categories( $args );
+
+            foreach ( $subcats as $subcat ) {
+
+                $sub_link = get_term_link( $subcat->slug, $subcat->taxonomy );
+
+                $subcat_name = $subcat->name; 
+
+                $subIDbyName = get_term_by( 'name', $subcat_name, 'product_cat' );
+
+                $product_subcat_ID = $subIDbyName->term_id; 
+
+                $sub_args = array (
+
+                    'hierarchical' => 1,
+
+                    'show_option_none' => '',
+
+                    'hide_empty' => 0,
+
+                    'parent' => $product_subcat_ID,
+
+                    'taxonomy' => 'product_cat'
+
+                );
+
+                $sub_subcats = get_categories( $sub_args );
+
+                if ( count( $sub_subcats ) > 0 ) {
+
+                    $html = '<li class="nav-item has-dropdown"><a class="nav-link" href="'. $sub_link .'">'. $subcat_name .'</a><div class="dropdown">';
+
+                    for ( $i=0; $i<count( $sub_subcats ); $i++ ) {
+
+                        $sub_sublink = get_term_link( $sub_subcats[$i]->slug, 
+                        $sub_subcats[$i]->taxonomy );
+
+                        $sub_subname = $sub_subcats[$i]->name;
+
+                        $html .= '<a href="'. $sub_sublink .'" class="nav-item">'. $sub_subname .'</a>';
+
+                    }
+
+                    $html .= '</div></li>';
+
+                } else {
+
+                    $html = '<li class="nav-item"><a class="nav-link" href="'. $sub_link .'">'. $subcat_name .'</a></li>';
+
+                }
+                
+                echo $html; 
+            }
+        ?> 
+
+        <li class="nav-item">
+        
+            <a href="<?php echo $websites[$name]; ?>" class="nav-link" target="_blank">About Our Brand</a>
+        
+        </li>
 
         </div>
 

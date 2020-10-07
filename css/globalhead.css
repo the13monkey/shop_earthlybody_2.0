@@ -184,15 +184,18 @@ ul.woocommerce-mini-cart {
     padding-left: 0; 
 }
 
-.top-page-primary-menu li {
+.top-page-primary-menu li,
+.brand-nav-list li {
     list-style: none;
 }
 
-.top-page-primary-menu li .sub-menu {
+.top-page-primary-menu li .sub-menu,
+.brand-nav-list .dropdown {
     display: none; 
 }
 
-.top-page-primary-menu li a {
+.top-page-primary-menu li a,
+.brand-nav-list li a {
     color: #613d20; 
     font-size: 1.5rem; 
     font-weight: 900; 
@@ -201,16 +204,28 @@ ul.woocommerce-mini-cart {
     text-decoration: none; 
 }
 
-.top-page-primary-menu .menu-item-has-children a::after {
-    content: '+ more';
-}
-
-.top-page-primary-menu .menu-item-has-children.submenu-opened a::after {
-    content: '- hide';
+.brand-nav-list li a {
+    padding-left: 0px; 
 }
 
 .top-page-primary-menu .menu-item-has-children a::after,
-.top-page-primary-menu .menu-item-has-children.submenu-opened a::after {
+.brand-nav-list .has-dropdown .nav-link::after {
+    content: '+ more';
+}
+
+.top-page-primary-menu .menu-item-has-children.submenu-opened a::after,
+.brand-nav-list .has-dropdown.submenu-opened .nav-link::after {
+    content: '- hide';
+}
+
+.brand-nav-list .dropdown .nav-link::after {
+    content: '';
+}
+
+.top-page-primary-menu .menu-item-has-children a::after,
+.top-page-primary-menu .menu-item-has-children.submenu-opened a::after,
+.brand-nav-list .has-dropdown a::after,
+.brand-nav-list .has-dropdown.submenu-opened a::after {
     position: absolute; 
     color: #000; 
     font-size: 0.65rem; 
@@ -224,7 +239,8 @@ ul.woocommerce-mini-cart {
     line-height: 1rem;
 }
 
-.top-page-primary-menu li .sub-menu li a {
+.top-page-primary-menu li .sub-menu li a,
+.brand-nav-list .dropdown .nav-item {
     font-size: 1rem; 
     font-weight: 500; 
     color: #000; 
@@ -235,6 +251,14 @@ ul.woocommerce-mini-cart {
 
 .top-page-primary-menu li .sub-menu li a::after {
     display: none; 
+}
+
+.brand-nav-list .dropdown .nav-item {
+    display: block; 
+}
+
+.brand-nav-list .dropdown {
+    padding-left: 40px; 
 }
 
 .custom-minicart #closeMiniCart {

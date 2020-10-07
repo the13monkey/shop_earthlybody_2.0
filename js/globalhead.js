@@ -24,6 +24,24 @@ jQuery( document ).ready( function($){
 
     } );
 
+    $( '.brand-nav-list .has-dropdown' ).click( function(event){
+
+        event.preventDefault();
+
+        $(this).find( '.dropdown' ).slideToggle();
+
+        $(this).toggleClass( 'submenu-opened' );
+
+        $(this).find( '.dropdown .nav-item' ).click( function(event){
+
+            var url = $(this).attr('href');
+
+            window.location.replace(url);
+
+        } );
+
+    } );
+
     $( '#close-mobile-menu' ).click( function(e){
 
         e.preventDefault();
@@ -67,6 +85,16 @@ jQuery( document ).ready( function($){
         event.preventDefault();
 
     } );
+
+    // Change texts of brand categories in the navigation 
+
+    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.nav-link' ).text( 'Shop Products' );
+
+    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.dropdown .nav-item:last-child' ).text( 'Shop All' );
+
+    $( '.brand-nav-list .has-dropdown:nth-child(2)' ).find( '.nav-link' ).text( 'Shop By Scent' );
+
+    $( '.brand-nav-list .has-dropdown:nth-child(3)' ).find( '.nav-link' ).text( 'Shop By Category' );
 
 
 } );
