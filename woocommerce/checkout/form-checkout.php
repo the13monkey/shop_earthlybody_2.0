@@ -38,14 +38,20 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 		<div class="col2-set" id="customer_details">
 
 			<div class="col col-12">
-				<?php do_action( 'woocommerce_checkout_billing' ); ?>
-			</div>
-
-			<div class="col col-12">
 				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 			</div>
 
-			
+			<div class="form-check col col-12 my-3">
+				<input type="checkbox" class="form-check-input" id="exampleCheck1" checked>
+				<label class="form-check-label" for="exampleCheck1">Same address for billing</label>
+			</div>
+
+			<button class="btn btn-dark text-uppercase rounded-0" id="go-to-billing">Go To Billing</button>
+
+			<div class="col col-12">
+				<?php do_action( 'woocommerce_checkout_billing' ); ?>
+			</div>
+
 		</div>
 
 		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
@@ -54,11 +60,12 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 	
 	<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
 	
-	<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
-	
 	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
-	<div id="order_review" class="woocommerce-checkout-review-order">
+	<div id="order_review" class="woocommerce-checkout-review-order m-3 rounded-0">
+
+		<h4 id="order_review_heading" class="text-uppercase text-center my-4 text-dark font-weight-light"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h4>
+
 		<?php do_action( 'woocommerce_checkout_order_review' ); ?>
 	</div>
 

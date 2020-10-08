@@ -580,7 +580,7 @@ a.restore-item {
     padding: 0px; 
 }
 
-.woocommerce form.checkout.woocommerce-checkout .form-row label {
+.woocommerce form .form-row label {
     color: #54595f;
     text-transform: capitalize;
     display:flex; 
@@ -592,7 +592,7 @@ a.restore-item {
     display: block; 
 }
 
-.woocommerce form.checkout.woocommerce-checkout .form-row input.input-text {
+.woocommerce form .form-row input.input-text {
     border: 1px solid #eee; 
     padding: 10px; 
 }
@@ -621,9 +621,106 @@ a.restore-item {
 
 .woocommerce form .form-row .required::after {
     content: 'Required';
+    margin-left: 3px; 
+}
+
+.woocommerce form .form-row .optional {
+    margin-top: 5px; 
+}
+
+.woocommerce form .form-row .required::after,
+.woocommerce form .form-row .optional {
     color:#54595f; 
     position: absolute; 
     font-size: 0.75rem; 
     font-weight: 400; 
-    margin-left: 3px; 
+    right: 1rem; 
+}
+
+.woocommerce form .form-row-first,
+.woocommerce-page form.form-row-first,
+.woocommerce form .form-row-last,
+.woocommerce-page form .form-row-last {
+    width: 100%; 
+}
+
+.woocommerce-form-login-toggle .woocommerce-info {
+    background: transparent !important; 
+    color: #54595f; 
+    padding-left: 15px;
+    padding-right: 15px; 
+    border: none !important;
+    margin-bottom: 0px; 
+}
+
+.woocommerce-form-login-toggle .woocommerce-info .showlogin {
+    float: right; 
+    margin-top: -1.5rem; 
+}
+
+.woocommerce-form-login-toggle .woocommerce-info .showlogin .fa {
+    transition: all 0.2s linear;
+}
+
+.woocommerce-form-login-toggle .woocommerce-info .showlogin .fa.arrow-clicked {
+    transform: rotate(180deg);
+}
+
+.woocommerce-form-login {
+    margin-top: 0px !important;
+    border-left: none !important; 
+    border-right: none !important; 
+    border-top: none !important; 
+    border-radius: 0px !important; 
+}
+
+.woocommerce-form-login .woocommerce-form-login__submit,
+button[name="woocommerce_checkout_place_order"] {
+    width: 100%; 
+    border-radius: 0px !important; 
+    background: #613d20 !important; 
+    color: #fff !important; 
+    text-transform: uppercase;
+    margin-right: 0px !important;
+    height: 41px; 
+    letter-spacing: 3px;
+}
+
+.woocommerce-form-login .lost_password a {
+    font-size: 0.85rem; 
+    color: #000; 
+    text-decoration: underline; 
+}
+
+#customer_details .form-check {
+    padding-left: 35px; 
+}
+
+#customer_details #go-to-billing {
+    width: calc(100% - 30px);
+    margin: auto 15px; 
+    background: #613d20 !important; 
+}
+
+#order_review_heading {
+    color: #54595f;
+}
+
+.woocommerce table.shop_table td.product-total {
+    border-top: none !important; 
+}
+
+.woocommerce-checkout-review-order-table #shipping_method li {
+    margin-bottom: 0px !important; 
+    text-align: right;
+}
+
+.woocommerce-privacy-policy-text {
+    color: #54595f;
+    font-size: 0.85rem; 
+}
+
+.woocommerce-privacy-policy-link {
+    color: #000; 
+    text-decoration: underline; 
 }

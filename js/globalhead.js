@@ -96,5 +96,11 @@ jQuery( document ).ready( function($){
 
     $( '.brand-nav-list .has-dropdown:nth-child(3)' ).find( '.nav-link' ).text( 'Shop By Category' );
 
+    $( '.showlogin' ).click( function(){
+
+        $(this).find('i').toggleClass( 'arrow-clicked' );
+
+    } );
+
 
 } );

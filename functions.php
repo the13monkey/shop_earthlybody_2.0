@@ -496,7 +496,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 
 // Open ship to a different address by default 
 
-// add_filter( 'woocommerce_ship_to_different_address_checked', '__return_true' );
+add_filter( 'woocommerce_ship_to_different_address_checked', '__return_true' );
 
 function checkout_progress_flow() {
 
@@ -504,27 +504,27 @@ function checkout_progress_flow() {
 
     echo "<div class='row justify-content-center'>";
 
-      echo "<div class='text-center my-4'>
+      echo "<div class='text-left my-4'>
               <div class='d-flex justify-content-center align-items-center'>
                 <span class='btn btn-dark rounded-circle' style='font-size:0.75rem;padding-left:0.75rem;padding-right:0.75rem;'>1</span>
                 <span style='width:4rem;height:2px;' class='bg-dark'></span>
               </div>
-              
+              <span style='font-size:0.7rem;'>Shipping</span>
             </div>";
 
-      echo "<div class='text-center my-4'>
+      echo "<div class='text-left my-4'>
               <div class='d-flex justify-content-center align-items-center'>
                 <span class='btn btn-outline-dark rounded-circle' style='font-size:0.75rem;padding-left:0.75rem;padding-right:0.75rem;'>2</span>
                 <span style='width:4rem;height:2px;' class='bg-secondary'></span>
               </div>
-              
+              <span style='font-size:0.7rem;'>Billing</span>
             </div>";
 
-      echo "<div class='text-center my-4'>
+      echo "<div class='text-left my-4'>
               <div class='d-flex justify-content-center align-items-center'>
                 <span class='btn btn-outline-dark rounded-circle' style='font-size:0.75rem;padding-left:0.75rem;padding-right:0.75rem;'>3</span>
               </div>
-              
+              <span style='font-size:0.7rem;'>Review</span>
             </div>";
 
     echo "</div>";
@@ -543,62 +543,6 @@ add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 
 remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 
-// Swap shipping and billing address @checkout page 
-
-function wc_custom_addresses_labels( $translated_text, $text, $domain )
-{
-    switch ( $translated_text )
-    {
-        case 'Billing Address' : /* Front-end */
-            $translated_text = __( 'Shipping address', 'woocommerce' );
-            break;
-            
-        case 'Shipping Address' : /* Front-end */
-            $translated_text = __( 'Billing address', 'woocommerce' );
-            break;
-
-        case 'Billing details' : // Back-end
-            $translated_text = __( 'Shipping Info', 'woocommerce' );
-            break;
-
-        case 'Ship to a different address?' :
-            $translated_text = __( 'Bill to a different address?', 'woocommerce' );
-            break;
-
-        case 'Deliver to a different address?' :
-            $translated_text = __( 'Bill to a different address?', 'woocommerce' );
-            break;
-
-        case 'Shipping details' : // Back-end
-            $translated_text = __( 'Billing Info', 'woocommerce' );
-            break;
-
-        case 'Ship to' : // Back-end
-            $translated_text = __( 'Bill to', 'woocommerce' );
-            break;
-    }
-    return $translated_text;
-}
-
-add_filter( 'gettext', 'wc_custom_addresses_labels', 20, 3 );
-
-function customize_wc_errors( $error ) {
-
-  if ( strpos( $error, 'Billing ' ) !== false ) {
-
-    $error = str_replace("Billing ", "", $error);
-
-  } elseif ( strpos( $error, 'Shipping ' ) !== false ) {
-
-    $error = str_replace("Shipping ", "Billing ", $error);
-
-  }
-
-  return $error;
-
-}
-
-add_filter( 'woocommerce_add_error', 'customize_wc_errors' );
 
  // Remove default state 
 
@@ -612,5 +556,13 @@ function change_default_checkout_state() {
 
 }
 
-// Change * to required for form fields @checkout page
+// Change default log in option @checkout page 
+
+add_filter( 'woocommerce_checkout_login_message', 'mycheckoutmessage_return_customer_message' );
+ 
+function mycheckoutmessage_return_customer_message() {
+
+  return '<h5 class="login-message text-dark font-weight-light text-uppercase mb-0">Sign in for faster checkout</h5>';
+
+}
 
