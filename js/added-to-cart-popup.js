@@ -1,6 +1,6 @@
 jQuery( document ).ready( function($){
 
-    $('.ajax_add_to_cart').click(function(){
+    $('.my_add_simple').click(function(){
 
         var theTrigger = $(this);
 
@@ -30,6 +30,7 @@ jQuery( document ).ready( function($){
     
         }, 200 );
 
+
         $('#close-added-cart-popup').click(function(){
 
             $('#added-cart-popup').css('display', 'none');
@@ -48,7 +49,29 @@ jQuery( document ).ready( function($){
 
     });
 
+    $('.my_add_variable').click( function(e){
 
+        e.preventDefault();
+
+        $('#add-variable-to-cart').css('display', 'flex');
+
+        $('#close-add-variable-to-cart').click(function(){
+
+            $('#add-variable-to-cart').css('display', 'none');
+    
+            // clearInterval(myInterval);
+    
+        });
+
+        $('#cancel-purchase').click(function(){
+
+            $('#add-variable-to-cart').css('display', 'none');
+    
+           // clearInterval(myInterval);
+
+        });
+
+    } );
     
     
 });

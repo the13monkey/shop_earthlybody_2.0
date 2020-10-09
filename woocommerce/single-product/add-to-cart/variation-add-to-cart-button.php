@@ -28,7 +28,9 @@ global $product;
 	do_action( 'woocommerce_after_add_to_cart_quantity' );
 	?>
 
-	<button type="submit" class="single_add_to_cart_button button alt btn bg-dark rounded-0"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+	<button type="submit" class="single_add_to_cart_button button alt rounded-0 w-100 text-uppercase"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+
+	<button class="single_buy_now_button button alt rounded-0 w-100 text-uppercase mt-1">Buy It Now</button>
 
 	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 

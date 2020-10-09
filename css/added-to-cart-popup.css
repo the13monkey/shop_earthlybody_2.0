@@ -1,4 +1,5 @@
-#added-cart-popup {
+#added-cart-popup,
+#add-variable-to-cart {
     justify-content: center; 
     align-items: center; 
     position: fixed; 
@@ -9,10 +10,11 @@
     height: 100%; 
     overflow: hidden; 
     z-index: 9999999999; 
-    display: none; 
+    display: none;
 }
 
-#added-cart-popup #cart-content {
+#added-cart-popup #cart-content,
+#add-variable-to-cart #add-variable-content {
     width: 80vw; 
     max-height: 80vh; 
     overflow-x: hidden; 
@@ -23,7 +25,8 @@
     padding-bottom: 1rem; 
 }
 
-#close-added-cart-popup {
+#close-added-cart-popup,
+#close-add-variable-to-cart {
     border: none; 
     box-shadow: none; 
     background: transparent; 

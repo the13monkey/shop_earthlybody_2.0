@@ -134,6 +134,8 @@ function add_added_to_cart_popup() {
 
   include('added-to-cart-popup.php');
 
+  include('add-variable-to-cart.php');
+
 }
 
 add_action( 'wp_footer', 'add_added_to_cart_popup' );
@@ -262,7 +264,7 @@ add_filter( 'woocommerce_add_to_cart_fragments', function($fragments) {
 
     <div id="cart-content-popup-items" class="row justify-content-between align-items-center p-3 bg-light">
     
-      <h6 class="text-uppercase font-weight-bold">
+      <h6 class="text-uppercase font-weight-light">
         Items in your bag: <?php echo WC()->cart->get_cart_contents_count(); ?>
       </h6>
 
@@ -332,13 +334,13 @@ function my_widget_shopping_cart_button_checkout() {
 }
 
 function add_plus_to_qty_input () { // Add plus to global/quantity-input.php AKA woocommerce_quantity_input() function
-	$html = '<input type="button" value="-" class="minus" style="border: 1px solid #eee">';
+	$html = '<input type="button" value="-" class="minus">';
     echo $html;
 }
 add_action( 'woocommerce_before_quantity_input_field', 'add_plus_to_qty_input' );
 
 function add_minus_to_qty_input () { // Add minus to global/quantity-input.php AKA woocommerce_quantity_input() function
-	$html = '<input type="button" value="+" class="plus" style="border: 1px solid #eee">';
+	$html = '<input type="button" value="+" class="plus">';
     echo $html; 
 }
 add_action( 'woocommerce_after_quantity_input_field', 'add_minus_to_qty_input' );
@@ -565,4 +567,52 @@ function mycheckoutmessage_return_customer_message() {
   return '<h5 class="login-message text-dark font-weight-light text-uppercase mb-0">Sign in for faster checkout</h5>';
 
 }
+
+// To change add to cart text on single product page
+
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'woocommerce_custom_single_add_to_cart_text' ); 
+
+function woocommerce_custom_single_add_to_cart_text() {
+
+    return __( 'Add to bag', 'woocommerce' ); 
+
+}
+
+// To change add to cart text on product archives(Collection) page
+add_filter( 'woocommerce_product_add_to_cart_text', 'woocommerce_custom_product_add_to_cart_text' );  
+
+function woocommerce_custom_product_add_to_cart_text() {
+
+    return __( 'Add to bag', 'woocommerce' );
+
+}
+
+// Add Size Attribute image and details to product loop 
+
+function add_attributes_to_product_loop () {
+
+    global $product; 
+
+    if( $product->is_type( 'variable' ) ) {
+
+      $variation_ids = $product->get_children();
+
+      foreach ( $variation_ids as $variation_id ) {
+
+        $variation = new WC_Product_Variation( $variation_id );
+        
+        $image_tag = $variation->get_image();
+
+        echo $variation_id.'<br>';
+
+        echo $image_tag.'<br>';
+
+      }
+
+    }
+
+}
+
+add_action( 'woocommerce_after_shop_loop_item', 'add_attributes_to_product_loop', 3 );
+
 

@@ -36,9 +36,9 @@
 
             <div class="row justify-content-between align-items-center p-3">
             
-                <button class="btn btn-dark text-uppercase rounded-0" style="width:50%;font-size:0.85rem;" id="continue-shopping-button">Continue Shopping</button>
+                <button class="btn btn-dark text-uppercase rounded-0 w-100" style="font-size:0.85rem;" id="continue-shopping-button">Continue Shopping</button>
 
-                <a href="<?php echo wc_get_cart_url() ?>" class="btn bg-brown text-white text-uppercase rounded-0" style="width:50%;font-size:0.85rem;">View Bag & Checkout</a>
+                <a href="<?php echo wc_get_cart_url() ?>" class="btn btn-outline-dark text-uppercase rounded-0 w-100 mt-1" style="font-size:0.85rem;">View Bag & Checkout</a>
 
             </div>
         

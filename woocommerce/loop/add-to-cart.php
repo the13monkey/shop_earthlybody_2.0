@@ -21,16 +21,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 
-echo apply_filters(
-	'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
-	sprintf(
-		'<a href="%s" data-quantity="%s" class="%s bg-brown text-white p-2 text-center text-uppercase mt-3 rounded-0 font-weight-normal" %s>%s</a>',
-		esc_url( $product->add_to_cart_url() ),
-		esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
-		esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
-		isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
-		esc_html( $product->add_to_cart_text() )
-	),
-	$product,
-	$args
-);
+if ( $product->is_type( 'simple' ) ) {
+
+	echo apply_filters(
+		'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+		sprintf(
+			'<a href="%s" data-quantity="%s" class="%s btn my_add_simple text-center text-uppercase mt-3 my-1 rounded-0 font-weight-bold w-100" %s>%s</a>',
+			esc_url( $product->add_to_cart_url() ),
+			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+			esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+			isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+			esc_html( $product->add_to_cart_text() )
+		),
+		$product,
+		$args
+	);
+
+} else {
+
+	echo '<a href="#" data-quantity="1" class="btn button add_to_cart_button my_add_variable text-center text-uppercase mt-3 my-1 rounded-0 font-weight-bold w-100" %s>'. $product->add_to_cart_text() .'</a>';
+
+	/*
+	echo apply_filters(
+		'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+		sprintf(
+			'<a href="%s" data-quantity="%s" class="%s my_add_variable text-center text-uppercase mt-3 my-1 rounded-0 font-weight-bold w-100" %s>%s</a>',
+			esc_url( '?add-to-cart=39' ),
+			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+			esc_attr( 'button product_type_simple add_to_cart_button ajax_add_to_cart text-center text-uppercase mt-3 my-1 rounded-0 font-weight-bold w-100' ),
+			esc_attr( 'data-product_id=39' ),
+			esc_html( $product->add_to_cart_text() )
+		),
+		$product,
+		$args
+	);*/
+	
+}
+
+
+
+echo "<button class='button buy_now_button rounded-0 font-weight-bold text-uppercase mb-3 mt-0 text-center w-100'>Buy It Now</button>";
