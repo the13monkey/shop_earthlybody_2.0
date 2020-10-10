@@ -22,7 +22,20 @@ header {
 
 ul.woocommerce-mini-cart {
     list-style: none; 
-    padding-left: 0;
+    padding-left: 15px;
+    padding-right: 15px; 
+    width: 90%; 
+    right: 0; 
+    height: 100%; 
+    overflow-x: hidden; 
+    overflow-y: scroll;
+    background: #fff; 
+    position: absolute; 
+    top: 60px; 
+}
+
+ul.woocommerce-mini-cart .quantity * {
+    vertical-align: top !important; 
 }
 
 /**
@@ -289,7 +302,7 @@ ul.woocommerce-mini-cart {
     overflow-x: hidden; 
     overflow-y: scroll; 
     z-index: 99;
-    background: #fff; 
+    background: rgba(0,0,0,.57); 
     padding: 1rem; 
     transition: right 0.5s linear; 
 }

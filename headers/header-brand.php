@@ -94,11 +94,11 @@
 
 </div>
 
-<div class="w-100 mobile-menu">
+<div class="w-100 mobile-menu" style="background:rgba(0,0,0,.57)">
 
-    <div class="container-fluid">
+    <div style="width:90%; background:#fff; height: 100%; overflow-x:hidden; overflow-y:scroll; padding-left:15px; padding-right:15px;">
 
-        <div class="p-3 w-100 bg-white border-bottom" style="position: fixed; top: 0; left: 0; display: flex; justify-content: space-between;">
+        <div class="p-3 border-bottom bg-white" style="position: fixed; top: 0; left: 0; display: flex; justify-content: space-between; width: 90%">
 
             <a href="<?php echo wc_get_page_permalink( 'myaccount' ) ?>" style="font-size:0.85rem;" class="text-dark">
 

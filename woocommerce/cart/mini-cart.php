@@ -21,13 +21,13 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_mini_cart' ); ?>
 
-<div class="d-flex w-100 justify-content-between align-items-center">
+<div class="d-flex justify-content-between align-items-center" style="width:90%;background:#fff;right:0;position:absolute;padding-left:15px;padding-right:15px;top:0;padding-top:15px;padding-bottom:15px;">
 
 	<h6 class="mb-0 text-uppercase">Shopping Bag</h6>	
 
-	<button id="closeMiniCart" class="btn btn-sm btn-dark text-white" style="font-size:0.85rem;" onclick="closeMiniCart(event)">
+	<button id="closeMiniCart" class="btn btn-sm btn-transparent text-dark" style="font-size:0.85rem;" onclick="closeMiniCart(event)">
 
-		<i class="fa fa-times text-white" aria-hidden="true"></i>
+		<i class="fa fa-times text-dark" aria-hidden="true"></i>
 		Close
 
 	</button>
@@ -44,8 +44,6 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 	</script>
 
 </div>
-
-<hr>
 
 <?php if ( ! WC()->cart->is_empty() ) : ?>
 
