@@ -16,9 +16,9 @@
 
             <hr class="my-0">
 
-            <div class="row justify-content-between align-items-center py-3">
+            <div class="row justify-content-center align-items-center p-3" id="variations-content">
 
-               Different Sizes
+                <!-- Different Sizes, Dynamically Content by JS -->
 
             </div>
 

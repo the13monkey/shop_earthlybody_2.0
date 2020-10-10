@@ -601,11 +601,19 @@ function add_attributes_to_product_loop () {
 
         $variation = new WC_Product_Variation( $variation_id );
         
-        $image_tag = $variation->get_image();
+        $thumb_id = $variation->get_image_id();
 
-        echo $variation_id.'<br>';
+        $thumb_url = wp_get_attachment_url( $thumb_id, 'thumbnail' );
 
-        echo $image_tag.'<br>';
+        $variation_name = $variation->get_name();
+
+        $variation_name_array = explode('-', $variation_name);
+
+        $count = count( $variation_name_array );
+
+        $attribute_value = $variation_name_array[ $count - 1 ];
+
+        echo '<input class="variations" type="hidden" name="variation_id" data-variation_id="'.$variation_id.'" data-variation_name="'.$attribute_value.'" data-thumb_url="'.$thumb_url.'">';
 
       }
 
