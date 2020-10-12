@@ -20,23 +20,15 @@ header {
     overflow-x: scroll; 
 }
 
-ul.woocommerce-mini-cart {
-    list-style: none; 
-    padding-left: 15px;
-    padding-right: 15px; 
-    width: 90%; 
-    right: 0; 
-    height: 100%; 
-    overflow-x: hidden; 
-    overflow-y: scroll;
-    background: #fff; 
-    position: absolute; 
-    top: 60px; 
-}
-
 ul.woocommerce-mini-cart .quantity * {
     vertical-align: top !important; 
 }
+
+ul.woocommerce-mini-cart {
+    list-style:none; 
+    padding-inline-start: 0px; 
+}
+
 
 /**
 * Links that don't have text decoration
@@ -302,7 +294,7 @@ ul.woocommerce-mini-cart .quantity * {
     overflow-x: hidden; 
     overflow-y: scroll; 
     z-index: 99;
-    background: rgba(0,0,0,.57); 
+    background:#fff; 
     padding: 1rem; 
     transition: right 0.5s linear; 
 }
@@ -793,17 +785,4 @@ button[name="woocommerce_checkout_place_order"] {
 .up-sells.upsells.products .products {
     padding-left: 1rem; 
     padding-right: 1rem; 
-}
-
-.woocommerce-mini-cart__empty-message {
-    position: absolute; 
-    background: #fff; 
-    right: 0; 
-    width: 90%; 
-    display: block;
-    top: 60px; 
-    padding-left: 15px; 
-    overflow-x: hidden; 
-    overflow-y: scroll; 
-    height: 95%; 
 }

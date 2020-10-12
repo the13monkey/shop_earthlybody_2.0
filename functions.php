@@ -597,6 +597,8 @@ function add_attributes_to_product_loop () {
 
       $variation_ids = $product->get_children();
 
+      echo '<div class="w-100 d-flex justify-content-between">';
+
       foreach ( $variation_ids as $variation_id ) {
 
         $variation = new WC_Product_Variation( $variation_id );
@@ -607,15 +609,27 @@ function add_attributes_to_product_loop () {
 
         $variation_name = $variation->get_name();
 
+        $variation_price = $variation->get_price();
+
         $variation_name_array = explode('-', $variation_name);
 
         $count = count( $variation_name_array );
 
         $attribute_value = $variation_name_array[ $count - 1 ];
 
-        echo '<input class="variations" type="hidden" name="variation_id" data-variation_id="'.$variation_id.'" data-variation_name="'.$attribute_value.'" data-thumb_url="'.$thumb_url.'">';
+        echo '<button class="options">'.$attribute_value.'</button>';
+
+        echo '<input class="variations" type="hidden" name="variation_id" data-variation_id="'.$variation_id.'" data-variation_name="'.$attribute_value.'" data-thumb_url="'.$thumb_url.'" data-variation_price="'.$variation_price.'">';
 
       }
+
+      echo '</div>';
+
+      echo '<div class="row justify-content-center my-2 py-0>
+              <span class="price">
+                <span class="woocommerce-Price-amount amount" id="variation-price--default"></span>
+              </span>
+            </div>';
 
     }
 

@@ -27,7 +27,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 		<h6 class="mb-0 text-uppercase">Shopping Bag</h6>	
 
-		<button id="closeMiniCart" class="btn btn-sm btn-transparent text-dark" style="font-size:0.85rem;" onclick="closeMiniCart(event)">
+		<button id="closeMiniCart" class="btn btn-sm btn-transparent text-dark pr-0" style="font-size:0.85rem;" onclick="closeMiniCart(event)">
 
 			<i class="fa fa-times text-dark" aria-hidden="true"></i>
 			Close
@@ -46,6 +46,8 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 		</script>
 
 	</div>
+
+	<hr>
 
 	<?php if ( ! WC()->cart->is_empty() ) : ?>
 
@@ -105,7 +107,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 			?>
 		</ul>
 
-		<p class="woocommerce-mini-cart__total total text-left">
+		<p class="woocommerce-mini-cart__total total w-100 d-flex justify-content-between">
 			<?php
 			/**
 			 * Hook: woocommerce_widget_shopping_cart_total.

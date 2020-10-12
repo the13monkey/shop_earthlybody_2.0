@@ -2,7 +2,7 @@
 
     <h7 class="text-light">Free Shipping over $30</h7>
 
-    <h7 class="text-light">Learn how you can make $5 with us!</h7>
+    <h7 class="text-light">Join Mailing List & Get 25% Off</h7>
 
 </div>
 

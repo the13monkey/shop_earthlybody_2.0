@@ -45,7 +45,22 @@
     font-size: 0.85rem; 
 }
 
-.img-thumbnail-clicked {
+img.img-thumbnail-clicked {
     border: 1px solid #000;
     border-radius: 0px !important; 
+}
+
+p.img-thumbnail-clicked {
+    font-weight: 700; 
+    border: none; 
+}
+
+.product .options {
+    font-size: 0.85rem;
+    background: #fff; 
+    border: 1px solid #fff; 
+}
+
+.product .options.selected {
+    border: 1px solid #000; 
 }

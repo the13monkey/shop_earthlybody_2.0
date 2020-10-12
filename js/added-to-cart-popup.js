@@ -49,6 +49,35 @@ jQuery( document ).ready( function($){
 
     });
 
+    $('.options:first-child').addClass('selected');
+
+    var variation_price__default = $('.options.selected').parent().find('input[name="variation_id"]').data('variation_price');
+
+    $('#variation-price--default').html('$'+variation_price__default);
+
+    $('.options').click(function(event){
+
+        event.preventDefault();
+
+        $('.options.selected').removeClass('selected');
+
+        $(this).addClass('selected');
+
+        var variation_price__selected = $(this).next().data('variation_price');
+
+        var variation_thumb_selected = $(this).next().data('thumb_url');
+
+        $('#variation-price--default').html('$'+variation_price__selected);
+
+        $(this).parent().parent().find('.attachment-woocommerce_thumbnail').attr({
+            'src' : variation_thumb_selected,
+            'lazy' : '',
+            'srcset' : '',
+        });
+
+
+    });
+
     $('.my_add_variable').click( function(e){
 
         e.preventDefault();
@@ -59,7 +88,7 @@ jQuery( document ).ready( function($){
 
         $.each( variations, function(index, item) {
 
-            variations_array.push( { variationID: $(item).data('variation_id'), variationName: $(item).data('variation_name'), variationThumbURL: $(item).data('thumb_url') } );
+            variations_array.push( { variationID: $(item).data('variation_id'), variationName: $(item).data('variation_name'), variationThumbURL: $(item).data('thumb_url'), variationPrice: $(item).data('variation_price') } );
 
         }) 
 
@@ -73,19 +102,25 @@ jQuery( document ).ready( function($){
 
             var variation_name = variations_array[i]['variationName'];
 
+            var variation_price = variations_array[i]['variationPrice'];
+
             var width = Math.floor(100/3); 
 
-            $('#variations-content').append(`<div style="width:${width}%"><img class="img-thumbnail rounded-0" style="border-radius:0px!important;" src="${variation_thumb_url}" alt="Shop Earthly Body"/><p class="text-center">${variation_name}</p><input type="hidden" value="${variation_id}"></div>`);
+            $('#variations-content').append(`<div style="width:${width}%"><img class="img-thumbnail rounded-0" style="border-radius:0px!important;" src="${variation_thumb_url}" alt="Shop Earthly Body"/><p class="text-center mb-0">${variation_name}</p><p class="text-center">$${variation_price}</p><input type="hidden" value="${variation_id}"></div>`);
 
         }
 
         $('#add-variable-to-cart').css('display', 'flex');
 
+        var variation_id__default = $('.options.selected').next().data('variation_id');
+
+        $('#variations-content').find('input[value="'+variation_id__default+'"]').parent().find('*').addClass('img-thumbnail-clicked');
+
         $('#variations-content .img-thumbnail').click(function(){
 
             $('.img-thumbnail-clicked').removeClass('img-thumbnail-clicked');
 
-            $(this).addClass('img-thumbnail-clicked');
+            $(this).parent().find('*').addClass('img-thumbnail-clicked');
 
         });
 
@@ -118,7 +153,7 @@ jQuery( document ).ready( function($){
         });
 
         $('#close-add-variable-to-cart').click(function(){
-
+            /*
             $('#add-variable-to-cart').css('display', 'none');
             
             $('#variations-content').html('');
@@ -135,12 +170,17 @@ jQuery( document ).ready( function($){
 
             $('#action-buttons').removeClass('mt-n5');
 
+            */
+
             // clearInterval(myInterval);
+
+            location.reload();
     
         });
 
         $('#cancel-purchase').click(function(){
 
+            /*
             $('#add-variable-to-cart').css('display', 'none');
 
             $('#variations-content').html('');
@@ -157,7 +197,11 @@ jQuery( document ).ready( function($){
 
             $('#action-buttons').removeClass('mt-n5');
 
+            */
+
            // clearInterval(myInterval);
+
+           location.reload();
 
         });
 
