@@ -298,7 +298,7 @@ ul.woocommerce-mini-cart .quantity * {
     width: 100%;
     height: 100%; 
     top: 0; 
-    right: -100%; 
+    right: -100%;         ; 
     overflow-x: hidden; 
     overflow-y: scroll; 
     z-index: 99;
@@ -793,4 +793,17 @@ button[name="woocommerce_checkout_place_order"] {
 .up-sells.upsells.products .products {
     padding-left: 1rem; 
     padding-right: 1rem; 
+}
+
+.woocommerce-mini-cart__empty-message {
+    position: absolute; 
+    background: #fff; 
+    right: 0; 
+    width: 90%; 
+    display: block;
+    top: 60px; 
+    padding-left: 15px; 
+    overflow-x: hidden; 
+    overflow-y: scroll; 
+    height: 95%; 
 }

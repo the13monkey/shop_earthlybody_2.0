@@ -1,6 +1,6 @@
 jQuery( document ).ready( function($){
 
-    $('.my_add_simple').click(function(){
+    $('.product_type_simple').click(function(){
 
         var theTrigger = $(this);
 
@@ -89,11 +89,51 @@ jQuery( document ).ready( function($){
 
         });
 
+        $('#confirm-size').click(function(){
+
+            // check if size is selected
+
+            var length = $('.img-thumbnail-clicked').length;
+
+            if (length > 0) {
+
+                var variation_id = $('.img-thumbnail-clicked').parent().find('input').val();
+
+                $('#variations-content').addClass('d-none');
+
+                $('#confirm-size').addClass('d-none');
+
+                $('#upsells-content').removeClass('d-none');
+
+                $('#go-checkout').removeClass('d-none');
+
+                $('#action-buttons').addClass('mt-n5');
+
+            } else {
+
+                alert('Please choose a size');
+
+            }
+
+        });
+
         $('#close-add-variable-to-cart').click(function(){
 
             $('#add-variable-to-cart').css('display', 'none');
             
             $('#variations-content').html('');
+
+            $('.img-thumbnail-clicked').removeClass('img-thumbnail-clicked');
+
+            $('#variations-content').removeClass('d-none');
+
+            $('#confirm-size').removeClass('d-none');
+
+            $('#upsells-content').addClass('d-none');
+
+            $('#go-checkout').addClass('d-none');
+
+            $('#action-buttons').removeClass('mt-n5');
 
             // clearInterval(myInterval);
     
@@ -104,7 +144,19 @@ jQuery( document ).ready( function($){
             $('#add-variable-to-cart').css('display', 'none');
 
             $('#variations-content').html('');
-    
+
+            $('.img-thumbnail-clicked').removeClass('img-thumbnail-clicked');
+
+            $('#variations-content').removeClass('d-none');
+
+            $('#confirm-size').removeClass('d-none');
+
+            $('#upsells-content').addClass('d-none');
+
+            $('#go-checkout').addClass('d-none');
+
+            $('#action-buttons').removeClass('mt-n5');
+
            // clearInterval(myInterval);
 
         });
