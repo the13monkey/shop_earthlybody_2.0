@@ -45,12 +45,11 @@ if ( $product->is_type( 'simple' ) ) {
 	echo apply_filters(
 		'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
 		sprintf(
-			'<a href="%s" data-quantity="%s" class="%s text-center text-uppercase mt-3 my-1 rounded-0 font-weight-bold w-100" %s>%s</a>',
-			esc_url( '?add-to-cart=39' ),
+			'<a href="%s" data-quantity="%s" class="%s woo-default-variable-add text-center text-uppercase mt-3 my-1 rounded-0 font-weight-bold w-100 d-none">%s</a>',
+			esc_url( '' ),
 			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
 			esc_attr( 'button product_type_simple add_to_cart_button ajax_add_to_cart text-center text-uppercase mt-3 my-1 rounded-0 font-weight-bold w-100' ),
-			esc_attr( 'data-product_id=39' ),
-			esc_html( 'Default Add' )
+			esc_html( $product->add_to_cart_text() )
 		),
 		$product,
 		$args

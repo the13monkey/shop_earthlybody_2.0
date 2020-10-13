@@ -34,6 +34,12 @@ jQuery( document ).ready( function($){
         $('#close-added-cart-popup').click(function(){
 
             $('#added-cart-popup').css('display', 'none');
+
+            //$('#variations-content').html('');
+
+          //  $('.selected').removeClass('selected');
+
+          //location.reload();
     
             clearInterval(myInterval);
     
@@ -42,6 +48,12 @@ jQuery( document ).ready( function($){
         $('#continue-shopping-button').click(function(){
 
             $('#added-cart-popup').css('display', 'none');
+            
+           // $('#variations-content').html('');
+
+           // $('.selected').removeClass('selected');
+
+           //location.reload();
     
             clearInterval(myInterval);
 
@@ -49,12 +61,8 @@ jQuery( document ).ready( function($){
 
     });
 
-    $('.options:first-child').addClass('selected');
-
-    var variation_price__default = $('.options.selected').parent().find('input[name="variation_id"]').data('variation_price');
-
-    $('#variation-price--default').html('$'+variation_price__default);
-
+    default_options_styles();
+    
     $('.options').click(function(event){
 
         event.preventDefault();
@@ -75,12 +83,13 @@ jQuery( document ).ready( function($){
             'srcset' : '',
         });
 
-
     });
 
     $('.my_add_variable').click( function(e){
 
         e.preventDefault();
+
+        $(this).parent().find('.woo-default-variable-add').addClass('ready-to-add'); 
 
         var variations = $(this).parent().find('.variations');
 
@@ -134,15 +143,24 @@ jQuery( document ).ready( function($){
 
                 var variation_id = $('.img-thumbnail-clicked').parent().find('input').val();
 
-                $('#variations-content').addClass('d-none');
+                $('.ready-to-add').attr({
 
-                $('#confirm-size').addClass('d-none');
+                    'href': '?add-to-cart='+variation_id,
 
-                $('#upsells-content').removeClass('d-none');
+                    'data-product_id': variation_id
 
-                $('#go-checkout').removeClass('d-none');
+                });
 
-                $('#action-buttons').addClass('mt-n5');
+                $('.ready-to-add').click();
+
+                $('.img-thumbnail-clicked').removeClass('img-thumbnail-clicked');
+
+                $('#add-variable-to-cart').css('display', 'none');
+
+                $('.my_add_variable').addClass('d-none');
+
+                $('.ready-to-add').removeClass('d-none');
+
 
             } else {
 
@@ -153,26 +171,6 @@ jQuery( document ).ready( function($){
         });
 
         $('#close-add-variable-to-cart').click(function(){
-            /*
-            $('#add-variable-to-cart').css('display', 'none');
-            
-            $('#variations-content').html('');
-
-            $('.img-thumbnail-clicked').removeClass('img-thumbnail-clicked');
-
-            $('#variations-content').removeClass('d-none');
-
-            $('#confirm-size').removeClass('d-none');
-
-            $('#upsells-content').addClass('d-none');
-
-            $('#go-checkout').addClass('d-none');
-
-            $('#action-buttons').removeClass('mt-n5');
-
-            */
-
-            // clearInterval(myInterval);
 
             location.reload();
     
@@ -180,32 +178,21 @@ jQuery( document ).ready( function($){
 
         $('#cancel-purchase').click(function(){
 
-            /*
-            $('#add-variable-to-cart').css('display', 'none');
-
-            $('#variations-content').html('');
-
-            $('.img-thumbnail-clicked').removeClass('img-thumbnail-clicked');
-
-            $('#variations-content').removeClass('d-none');
-
-            $('#confirm-size').removeClass('d-none');
-
-            $('#upsells-content').addClass('d-none');
-
-            $('#go-checkout').addClass('d-none');
-
-            $('#action-buttons').removeClass('mt-n5');
-
-            */
-
-           // clearInterval(myInterval);
-
            location.reload();
 
         });
 
     } );
+
+    function default_options_styles() {
+
+        $('.options:first-child').addClass('selected');
+
+        var variation_price__default = $('.options.selected').parent().find('input[name="variation_id"]').data('variation_price');
+
+        $('#variation-price--default').html('$'+variation_price__default);
+
+    }
     
     
 });

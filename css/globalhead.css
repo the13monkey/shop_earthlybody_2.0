@@ -159,6 +159,8 @@ ul.woocommerce-mini-cart {
 .single_buy_now_button {
     background: #613d20 !important; 
     color: #fff !important; 
+    padding-left: 5px;
+    padding-right: 5px; 
 }
 
 .single_add_to_cart_button, .single_buy_now_button {
@@ -780,9 +782,4 @@ button[name="woocommerce_checkout_place_order"] {
 
 .woocommerce .woocommerce-result-count {
     width: 42vw; 
-}
-
-.up-sells.upsells.products .products {
-    padding-left: 1rem; 
-    padding-right: 1rem; 
 }
