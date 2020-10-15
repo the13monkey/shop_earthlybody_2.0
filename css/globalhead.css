@@ -108,6 +108,10 @@ ul.woocommerce-mini-cart {
     padding-bottom: 0.15rem; 
 }
 
+#shop-by-brand .shop-single-brand {
+    width: 50vw; 
+}
+
 .product {
     height: 450px;
     margin-bottom: 2rem; 
@@ -153,6 +157,10 @@ ul.woocommerce-mini-cart {
 .single_add_to_cart_button {
     background: #fff !important; 
     color: #613d20 !important; 
+    position: absolute; 
+    left: 1rem; 
+    bottom: 2.25rem; 
+    width: calc(100% - 2rem);
 }
 
 .product .button.buy_now_button,
@@ -161,6 +169,12 @@ ul.woocommerce-mini-cart {
     color: #fff !important; 
     padding-left: 5px;
     padding-right: 5px; 
+    padding-top: 0.45rem !important; 
+    padding-bottom: 0.45rem !important; 
+    position: absolute; 
+    left: 1rem; 
+    bottom: -1rem; 
+    width: calc(100% - 2rem);
 }
 
 .single_add_to_cart_button, .single_buy_now_button {
@@ -620,6 +634,7 @@ button[name="add-to-cart"] {
 .brand-landing-featured .products .product {
     display: inline-block !important; 
     width: 49%; 
+    vertical-align: top;
 }
 
 .woocommerce form .form-row {
@@ -781,4 +796,40 @@ button[name="woocommerce_checkout_place_order"] {
 
 .woocommerce .woocommerce-result-count {
     width: 42vw; 
+}
+
+#marrakesh-dec {
+    width: 150px; 
+    height: auto; 
+    left: 0; 
+    margin-top: 4rem; 
+}
+
+#cbd-dec {
+    width: 120px;
+    height: 120px; 
+    right: 0; 
+    margin-top: -7rem; 
+}
+
+#marrakesh-dec, #cbd-dec {
+    position: absolute;
+}
+
+@media screen and (min-width: 768px) {
+
+    .brands-toggle-nav {
+        width: 100vw; 
+        overflow-x: hidden; 
+    }
+
+    #shop-by-brand .shop-single-brand {
+        width: 25vw; 
+    }
+
+    .woocommerce ul.products[class*=columns-] li.product {
+        width: 24%;
+        clear: right !important; 
+        float: left !important; 
+    }
 }

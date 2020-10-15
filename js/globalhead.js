@@ -1,5 +1,19 @@
 jQuery( document ).ready( function($){
 
+    var maxHeight = 0; 
+
+    $('.products .product').each(function(){
+
+        if ( $(this).height() > maxHeight ) {
+
+            maxHeight = $(this).height();
+
+        }
+
+    });
+
+    $('.products .product').height(maxHeight);
+
     $( '#mobile-menu-toggle' ).click( function(e){
 
         $( '.mobile-menu' ).addClass( 'show-mobile-menu' );

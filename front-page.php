@@ -16,9 +16,9 @@
 
 	</div>
 
-	<div class="row justify-content-center align-items-center mt-0 mb-3">
+	<div class="row justify-content-center align-items-center mt-0 mb-3" id="shop-by-brand">
 	
-		<div style="width: 50vw">
+		<div class="shop-single-brand">
 			
 			<a href="<?php echo get_site_url() ?>/marrakesh/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/home/marrakesh1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
@@ -26,7 +26,7 @@
 
 		</div>
 
-		<div style="width: 50vw">
+		<div class="shop-single-brand">
 			
 			<a href="<?php echo get_site_url() ?>/hempseed/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/home/home-hempseed1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
@@ -34,7 +34,7 @@
 
 		</div>
 
-		<div style="width: 50vw">
+		<div class="shop-single-brand">
 		
 			<a href="<?php echo get_site_url() ?>/cbddaily/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/home/home-cbddaily1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
@@ -42,7 +42,7 @@
 
 		</div>
 
-		<div style="width: 50vw">
+		<div class="shop-single-brand">
 		
 			<a href="<?php echo get_site_url() ?>/emera/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/home/home-emera1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
@@ -68,7 +68,62 @@
 
 		<a href="#" class="text-uppercase btn btn-light mb-5">Save on your next order ></a>
 
+		<img src="<?php echo get_template_directory_uri() ?>/img/new_images/mk.png" id="marrakesh-dec" alt="<?php echo bloginfo('name') ?>" />
+
+		<img src="<?php echo get_template_directory_uri() ?>/img/new_images/cbd.png" id="cbd-dec" alt="<?php echo bloginfo('name') ?>" />
+
 	</div>
+
+	<div class="row px-2 justify-content-center mt-5 mb-3">
+
+		<h5 class="text-brown text-uppercase font-weight-bold">We Are Earthly-Friendly</h5>
+
+    </div>
+
+    <div class="row px-2 my-3">
+    
+        <div style="width:20%;">
+
+            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-CrueltyFree.svg" class="rounded-circle">
+
+            <p class="text-center" style="font-size: 0.75rem;">Cruelty-Free & 100% Vegan</p>
+
+        </div>
+
+        <div style="width:20%;">
+        
+            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Solar.svg" class="rounded-circle">
+
+            <p class="text-center" style="font-size: 0.75rem;">Made with Solar Powered Energy</p>
+
+        </div>
+
+        <div style="width:20%;">
+        
+            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Natural.svg" class="rounded-circle">
+
+            <p class="text-center" style="font-size: 0.75rem;">Naturally-Derived Ingredients</p>
+
+        </div>
+
+        <div style="width:20%;">
+        
+            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Charity.svg" class="rounded-circle">
+
+            <p class="text-center" style="font-size: 0.75rem;">A portion of Every Sale is Donated to Our Nonprofit</p>
+
+        </div>
+
+        <div style="width:20%;">
+        
+            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Pollution.jpg" class="img-thumbnail border-0">
+
+            <p class="text-center" style="font-size: 0.75rem;">Member of Plastic Poluttion Coalition</p>
+
+        </div>
+
+
+    </div>
 
 
 </div>

@@ -24,7 +24,7 @@ if ( empty( $product ) || false === wc_get_loop_product_visibility( $product->ge
 	return;
 }
 ?>
-<li <?php wc_product_class( 'list-group-item border-0 d-flex flex-column justify-content-start align-items-center px-2', $product ); ?>>
+<li <?php wc_product_class( 'bg-light list-group-item border-0 d-flex flex-column justify-content-start align-items-center px-2', $product ); ?>>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

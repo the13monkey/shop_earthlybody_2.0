@@ -131,6 +131,12 @@
 
     </div>
 
+    <div class="row px-2 justify-content-center mt-5 mb-3">
+
+        <h4 class="font-weight-normal text-uppercase icon-<?php echo $name; ?>">We Are Earthly-Friendly</h4>
+
+    </div>
+
     <div class="row px-2 my-3">
     
         <div style="width:20%;">
