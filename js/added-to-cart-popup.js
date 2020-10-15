@@ -24,6 +24,8 @@ jQuery( document ).ready( function($){
 
                 $('#added-cart-popup').css('display', 'flex');
 
+                $('.ready-to-add').removeClass('ready-to-add');
+
                 clearInterval(myInterval);
     
             }
@@ -75,7 +77,7 @@ jQuery( document ).ready( function($){
 
         event.preventDefault();
 
-        $('.options.selected').removeClass('selected');
+        $(this).parent().find('.options.selected').removeClass('selected');
 
         $(this).addClass('selected');
 
@@ -83,7 +85,7 @@ jQuery( document ).ready( function($){
 
         var variation_thumb_selected = $(this).next().data('thumb_url');
 
-        $('#variation-price--default').html('$'+variation_price__selected);
+        $(this).parent().parent().find('#variation-price--default').html('$'+variation_price__selected);
 
         $(this).parent().parent().find('.attachment-woocommerce_thumbnail').attr({
             'src' : variation_thumb_selected,
@@ -129,7 +131,7 @@ jQuery( document ).ready( function($){
 
         $('#add-variable-to-cart').css('display', 'flex');
 
-        var variation_id__default = $('.options.selected').next().data('variation_id');
+        var variation_id__default = $(this).parent().find('.options.selected').next().data('variation_id');
 
         $('#variations-content').find('input[value="'+variation_id__default+'"]').parent().find('*').addClass('img-thumbnail-clicked');
 
@@ -160,9 +162,13 @@ jQuery( document ).ready( function($){
 
         $('.options:first-child').addClass('selected');
 
-        var variation_price__default = $('.options.selected').parent().find('input[name="variation_id"]').data('variation_price');
+        $('.options.selected').each(function(){
 
-        $('#variation-price--default').html('$'+variation_price__default);
+            var variation_price__default = $(this).parent().find('input[name="variation_id"]').data('variation_price');
+
+            $(this).parent().parent().find('#variation-price--default').html('$'+variation_price__default);
+
+        });
 
     }
 
@@ -190,7 +196,7 @@ jQuery( document ).ready( function($){
 
             $('#add-variable-to-cart').css('display', 'none');
 
-            $('.my_add_variable').addClass('d-none');
+            $('.ready-to-add').parent().find('.my_add_variable').addClass('d-none');
 
             $('.ready-to-add').removeClass('d-none');
 

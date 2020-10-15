@@ -36,51 +36,9 @@
 
     </div>
 
-    <?php if ( $name !== "emera" ) : ?>
-
-        <div class="row px-2 justify-content-center mb-2">
-
-            <h4 class="font-weight-normal text-uppercase icon-<?php echo $name; ?>">Shop by Category</h4>
-
-        </div>
-
-    <?php endif; ?>
-
-    <div class="row pl-2" style="overflow-x: scroll; overflow-y: hidden;">
-
-        <div class="d-flex pr-2" style="width:1000px;">
-
-            <?php 
-            
-                foreach( $brands as $brand => $cats ) {
-
-                    if ( $name == $brand ) {
-
-                        foreach ( $cats as $cat ) { ?>
-
-                            <div style="width: 250px;">
-                            
-                                <img src="<?php echo get_template_directory_uri() ?>/img/new_images/cats/<?php echo $name ?>-<?php echo $cat ?>.jpg" class="w-100 img-fluid" alt="<?php echo get_bloginfo( 'name' ) ?>" >
-
-                                <p class="text-center mt-2 font-weight-light text-uppercase"><?php echo $cat; ?></p>
-
-                            </div>
-                            
-                    <?php 
-                        }
-
-                    }
-
-                }
-            ?>
-
-        </div>
-
-    </div>
-
     <div class="row my-3 mx-0 justify-content-center py-3 border-top border-bottom">
 
-        <h4 class="mb-0 font-weight-normal text-uppercase icon-<?php echo $name; ?>">New Arrivals</h4>
+        <h4 class="mb-0 font-weight-normal text-uppercase icon-<?php echo $name; ?>">Best Sellers</h4>
 
     </div>
 
@@ -128,6 +86,48 @@
             woocommerce_product_loop_end();
 
         ?>
+
+    </div>
+
+    <?php if ( $name !== "emera" ) : ?>
+
+        <div class="row px-2 justify-content-center mb-2">
+
+            <h4 class="font-weight-normal text-uppercase icon-<?php echo $name; ?>">Shop by Category</h4>
+
+        </div>
+
+    <?php endif; ?>
+
+    <div class="row pl-2" style="overflow-x: scroll; overflow-y: hidden;">
+
+        <div class="d-flex pr-2" style="width:1000px;">
+
+            <?php 
+            
+                foreach( $brands as $brand => $cats ) {
+
+                    if ( $name == $brand ) {
+
+                        foreach ( $cats as $cat ) { ?>
+
+                            <div style="width: 250px;">
+                            
+                                <img src="<?php echo get_template_directory_uri() ?>/img/new_images/cats/<?php echo $name ?>-<?php echo $cat ?>.jpg" class="w-100 img-fluid" alt="<?php echo get_bloginfo( 'name' ) ?>" >
+
+                                <p class="text-center mt-2 font-weight-light text-uppercase"><?php echo $cat; ?></p>
+
+                            </div>
+                            
+                    <?php 
+                        }
+
+                    }
+
+                }
+            ?>
+
+        </div>
 
     </div>
 
