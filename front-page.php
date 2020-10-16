@@ -8,7 +8,7 @@
 
 ?> 
 
-<div class="container-fluid">
+<div class="container-fluid" id="home-content-wrapper">
 
 	<div class="row justify-content-center align-items-center mt-3 mb-0">
 		
@@ -58,7 +58,23 @@
 
 	</div>
 
-	<?php echo do_shortcode( '[products limit="8" orderby="date DESC"]' ); ?>
+	<div style="padding-left: 15px; padding-right: 15px;">
+
+		<div style="width:30px; position:absolute; left:0; z-index:10" class="new-arrival-arrow justify-content-start d-none">
+
+			<i class="fa fa-long-arrow-left py-3 px-1 text-white bg-dark" aria-hidden="true"></i>
+
+		</div>
+
+		<div style="width:30px; position:absolute; right:0px; z-index:10" class="new-arrival-arrow justify-content-end d-flex">
+
+			<i class="fa fa-long-arrow-right bg-dark py-3 text-white px-1" aria-hidden="true"></i>
+
+		</div>
+		
+		<?php echo do_shortcode( '[products limit="8" orderby="date DESC"]' ); ?>
+
+	</div>
 
 	<div class="row justify-content-center align-items-center flex-column p-5 mb-5" style="background: radial-gradient(circle, #b38764 0%, #613d20 100%)">
 

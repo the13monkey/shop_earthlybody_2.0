@@ -1,6 +1,18 @@
 jQuery( document ).ready( function($){
 
-    var maxHeight = 0; 
+    var heights = []; 
+
+    $('.products .product').each(function(){
+
+        var height = parseInt( $(this).height() );
+
+        heights.push(height);
+
+    });
+
+    var theMaxHeight = Math.max.apply(Math, heights);
+
+    var maxHeight = theMaxHeight + 80; 
 
     $('.products .product').each(function(){
 
@@ -12,6 +24,8 @@ jQuery( document ).ready( function($){
 
     });
 
+    $('.new-arrival-arrow').css('height', maxHeight).addClass('align-items-center');
+
     $('.products .product').height(maxHeight);
 
     $( '#mobile-menu-toggle' ).click( function(e){
@@ -19,6 +33,14 @@ jQuery( document ).ready( function($){
         $( '.mobile-menu' ).addClass( 'show-mobile-menu' );
 
     } );
+
+    $('.new-arrival-arrow').click(function(){
+
+        $('#home-content-wrapper .woocommerce .products .product').toggle();
+
+        $('.new-arrival-arrow').toggleClass('d-flex d-none');
+
+    });
 
     $( '.top-page-primary-menu .menu-item-has-children' ).click( function(event){
 

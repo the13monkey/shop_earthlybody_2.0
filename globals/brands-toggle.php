@@ -36,5 +36,11 @@
 
     </a>
 
+    <a href="https://chosenbydogscbd.com" class="nav-link">
+    
+        <img src="<?php echo get_template_directory_uri() ?>/img/new_logos/header-logo-chosenbydogscbd.svg" alt="<?php echo get_bloginfo( 'name' ) ?>" />
+
+    </a>
+
 
 </div>
