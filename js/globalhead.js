@@ -18,9 +18,25 @@ jQuery( document ).ready( function($){
 
         event.preventDefault();
 
-        $(this).find( '.sub-menu' ).slideToggle();
+        var hasClass = $(this).hasClass('submenu-opened');
 
-        $(this).toggleClass( 'submenu-opened' );
+        if ( hasClass == false ) {
+
+            $('.submenu-opened .sub-menu').slideUp();
+
+            $('.submenu-opened').removeClass('submenu-opened');
+
+            $(this).addClass('submenu-opened');
+
+            $(this).find('.sub-menu').slideDown();
+
+        } else {
+
+            $(this).find('.sub-menu').slideUp();
+
+            $(this).removeClass('submenu-opened');
+
+        }
 
         $(this).find( '.sub-menu .menu-item' ).click( function(event) {
 
@@ -31,6 +47,20 @@ jQuery( document ).ready( function($){
         } );
 
     } );
+
+    $(document).click(function(event){
+
+        var target = $(event.target);
+
+        if ( !target.closest('.top-page-primary-menu').length ) {
+
+            $('.submenu-opened').find('.sub-menu').slideUp();
+
+            $('.submenu-opened').removeClass('submenu-opened');
+
+        }
+
+    });
 
     $( '.brand-nav-list .has-dropdown' ).click( function(event){
 
@@ -58,7 +88,7 @@ jQuery( document ).ready( function($){
 
     } );
 
-    $( '#mobile-shopping-bag' ).click( function(event){
+    $( '#mobile-shopping-bag, #desktop-shopping-bag' ).click( function(event){
 
         event.preventDefault();
 
@@ -120,7 +150,11 @@ jQuery( document ).ready( function($){
 
             var height = $(this).height();
 
-            var totalHeight = parseInt(height) - 24;
+            var buttonHeight = $(this).find('.add_to_cart_button').outerHeight();
+
+            var buttonHeightTotal = parseInt(buttonHeight) * 2; 
+
+            var totalHeight = parseInt(height) + buttonHeightTotal + 60; 
 
             theHeights.push(totalHeight);
 
@@ -130,7 +164,7 @@ jQuery( document ).ready( function($){
 
         $('#home-new-arrival .products .product').each( function(){
         
-            $(this).css('height', maxHeight).addClass('bg-primary');
+            $(this).css('height', maxHeight).addClass('bg-light');
         
         } );
 

@@ -200,7 +200,7 @@ function my_woocommerce_free_shipping_sign () {
 
   if ( $shipping_class == 'free-shipping' ) {
     
-      echo '<p class="text-success text-uppercase font-weight-bold">Free Shipping</p>';
+      echo '<p class="text-success text-uppercase font-weight-bold text-center">Free Shipping</p>';
 
   }
 

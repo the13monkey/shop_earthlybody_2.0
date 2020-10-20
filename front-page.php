@@ -60,13 +60,13 @@
 
 	<div style="padding-left: 15px; padding-right: 15px;" id="home-new-arrival">
 
-		<div style="width:30px; position:absolute; left:0; z-index:10; height: 35%;" class="new-arrival-arrow justify-content-start d-none align-items-center">
+		<div class="new-arrival-arrow justify-content-start d-none align-items-center" id="arrow-left">
 
 			<i class="fa fa-long-arrow-left py-3 px-1 text-white bg-dark" aria-hidden="true"></i>
 
 		</div>
 
-		<div style="width:30px; position:absolute; right:0px; z-index:10; height: 35%;" class="new-arrival-arrow justify-content-end d-flex align-items-center">
+		<div class="new-arrival-arrow justify-content-end d-flex align-items-center" id="arrow-right">
 
 			<i class="fa fa-long-arrow-right bg-dark py-3 text-white px-1" aria-hidden="true"></i>
 
@@ -76,9 +76,9 @@
 
 	</div>
 
-	<div class="row justify-content-center align-items-center flex-column p-5 mb-5" style="background: radial-gradient(circle, #b38764 0%, #613d20 100%)">
+	<div class="row justify-content-center align-items-center flex-column p-5 mb-5 join-mailing-list-row" style="background: radial-gradient(circle, #b38764 0%, #613d20 100%)">
 
-		<h1 class="text-uppercase my-0 text-white pt-3" style="line-height: 1; font-size: 2.5rem; font-weight-bold">Save 25%</h1>
+		<h1 class="text-uppercase my-0 text-white pt-3 font-weight-bold">Save 25%</h1>
 
 		<p class="text-white">Sign up for our mailing list</p>
 
@@ -98,7 +98,7 @@
 
     <div class="row px-2 my-3 home-icons mx-lg-auto justify-content-center">
     
-        <div style="width:20%;">
+        <div>
 
             <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-CrueltyFree.svg" class="rounded-circle">
 
@@ -106,7 +106,7 @@
 
         </div>
 
-        <div style="width:20%;">
+        <div>
         
             <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Solar.svg" class="rounded-circle">
 
@@ -114,7 +114,7 @@
 
         </div>
 
-        <div style="width:20%;">
+        <div>
         
             <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Natural.svg" class="rounded-circle">
 
@@ -122,7 +122,7 @@
 
         </div>
 
-        <div style="width:20%;">
+        <div>
         
             <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Charity.svg" class="rounded-circle">
 
@@ -130,7 +130,7 @@
 
         </div>
 
-        <div style="width:20%;">
+        <div>
         
             <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Pollution.jpg" class="img-thumbnail border-0">
 
@@ -138,13 +138,9 @@
 
         </div>
 
-
     </div>
 
-
 </div>
-
-
 
 <?php get_footer(); ?>
 
