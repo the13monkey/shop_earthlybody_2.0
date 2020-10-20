@@ -1,33 +1,5 @@
 jQuery( document ).ready( function($){
 
-    var heights = []; 
-
-    $('.products .product').each(function(){
-
-        var height = parseInt( $(this).height() );
-
-        heights.push(height);
-
-    });
-
-    var theMaxHeight = Math.max.apply(Math, heights);
-
-    var maxHeight = theMaxHeight + 80; 
-
-    $('.products .product').each(function(){
-
-        if ( $(this).height() > maxHeight ) {
-
-            maxHeight = $(this).height();
-
-        }
-
-    });
-
-    $('.new-arrival-arrow').css('height', maxHeight).addClass('align-items-center');
-
-    $('.products .product').height(maxHeight);
-
     $( '#mobile-menu-toggle' ).click( function(e){
 
         $( '.mobile-menu' ).addClass( 'show-mobile-menu' );
@@ -138,5 +110,32 @@ jQuery( document ).ready( function($){
 
     } );
 
+    // Make divs equal length
+
+    function getEveryDivLength() {
+
+        var theHeights = [];
+
+        $('#home-new-arrival .products .product').each( function(){
+
+            var height = $(this).height();
+
+            var totalHeight = parseInt(height) - 24;
+
+            theHeights.push(totalHeight);
+
+        } );
+
+        var maxHeight = Math.max.apply(Math, theHeights);
+
+        $('#home-new-arrival .products .product').each( function(){
+        
+            $(this).css('height', maxHeight).addClass('bg-primary');
+        
+        } );
+
+    }
+
+    getEveryDivLength();
 
 } );

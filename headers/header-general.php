@@ -103,7 +103,7 @@
         
         <div id="my-account-bar" class="d-flex justify-content-end align-items-center">
 
-            <a href="<?php echo wc_get_page_permalink( 'myaccount' ) ?>" style="font-size:1rem;" class="text-dark">
+            <a href="<?php echo wc_get_page_permalink( 'myaccount' ) ?>" style="font-size:1rem;" class="text-dark border-right pr-lg-3">
 
                 <i class="fa fa-user text-dark mr-1" aria-hidden="true"></i>
                 Sign In / Create An Account    

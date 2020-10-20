@@ -58,21 +58,21 @@
 
 	</div>
 
-	<div style="padding-left: 15px; padding-right: 15px;">
+	<div style="padding-left: 15px; padding-right: 15px;" id="home-new-arrival">
 
-		<div style="width:30px; position:absolute; left:0; z-index:10" class="new-arrival-arrow justify-content-start d-none">
+		<div style="width:30px; position:absolute; left:0; z-index:10; height: 35%;" class="new-arrival-arrow justify-content-start d-none align-items-center">
 
 			<i class="fa fa-long-arrow-left py-3 px-1 text-white bg-dark" aria-hidden="true"></i>
 
 		</div>
 
-		<div style="width:30px; position:absolute; right:0px; z-index:10" class="new-arrival-arrow justify-content-end d-flex">
+		<div style="width:30px; position:absolute; right:0px; z-index:10; height: 35%;" class="new-arrival-arrow justify-content-end d-flex align-items-center">
 
 			<i class="fa fa-long-arrow-right bg-dark py-3 text-white px-1" aria-hidden="true"></i>
 
 		</div>
 		
-		<?php echo do_shortcode( '[products limit="8" orderby="date DESC"]' ); ?>
+		<?php echo do_shortcode( '[products limit="8" orderby="date"]' ); ?>
 
 	</div>
 
@@ -92,11 +92,11 @@
 
 	<div class="row px-2 justify-content-center mt-5 mb-3">
 
-		<h5 class="text-brown text-uppercase font-weight-bold">We Are Earthly-Friendly</h5>
+		<h5 class="text-brown text-uppercase font-weight-bold mb-lg-3">We Are Earthly-Friendly</h5>
 
     </div>
 
-    <div class="row px-2 my-3">
+    <div class="row px-2 my-3 home-icons mx-lg-auto justify-content-center">
     
         <div style="width:20%;">
 

@@ -169,10 +169,12 @@ ul.woocommerce-mini-cart {
 .single_add_to_cart_button {
     background: #fff !important; 
     color: #613d20 !important; 
-    position: absolute;
-    left: 1rem; 
-    bottom: 2.25rem; 
-    width: calc(100% - 2rem);
+    width:100%; 
+    /*position: absolute; 
+    width: calc(100% - 1rem);
+    left: 0.5rem; 
+    bottom: 0.15rem;
+    */ 
 }
 
 .product .button.buy_now_button,
@@ -183,10 +185,11 @@ ul.woocommerce-mini-cart {
     padding-right: 5px; 
     padding-top: 0.45rem !important; 
     padding-bottom: 0.45rem !important; 
-    position: absolute; 
-    left: 1rem; 
-    bottom: -1rem; 
-    width: calc(100% - 2rem);
+    width:100%; 
+    /*position: absolute; 
+    width: calc(100% - 1rem);
+    left: 0.5rem; 
+    bottom: -3rem;*/ 
 }
 
 .single_add_to_cart_button, .single_buy_now_button {
@@ -854,7 +857,15 @@ button[name="woocommerce_checkout_place_order"] {
     #home-content-wrapper .woocommerce .products .product:nth-child(7),
     #home-content-wrapper .woocommerce .products .product:nth-child(8) {
         display: none; 
-    }  
+    } 
+    
+    .home-icons div {
+        text-align: center; 
+    }
+
+    .home-icons div img {
+        max-width: 100px; 
+    }
 
 }
 
@@ -933,6 +944,21 @@ button[name="woocommerce_checkout_place_order"] {
         font-size: 2rem; 
     }
 
+    #home-content-wrapper .product h5 {
+        font-size: 1.25rem; 
+    }
+
+    #marrakesh-dec {
+        width: 200px; 
+        left: 10%; 
+    }
+
+    #cbd-dec {
+        width: 150px; 
+        height: 150px; 
+        right: 15%; 
+    }
+
 }
 
 @media screen and (min-width: 1366px) {
@@ -945,6 +971,22 @@ button[name="woocommerce_checkout_place_order"] {
 
     .brands-toggle-nav .nav-link img {
         height: 30px; 
+    }
+
+    #home-new-arrival, .home-icons{
+        width: 1280px;
+        margin-left: auto;
+        margin-right: auto; 
+    }
+
+    #home-new-arrival ul.products li.product {
+        padding-left: 30px !important;
+        padding-right: 30px !important; 
+    }
+
+    #footer-menu-row {
+        padding-left: calc(50% - 640px);
+        padding-right: calc(50% - 640px);
     }
 
 }

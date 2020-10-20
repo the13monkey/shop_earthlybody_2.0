@@ -30,7 +30,7 @@
 
     </a>
 
-    <a href="https://fleurtiva.com" class="nav-link">
+    <a href="https://fleurtiva.com" class="nav-link px-lg-3">
     
         <img src="<?php echo get_template_directory_uri() ?>/img/new_logos/header-logo-fleurtiva.svg" alt="<?php echo get_bloginfo( 'name' ) ?>" />
 

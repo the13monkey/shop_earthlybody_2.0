@@ -140,13 +140,6 @@ function add_added_to_cart_popup() {
 
 add_action( 'wp_footer', 'add_added_to_cart_popup' );
 
-// Change font tag of loop product name
-function woocommerce_template_loop_product_title() {
-
-  echo '<h5 class="woocommerce-loop-product__title">'. get_the_title() .'</h5>';
-
-}
-
 // Custom star rating 
 function woocommerce_template_loop_rating () { //Customize star rating
   global $product; 
@@ -158,17 +151,17 @@ function woocommerce_template_loop_rating () { //Customize star rating
 
   if ( $num1 == 0 ) {
       $output = "Be the first to rate this product!";
-      $html = '<div class="row justify-content-center my-2 py-2 text-brown border-top border-bottom mx-1"><span style="font-size: 0.85rem; margin-top:0; margin-bottom: 0; text-align: center; line-height: 0.85rem;">'. $output .'</span></div>';
+      $html = '<div class="my-loop-rating row justify-content-center my-2 py-2 text-brown border-top border-bottom mx-1"><span style="font-size: 0.85rem; margin-top:0; margin-bottom: 0; text-align: center; line-height: 0.85rem;">'. $output .'</span></div>';
       echo $html; 
   } else if ( $num1 == 5 ) {
-      $html = '<div class="row justify-content-center my-2 py-0">';
+      $html = '<div class="my-loop-rating row justify-content-center my-2 py-0">';
       for ( $i = 0; $i < $num1; $i++ ) {
           $star = '<img src="'. $root_url .'/img/site/star-solid.svg" style="width: 16px; height: 16px;" alt="Shop Earthly Body" />';
           $html .= $star; 
       }
       echo $html.'</div>'; 
   } else {
-      $html = '<div class="row justify-content-center my-2 py-0">';
+      $html = '<div class="my-loop-rating row justify-content-center my-2 py-0">';
       $rest = 5 - $num1; 
       for ( $i = 0; $i < $num1; $i++ ) {
           $star = '<img src="'. $root_url .'/img/site/star-solid.svg" style="width: 16px; height: 16px;" alt="Shop Earthly Body" />';
@@ -207,7 +200,7 @@ function my_woocommerce_free_shipping_sign () {
 
   if ( $shipping_class == 'free-shipping' ) {
     
-      echo '<p class="text-white px-3 py-1 box-shadow text-center" style="font-size:0.85rem;background:#5d7041;position:absolute;margin-top:0px!important;margin-bottom:0px!important;width:calc(100% - 1rem);">Free Shipping</p>';
+      echo '<p class="text-success text-uppercase font-weight-bold">Free Shipping</p>';
 
   }
 

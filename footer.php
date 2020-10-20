@@ -2,9 +2,9 @@
 
 <footer class="container-fluid pt-3 pb-0 mb-0">
 
-    <div class="row flex-column justify-content-center align-items-center bg-brown ">
+    <div class="row flex-column flex-md-row justify-content-center align-items-center bg-brown align-items-md-start" id="footer-menu-row">
         
-        <div class="col col-12 col-lg-3 text-center mt-5">
+        <div class="col col-12 col-md-6 col-lg-3 text-center mt-5">
             <h6 class="text-white text-uppercase">Customer Support</h6>
             <ul class="nav flex-column justify-content-center align-items-center">
                 <li class="nav-item">
@@ -40,7 +40,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col col-12 col-lg-3 text-center mt-5">
+        <div class="col col-12 col-md-6 col-lg-3 text-center mt-5">
             <h6 class="text-white text-uppercase">Our Brands</h6>
             <ul class="nav flex-column justify-content-center align-items-center">
                 <li class="nav-item">
@@ -60,12 +60,12 @@
                 </li>
             </ul>
         </div>
-        <div class="col col-12 col-lg-3 text-center mt-5">
+        <div class="col col-12 col-md-6 col-lg-3 text-center mt-5">
             <h6 class="text-white">About Us</h6>
             <p class="nav-link text-white">Earthly Body is a respected, family-owned company that has been creating natural, hemp-based skin and hair care products in a solar-powered facility since 1996.</p>
             <a href="mailto:info@earthlybody.com" class="nav-link text-white">info@earthlybody.com</a>
         </div>
-        <div class="col col-12 col-lg-3 text-center mt-5">
+        <div class="col col-12 col-md-6 col-lg-3 text-center mt-5">
             <h6 class="text-white">Giving Back</h6>
             <p class="nav-link text-white">A percentage of all Earthly Body purchases is donated to the <a href="https://gettogetherfoundation.com" class="nav-link text-warning" target="_blank">Get Together Foundation</a>  a non-profit dedicated to bringing people together to fight homelessness in the greater Los Angeles area.</p>
             <h6 class="text-white my-5">©Earthly Body 1996 - <?php echo date('Y'); ?></h6>
