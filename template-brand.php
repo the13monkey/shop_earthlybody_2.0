@@ -26,13 +26,61 @@
 
     );
 
+    $titles = array(
+
+        'cbddaily' => array(
+
+            'title' => 'Your best days start with cbd',
+
+            'subtitle' => 'The #1 CBD brand choice of beauty professionals to soothe, moisturize, and ease discomforts',
+
+        ),
+
+        'marrakesh' => array(
+
+            'title' => 'The Best Hair Days Smell Good Too',
+
+            'subtitle' => 'Professional hair care infused with argan & hemp seed oil and enticing fragrances',
+
+        ),
+
+        'hempseed' => array(
+
+            'title' => 'Products Inspired by Nature',
+
+            'subtitle' => 'Hemp-based, uniquely scented body care made from high-quality, natural ingredients',
+
+        ),
+
+        'emera' => array(
+
+            'title' => 'Scalp & Hair Care Powered By CBD',
+
+            'subtitle' => 'The first professional CBD hair care line for optimal scalp and hair health',
+
+        ),
+
+    );
+
 ?>
 
 <div class="container-fluid">
 
     <div class="row px-2 my-3">
 
-        <img class="img-fluid w-100" src="<?php echo get_template_directory_uri() ?>/img/new_brands/<?php echo $name; ?>-bg-md.jpg" />
+        <img class="img-fluid w-100 brand-hero-image d-block d-lg-none" src="<?php echo get_template_directory_uri() ?>/img/new_brands/<?php echo $name; ?>-bg-md.jpg" />
+
+        <img class="img-fluid w-100 brand-hero-image d-none d-lg-block" src="<?php echo get_template_directory_uri() ?>/img/new_brands/<?php echo $name; ?>-bg-lg.jpg" />
+
+        <div class="brand-captions d-flex justify-content-center flex-column brand-captions-<?php echo $name; ?>">
+
+            <h1 class="font-weight-light text-uppercase"><?php echo $titles[$name]['title']; ?></h1>
+            
+            <hr class="mt-0 mb-2">
+
+            <h2><?php echo $titles[$name]['subtitle'] ?></h2>
+
+        </div>
 
     </div>
 
@@ -62,7 +110,7 @@
 
                 'category' => $cat_name,
 
-                'limit' => 4,
+                'limit' => 12,
 
             );
 
@@ -99,9 +147,9 @@
 
     <?php endif; ?>
 
-    <div class="row pl-2" style="overflow-x: scroll; overflow-y: hidden;">
+    <div class="row pl-2 brand-category-row px-lg-5 mx-xl-5">
 
-        <div class="d-flex pr-2" style="width:1000px;">
+        <div class="d-flex pr-2 brand-category-innerrow">
 
             <?php 
             
@@ -111,7 +159,7 @@
 
                         foreach ( $cats as $cat ) { ?>
 
-                            <div style="width: 250px;">
+                            <div class="brand-single-category">
                             
                                 <img src="<?php echo get_template_directory_uri() ?>/img/new_images/cats/<?php echo $name ?>-<?php echo $cat ?>.jpg" class="w-100 img-fluid" alt="<?php echo get_bloginfo( 'name' ) ?>" >
 
@@ -137,49 +185,7 @@
 
     </div>
 
-    <div class="row px-2 my-3">
-    
-        <div style="width:20%;">
-
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-CrueltyFree.svg" class="rounded-circle">
-
-            <p class="text-center" style="font-size: 0.75rem;">Cruelty-Free & 100% Vegan</p>
-
-        </div>
-
-        <div style="width:20%;">
-        
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Solar.svg" class="rounded-circle">
-
-            <p class="text-center" style="font-size: 0.75rem;">Made with Solar Powered Energy</p>
-
-        </div>
-
-        <div style="width:20%;">
-        
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Natural.svg" class="rounded-circle">
-
-            <p class="text-center" style="font-size: 0.75rem;">Naturally-Derived Ingredients</p>
-
-        </div>
-
-        <div style="width:20%;">
-        
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Charity.svg" class="rounded-circle">
-
-            <p class="text-center" style="font-size: 0.75rem;">A portion of Every Sale is Donated to Our Nonprofit</p>
-
-        </div>
-
-        <div style="width:20%;">
-        
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Pollution.jpg" class="img-thumbnail border-0">
-
-            <p class="text-center" style="font-size: 0.75rem;">Member of Plastic Poluttion Coalition</p>
-
-        </div>
-
-    </div>
+    <?php get_template_part( 'globals/row', 'icons'); ?>
 
 </div>
     

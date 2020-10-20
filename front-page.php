@@ -59,18 +59,6 @@
 	</div>
 
 	<div style="padding-left: 15px; padding-right: 15px;" id="home-new-arrival">
-
-		<div class="new-arrival-arrow justify-content-start d-none align-items-center" id="arrow-left">
-
-			<i class="fa fa-long-arrow-left py-3 px-1 text-white bg-dark" aria-hidden="true"></i>
-
-		</div>
-
-		<div class="new-arrival-arrow justify-content-end d-flex align-items-center" id="arrow-right">
-
-			<i class="fa fa-long-arrow-right bg-dark py-3 text-white px-1" aria-hidden="true"></i>
-
-		</div>
 		
 		<?php echo do_shortcode( '[products limit="8" orderby="date"]' ); ?>
 
@@ -96,49 +84,7 @@
 
     </div>
 
-    <div class="row px-2 my-3 home-icons mx-lg-auto justify-content-center">
-    
-        <div>
-
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-CrueltyFree.svg" class="rounded-circle">
-
-            <p class="text-center" style="font-size: 0.75rem;">Cruelty-Free & 100% Vegan</p>
-
-        </div>
-
-        <div>
-        
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Solar.svg" class="rounded-circle">
-
-            <p class="text-center" style="font-size: 0.75rem;">Made with Solar Powered Energy</p>
-
-        </div>
-
-        <div>
-        
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Natural.svg" class="rounded-circle">
-
-            <p class="text-center" style="font-size: 0.75rem;">Naturally-Derived Ingredients</p>
-
-        </div>
-
-        <div>
-        
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Charity.svg" class="rounded-circle">
-
-            <p class="text-center" style="font-size: 0.75rem;">A portion of Every Sale is Donated to Our Nonprofit</p>
-
-        </div>
-
-        <div>
-        
-            <img src="<?php echo get_template_directory_uri() ?>/img/new_images/Icon-Pollution.jpg" class="img-thumbnail border-0">
-
-            <p class="text-center" style="font-size: 0.75rem;">Member of Plastic Poluttion Coalition</p>
-
-        </div>
-
-    </div>
+    <?php get_template_part( 'globals/row', 'icons'); ?>
 
 </div>
 
