@@ -89,7 +89,7 @@
         <div id="desktop-navbar-logo" class="">
             <a href="<?php echo get_site_url() ?>" class="site-logo d-flex align-items-end justify-content-center flex-column text-decoration-none">
 
-                <img src="<?php echo get_template_directory_uri() ?>/img/new_logos/nav-logo-shopeb.svg" alt="<?php echo get_bloginfo( 'name' ) ?>" />
+                <img class="img-fluid" src="<?php echo get_template_directory_uri() ?>/img/new_logos/nav-logo-shopeb.svg" alt="<?php echo get_bloginfo( 'name' ) ?>" />
                 <span class="text-dark" style="font-size: 0.75rem; margin:-8px 0 0 0; padding:0;">marketplace</span>
 
             </a> 
@@ -122,7 +122,7 @@
 
     </div>
 
-    <div class="w-100 px-3 text-center">
+    <div class="w-100 px-3">
 
         <?php 
 

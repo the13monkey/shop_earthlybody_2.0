@@ -937,7 +937,7 @@ button[name="woocommerce_checkout_place_order"] {
     }
 
     #desktop-navbar-logo {
-        width: 200px; 
+        width: 300px; 
     }
 
     .woocommerce-product-search input.search-field {
@@ -958,10 +958,6 @@ button[name="woocommerce_checkout_place_order"] {
 
     #my-account-bar {
         width: 400px; 
-    }
-
-    .site-logo img {
-        max-width: 200px !important; 
     }
 
     #desktop-search-bar {
