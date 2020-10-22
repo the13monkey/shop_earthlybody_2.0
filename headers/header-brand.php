@@ -211,10 +211,10 @@
 
 <div id="desktop-navbar-section">
 
-    <div class="w-100 pt-3 px-3 pb-0 d-flex align-items-center justify-content-between">
+    <div class="w-100 pt-3 px-3 pb-0 d-flex align-items-center justify-content-start">
 
         <div id="desktop-navbar-logo" class="">
-            <a href="<?php echo get_site_url() ?>/<?php echo $name; ?>" class="site-logo site-logo-<?php echo $name; ?> d-flex align-items-end justify-content-center flex-column text-decoration-none">
+            <a href="<?php echo get_site_url() ?>/<?php echo $name; ?>" class="site-logo site-logo-<?php echo $name; ?> d-flex align-items-start justify-content-center flex-column text-decoration-none">
 
                 <img src="<?php echo get_template_directory_uri() ?>/img/new_logos/<?php echo $name; ?>-logo.png" alt="<?php echo get_bloginfo( 'name' ) ?>" />
 
@@ -248,7 +248,7 @@
 
     </div>
 
-    <div class="w-100 px-3 text-center justify-content-center d-flex brand-nav-list">
+    <div class="w-100 px-3 text-center justify-content-start d-flex brand-nav-list">
 
     <?php 
 

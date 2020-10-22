@@ -186,7 +186,7 @@ jQuery( document ).ready( function($){
 
         $('#home-new-arrival .products .product, .brand-landing-featured .products .product').each( function(){
         
-            $(this).css('height', maxHeight).addClass('bg-light');
+            $(this).css('height', maxHeight);
         
         } );
 

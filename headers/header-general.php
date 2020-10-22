@@ -122,7 +122,7 @@
 
     </div>
 
-    <div class="w-100 px-3">
+    <div class="w-100 px-3 my-3">
 
         <?php 
 
