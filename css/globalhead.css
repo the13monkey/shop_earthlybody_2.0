@@ -955,6 +955,10 @@ button[name="woocommerce_checkout_place_order"] {
         clear: right !important; 
         float: left !important; 
     }
+
+    .woocommerce-page ul.products li.product {
+        margin-right: 0 !important; 
+    }
     
     .home-icons div {
         width: 20%; 
