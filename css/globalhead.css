@@ -37,6 +37,20 @@ ul.woocommerce-mini-cart {
     padding-inline-start: 0px; 
 }
 
+.woocommerce table.shop_attributes, .woocommerce table.shop_attributes * {
+    border: none !important; 
+}
+
+.woocommerce-checkout-review-order-table .cart-discount td {
+    text-align: right; 
+}
+
+.woocommerce-form-coupon-toggle .woocommerce-info {
+    background: transparent; 
+    border-bottom: 1px solid #eee; 
+}
+
+
 
 /**
 * Links that don't have text decoration
@@ -177,8 +191,8 @@ ul.woocommerce-mini-cart {
     color: #fff !important; 
     padding-left: 5px;
     padding-right: 5px; 
-    padding-top: 0.45rem !important; 
-    padding-bottom: 0.45rem !important; 
+    padding-top: 10px !important; 
+    padding-bottom: 10px !important; 
     width:100%; 
 }
 
@@ -235,6 +249,7 @@ ul.woocommerce-mini-cart {
     z-index: 999; 
     transform: translateX(-100%);
     transition: all 0.5s linear; 
+    width: 100%; 
 }
 
 .mobile-menu.show-mobile-menu {
@@ -347,11 +362,11 @@ ul.woocommerce-mini-cart {
     font-size: 2.5rem;
     color: #000 !important; 
     font-weight: 300; 
-    position: absolute; 
     right: 1rem;
     line-height: 1;  
     margin-top: -1rem;
     text-decoration: none;
+    position: absolute; 
 }
 
 .cart-single-item a.remove:hover {
@@ -526,7 +541,7 @@ a.restore-item {
 }
 
 .quantity input[type="button"] {
-    width: 36px; 
+    width: 26px; 
     height: 42px; 
     background-color: #f2f2f2;
     border: 1px solid #f2f2f2;
@@ -589,7 +604,7 @@ button[name="add-to-cart"] {
     float: left; 
 }
 
-.my-woo-product-tabs p {
+.my-woo-product-tabs .my-woo-tab-control {
     padding: 1rem; 
     border-top: 1px solid #eee;
     margin-bottom: 0; 
@@ -717,9 +732,36 @@ button[name="add-to-cart"] {
     margin-bottom: 0px; 
 }
 
+.woocommerce-form-coupon-toggle .woocommerce-info {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important; 
+}
+
 .woocommerce-form-login-toggle .woocommerce-info .showlogin {
     float: right; 
     margin-top: -1.5rem; 
+}
+
+.woocommerce-form-coupon-toggle .showcoupon {
+    float: right; 
+}
+
+.coupon-clicked .showcoupon i {
+    transform: rotate(180deg);
+}
+
+.woocommerce form.checkout_coupon {
+    margin: 1em 0 !important; 
+    border-radius: 0px !important; 
+}
+
+.checkout_coupon button.button {
+    width: 100%; 
+    background: #613d20;
+    color: #fff; 
+    padding: 1rem; 
+    text-transform: uppercase;
+    border-radius: 0px; 
 }
 
 .woocommerce-form-login-toggle .woocommerce-info .showlogin .fa {
@@ -798,7 +840,7 @@ button[name="woocommerce_checkout_place_order"] {
 }
 
 .woocommerce .woocommerce-result-count {
-    width: 42vw; 
+    width: 40vw; 
 }
 
 #marrakesh-dec {
@@ -868,6 +910,23 @@ button[name="woocommerce_checkout_place_order"] {
     width: 250px; 
 }
 
+.my-woo-tab-control.active-tab i {
+    transform: rotate(180deg);
+}
+
+.woocommerce #reviews #comments ol.commentlist li .meta {
+    border-top: none !important; 
+}
+
+.woocommerce #reviews #comments ol.commentlist {
+    padding-inline-start: 0px !important; 
+}
+
+#my-tab-additional_information, #my-tab-reviews {
+    padding-left: 15px !important; 
+    padding-right: 15px !important; 
+}
+
 @media screen and (min-width: 768px) {
 
     header {
@@ -879,12 +938,20 @@ button[name="woocommerce_checkout_place_order"] {
         overflow-x: hidden; 
     }
 
+    .woo-slides-container {
+        height: 3rem; 
+    }
+
+    .woo-slides-container h7 {
+        font-size: 1.25rem; 
+    }
+
     #shop-by-brand .shop-single-brand {
         width: 24.5vw; 
     }
 
-    #home-content-wrapper ul.products[class*=columns-] li.product {
-        width: 25%;
+    ul.products[class*=columns-] li.product {
+        width: 25% !important;
         clear: right !important; 
         float: left !important; 
     }
@@ -893,9 +960,16 @@ button[name="woocommerce_checkout_place_order"] {
         width: 20%; 
     }
 
-    .custom-minicart {
+    .custom-minicart, .mobile-menu {
         width: 450px; 
+    }
+
+    .custom-minicart {
         border-left: 1px solid #eee; 
+    }
+
+    .mobile-menu {
+        border-right: 1px solid #eee; 
     }
 
     .custom-minicart * {
@@ -914,12 +988,34 @@ button[name="woocommerce_checkout_place_order"] {
         width: 24%; 
     }
 
-    .add_to_cart_button.loading::before {
-        margin-top: 0.2rem; 
-    }
-
     .product .woocommerce-loop-product__title {
         font-size: 1.25rem !important; 
+    }
+
+    .woocommerce .woocommerce-result-count {
+        width: 250px; 
+        margin-bottom: 2rem; 
+    }
+
+    .woocommerce .woocommerce-ordering {
+        margin-bottom: 2rem; 
+        width: 300px;
+    }
+
+    #breadcrumb {
+        text-align: center; 
+    }
+
+    .woocommerce div.product div.images, .woocommerce-page div.product div.images,
+    .woocommerce div.product div.summary, .woocommerce-page div.product div.summary {
+        width: 48% !important; 
+        display: inline-block !important; 
+        vertical-align: top !important; 
+        float: none !important; 
+    }
+
+    .my-woo-product-tabs .my-woo-tab-control {
+        font-size: 1.15rem; 
     }
 
 }
@@ -1061,15 +1157,44 @@ button[name="woocommerce_checkout_place_order"] {
         height: auto; 
     }
 
+    #breadcrumb {
+        text-align: left; 
+        padding-top: 0; 
+        padding-left: 1rem; 
+        padding-right: 1rem; 
+    }
+
+    .woocommerce div.product div.images img {
+        max-width: 400px !important; 
+        margin-left: auto;
+        margin-right: auto; 
+    }
+
+    div.product.type-product form.cart button.button {
+        width: 45% !important; 
+        float: none !important; 
+        display: inline-block !important; 
+        height: 48px !important; 
+        vertical-align: middle; 
+        font-size: 1.15rem; 
+    }
+    
+    .woocommerce-mini-cart a.remove_from_cart_button,
+    .cart-single-item a.remove {
+        position: relative; 
+    }
 }
 
 @media screen and (min-width: 1366px) {
 
-    #desktop-navbar-section {
+    /*
+    #desktop-navbar-section,
+    #primary.content-area {
         width: 86%; 
         margin-left: auto; 
         margin-right: auto; 
     }
+    */
 
     .brands-toggle-nav .nav-link img {
         height: 30px; 

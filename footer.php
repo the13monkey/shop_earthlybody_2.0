@@ -63,7 +63,7 @@
         <div class="col col-12 col-md-6 col-lg-3 text-center mt-5">
             <h6 class="text-white">About Us</h6>
             <p class="nav-link text-white">Earthly Body is a respected, family-owned company that has been creating natural, hemp-based skin and hair care products in a solar-powered facility since 1996.</p>
-            <a href="mailto:info@earthlybody.com" class="nav-link text-white">info@earthlybody.com</a>
+            <a href="mailto:info@earthlybody.com" class="nav-link text-white">customerservice@earthlybody.com</a>
         </div>
         <div class="col col-12 col-md-6 col-lg-3 text-center mt-5">
             <h6 class="text-white">Giving Back</h6>

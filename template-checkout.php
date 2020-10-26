@@ -9,6 +9,10 @@
 
 ?>
 
+<div class="container-fluid container-lg">
+
+	<h3 class="text-uppercase text-center font-weight-light my-3">Checkout</h3>
+
 <?php 
 	if ( have_posts() ) : 
 
@@ -21,6 +25,7 @@
 	endif; 
 ?>
 
+</div>
 
 <?php 
 

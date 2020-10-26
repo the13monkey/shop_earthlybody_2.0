@@ -22,7 +22,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-	<div class="container-fluid"><!-- replace the <table> element --> 
+	<div class="container-fluid container-lg"><!-- replace the <table> element --> 
 
 		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
@@ -80,7 +80,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 					<div class="row justify-content-between align-items-start px-3 cart-single-item woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
-						<div style="width: 40%;">
+						<div style="width: 40%; max-width: 300px; text-align: center; ">
 
 							<h6 class="text-center text-light p-2" style="font-size: 0.85rem; background-color:<?php echo $brand_color; ?>"><?php echo $show_cat_name; ?></h6>
 					
@@ -230,7 +230,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
-<div class="cart-collaterals px-3">
+<div class="cart-collaterals px-3 container-fluid container-lg">
 	<?php
 		/**
 		 * Cart collaterals hook.

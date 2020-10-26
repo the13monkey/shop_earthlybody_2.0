@@ -15,7 +15,7 @@
 		while ( have_posts() ) : the_post(); 
 
 			echo 
-				'<div class="container-fluid">
+				'<div class="container-fluid container-lg px-lg-4">
 					
 					<div class="row justify-content-start p-3">
 

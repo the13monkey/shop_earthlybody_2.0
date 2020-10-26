@@ -168,7 +168,7 @@ jQuery( document ).ready( function($){
 
         var theHeights = [];
 
-        $('#home-new-arrival .products .product, .brand-landing-featured .products .product').each( function(){
+        $('.products .product').each( function(){
 
             var height = $(this).height();
 
@@ -184,7 +184,7 @@ jQuery( document ).ready( function($){
 
         var maxHeight = Math.max.apply(Math, theHeights);
 
-        $('#home-new-arrival .products .product, .brand-landing-featured .products .product').each( function(){
+        $('.products .product').each( function(){
         
             $(this).css('height', maxHeight);
         
@@ -205,6 +205,46 @@ jQuery( document ).ready( function($){
     }
 
     verticalCenterBrandCaptions();
+
+    $('.my-woo-product-tabs .my-woo-tab-control').click(function(){
+
+        if ( $(this).hasClass('active-tab') ) {
+
+            $('.my-woo-product-tabs .active-tab').removeClass('active-tab');
+
+            $(this).parent().find('.my-woo-product-tab-panel').addClass('d-none');
+
+        } else {
+            
+            $('.my-woo-product-tabs .active-tab').removeClass('active-tab');
+
+            $(this).addClass('active-tab');
+
+            var tabID = $(this).attr('id');
+
+            var tabIDarr = tabID.split("-");
+
+            var index = tabIDarr.length - 1; 
+
+            console.log(index);
+
+            var tabKey = tabIDarr[index];
+
+            var tabContentID = '#my-tab-'+tabKey; 
+
+            $('.my-woo-product-tabs .my-woo-product-tab-panel').addClass('d-none');
+
+            $('.my-woo-product-tabs').find(tabContentID).removeClass('d-none');
+
+        }
+        
+    });
+
+    $('.coupon-message').click(function(){
+
+        $(this).toggleClass('coupon-clicked');
+
+    });
 
 
 } );

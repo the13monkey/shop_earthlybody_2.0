@@ -94,7 +94,7 @@
 
     </div>
 
-    <div class="w-100 mobile-menu">
+    <div class="mobile-menu">
 
         <div style="width:100%; background:#fff; height: 100%; overflow-x:hidden; overflow-y:scroll; padding-left:15px; padding-right:15px;">
 
@@ -209,9 +209,9 @@
 
 </div>
 
-<div id="desktop-navbar-section">
+<div id="desktop-navbar-section" class="container-fluid container-lg">
 
-    <div class="w-100 pt-3 px-3 pb-0 d-flex align-items-center justify-content-start">
+    <div class="w-100 pt-3 px-3 px-lg-0 pb-0 d-flex align-items-center justify-content-start">
 
         <div id="desktop-navbar-logo" class="">
             <a href="<?php echo get_site_url() ?>/<?php echo $name; ?>" class="site-logo site-logo-<?php echo $name; ?> d-flex align-items-start justify-content-center flex-column text-decoration-none">

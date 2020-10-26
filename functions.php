@@ -536,7 +536,7 @@ add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 
 // Remove have a coupon? from checkout page 
 
-remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+// remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 
 
  // Remove default state 
@@ -630,4 +630,27 @@ function add_attributes_to_product_loop () {
 
 add_action( 'woocommerce_after_shop_loop_item', 'add_attributes_to_product_loop', 3 );
 
+/**
+ * Display all products on the same archive page 
+ */ 
+add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
 
+function new_loop_shop_per_page( $cols ) {   
+  // Return the number of products you wanna show per page.
+  $cols = -1;
+  return $cols;
+}
+
+/**
+ * Remove "Description" Heading Title @ WooCommerce Single Product Tabs
+ */
+add_filter( 'woocommerce_product_description_heading', '__return_null' );
+
+/** 
+ * remove on single product panel 'Additional Information' since it already says it on tab.
+ */
+add_filter('woocommerce_product_additional_information_heading', 'isa_product_additional_information_heading');
+ 
+function isa_product_additional_information_heading() {
+    echo '';
+}
