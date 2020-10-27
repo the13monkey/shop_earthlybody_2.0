@@ -927,6 +927,15 @@ button[name="woocommerce_checkout_place_order"] {
     padding-right: 15px !important; 
 }
 
+.added-image-container #last-added-image {
+    max-width: 100%; 
+}
+
+#added-cart-popup #continue-shopping-button,
+#added-cart-popup #view-bag-checkout {
+    width: 100%;
+}
+
 @media screen and (min-width: 768px) {
 
     header {
@@ -1021,7 +1030,6 @@ button[name="woocommerce_checkout_place_order"] {
     .my-woo-product-tabs .my-woo-tab-control {
         font-size: 1.15rem; 
     }
-
 }
 
 @media screen and (min-width: 1024px) {
@@ -1183,9 +1191,12 @@ button[name="woocommerce_checkout_place_order"] {
         font-size: 1.15rem; 
     }
     
-    .woocommerce-mini-cart a.remove_from_cart_button,
     .cart-single-item a.remove {
         position: relative; 
+    }
+
+    .add_to_cart_button.loading::before {
+        margin-top: 0rem; 
     }
 }
 

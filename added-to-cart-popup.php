@@ -16,13 +16,13 @@
 
             <div class="row justify-content-between align-items-center py-3">
 
-                <div style="width:50%">
+                <div style="width:50%" class="added-image-container text-md-center">
 
-                    <img src="" class="w-100 img-fluid" id="last-added-image" />
+                    <img src="" class="w-100" id="last-added-image" />
 
                 </div>
 
-                <div style="width:50%; text-align: left; padding-right:1rem;">
+                <div style="width:50%; text-align: left; padding-right:1rem;" class="added-product-details">
             
                     <h6 id="last-added-name" class="font-weight-light"></h6>
 
@@ -36,9 +36,9 @@
 
             <div class="row justify-content-between align-items-center p-3">
             
-                <button class="btn btn-dark text-uppercase rounded-0 w-100" style="font-size:0.85rem;" id="continue-shopping-button">Continue Shopping</button>
+                <button class="btn btn-dark text-uppercase rounded-0" id="continue-shopping-button">Continue Shopping</button>
 
-                <a href="<?php echo wc_get_cart_url() ?>" class="btn btn-outline-dark text-uppercase rounded-0 w-100 mt-1" style="font-size:0.85rem;">View Bag & Checkout</a>
+                <a href="<?php echo wc_get_cart_url() ?>" class="btn btn-outline-dark text-uppercase rounded-0 mt-1 mt-md-0" id="view-bag-checkout">View Bag & Checkout</a>
 
             </div>
         

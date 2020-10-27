@@ -6,9 +6,19 @@ jQuery( document ).ready( function($){
 
         var image_url = theTrigger.parent().find('img.attachment-woocommerce_thumbnail').attr('src');
 
-        var theName = theTrigger.parent().find('h5.woocommerce-loop-product__title').html();
+        var theName = theTrigger.parent().find('.woocommerce-loop-product__title').html();
 
-        var thePrice = theTrigger.parent().find('span.woocommerce-Price-amount').html();
+        var ifOnSale = theTrigger.parent().find('.price del').length;
+
+        if (ifOnSale > 0) {
+
+            var thePrice = theTrigger.parent().find('.price').find('ins').find('span.woocommerce-Price-amount').html();
+
+        } else {
+
+            var thePrice = theTrigger.parent().find('span.woocommerce-Price-amount').html();
+
+        }
 
         var myInterval = setInterval( function(){
 

@@ -64,3 +64,20 @@ p.img-thumbnail-clicked {
 .product .options.selected {
     border: 1px solid #000; 
 }
+
+@media screen and (min-width: 768px) {
+    #added-cart-popup #cart-content, #add-variable-to-cart #add-variable-content {
+        width: 600px; 
+        overflow-y: auto; 
+    }
+
+    .added-image-container #last-added-image {
+        max-width: 200px; 
+    }
+    
+    #added-cart-popup #continue-shopping-button,
+    #added-cart-popup #view-bag-checkout {
+        width: 50%;
+        font-size: 1rem; 
+    }
+}
