@@ -28,33 +28,75 @@ $allowed_html = array(
 );
 ?>
 
-<p>
-	<?php
-	printf(
-		/* translators: 1: user display name 2: logout url */
-		wp_kses( __( 'Hello %1$s (not %1$s? <a href="%2$s">Log out</a>)', 'woocommerce' ), $allowed_html ),
-		'<strong>' . esc_html( $current_user->display_name ) . '</strong>',
-		esc_url( wc_logout_url() )
-	);
-	?>
-</p>
+<div class="row justify-content-center mt-n3 py-5" style="background: #fcf7f2;" id="HiUser-sm">
 
-<p>
-	<?php
-	/* translators: 1: Orders URL 2: Address URL 3: Account URL. */
-	$dashboard_desc = __( 'From your account dashboard you can view your <a href="%1$s">recent orders</a>, manage your <a href="%2$s">billing address</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' );
-	if ( wc_shipping_enabled() ) {
-		/* translators: 1: Orders URL 2: Addresses URL 3: Account URL. */
-		$dashboard_desc = __( 'From your account dashboard you can view your <a href="%1$s">recent orders</a>, manage your <a href="%2$s">shipping and billing addresses</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' );
-	}
-	printf(
-		wp_kses( $dashboard_desc, $allowed_html ),
-		esc_url( wc_get_endpoint_url( 'orders' ) ),
-		esc_url( wc_get_endpoint_url( 'edit-address' ) ),
-		esc_url( wc_get_endpoint_url( 'edit-account' ) )
-	);
-	?>
-</p>
+	<h4>Hello, <?php echo $current_user->display_name; ?></h4>
+
+</div>
+
+<hr class="mt-0">
+
+<div class="row mb-md-5">
+
+	<div class="col col-12 col-md-4">
+
+		<div class="row justify-content-between align-items-end px-3 mb-3">
+
+			<h5 class="mb-0">Orders</h5>
+
+			<a href="<?php echo wc_get_endpoint_url( 'orders' ) ?>" class="text-uppercase text-muted" style="font-size: 0.85rem;">View All ></a>
+
+		</div>
+
+		<div class="row px-3">
+			<img src="<?php echo get_template_directory_uri() ?>/img/new_images/recent_orders.jpg" class="img-fluid w-100" alt="My Orders | Shop Earthly Body" />
+		</div>
+
+	</div>
+
+	<div class="col col-12 col-md-4">
+
+		<div class="row justify-content-between align-items-end px-3 my-3 mt-md-0">
+
+			<h5 class="mb-0">Addresses</h5>
+
+			<a href="<?php echo wc_get_endpoint_url( 'edit-address' ) ?>" class="text-uppercase text-muted" style="font-size: 0.85rem;">View All ></a>
+
+		</div>
+
+		<div class="row px-3">
+
+			<img src="<?php echo get_template_directory_uri() ?>/img/new_images/my_addresses.jpg" class="img-fluid w-100" alt="My Addresses | Shop Earthly Body" />
+
+		</div>
+
+	</div>
+
+	<div class="col col-12 col-md-4">
+
+		<div class="row justify-content-between align-items-end px-3 my-3 mt-md-0">
+
+			<h5 class="mb-0">Account Details</h5>
+
+			<a href="<?php echo wc_get_endpoint_url( 'edit-account' ) ?>" class="text-uppercase text-muted" style="font-size: 0.85rem;">Edit ></a>
+
+		</div>
+
+		<div class="row px-3">
+
+			<img src="<?php echo get_template_directory_uri() ?>/img/new_images/change_password.jpg" class="img-fluid w-100" alt="My Addresses | Shop Earthly Body" />
+			
+		</div>
+
+	</div>
+
+</div>
+
+<div class="row justify-content-center px-3 mt-3 d-flex d-md-none">
+
+	<a class="text-uppercase text-muted" href="<?php echo wc_logout_url() ?>"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Log Out</a>
+
+</div>
 
 <?php
 	/**

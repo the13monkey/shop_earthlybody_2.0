@@ -23,15 +23,23 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 <?php if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) ) : ?>
 
-<div class="u-columns col2-set" id="customer_login">
+<div class="row" id="customer_login">
 
-	<div class="u-column1 col-1">
+	<div class="col col-12 mt-3 mb-1 d-block d-md-none">
+		
+		<div class="row justify-content-center">
+			<span class="alert alert-success rounded-0 w-100 text-center" role="alert">Scroll down to register an account.</span>
+		</div>
+
+	</div>
+
+	<div class="col col-12 col-md-6 mt-md-4 px-md-5">
 
 <?php endif; ?>
 
-		<h2><?php esc_html_e( 'Login', 'woocommerce' ); ?></h2>
+		<h3 class="text-center text-uppercase font-weight-light"><?php esc_html_e( 'Login', 'woocommerce' ); ?></h3>
 
-		<form class="woocommerce-form woocommerce-form-login login" method="post">
+		<form class="woocommerce-form woocommerce-form-login login px-0 border-0" method="post">
 
 			<?php do_action( 'woocommerce_login_form_start' ); ?>
 
@@ -65,11 +73,11 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 	</div>
 
-	<div class="u-column2 col-2">
+	<div class="col col-12 col-md-6 mt-md-4 px-md-5" id="register">
 
-		<h2><?php esc_html_e( 'Register', 'woocommerce' ); ?></h2>
+		<h3 class="text-center text-uppercase font-weight-light"><?php esc_html_e( 'Register', 'woocommerce' ); ?></h3>
 
-		<form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
+		<form method="post" class="woocommerce-form woocommerce-form-register register border-0 px-0 my-0" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
 
 			<?php do_action( 'woocommerce_register_form_start' ); ?>
 

@@ -22,9 +22,9 @@
             
             <div class="row justify-content-between align-items-center p-3" id="action-buttons">
             
-                <button class="btn btn-dark text-uppercase rounded-0 w-100" style="font-size:0.85rem;" id="confirm-size">Confirm Size</button>
+                <button class="btn btn-dark text-uppercase rounded-0" id="confirm-size">Confirm Size</button>
                 
-                <button id="cancel-purchase" class="my-1 btn btn-outline-dark text-uppercase rounded-0 w-100" style="font-size:0.85rem;">Cancel</button>
+                <button id="cancel-purchase" class="my-1 btn btn-outline-dark text-uppercase rounded-0">Cancel</button>
 
             </div>
         

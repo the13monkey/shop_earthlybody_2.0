@@ -22,11 +22,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_before_account_navigation' );
 ?>
 
+<button id="toggleMyAccountNav" class="text-uppercase border-0 btn btn-light mx-auto rounded-0 w-100 text-center bg-white mb-4"><i class="fa fa-bars font-weight-light mr-3"></i>menu</button>
+
 <nav class="woocommerce-MyAccount-navigation">
 	<ul>
+		<li class="border-bottom py-2" style="background: #fcf7f2;" id="HiUser-bg">
+			<h4>Hello,
+				<?php 
+				
+					$current_user = wp_get_current_user(); 
+					
+					echo $current_user->display_name; 
+
+				?>
+			</h4>
+		</li>
 		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
-			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
-				<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
+			<li class="border-bottom py-2 <?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
+				<a class="text-dark" href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
 			</li>
 		<?php endforeach; ?>
 	</ul>

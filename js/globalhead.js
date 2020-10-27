@@ -246,5 +246,10 @@ jQuery( document ).ready( function($){
 
     });
 
+    $('#toggleMyAccountNav').click(function(){
+
+        $('.woocommerce-MyAccount-navigation').slideToggle();
+
+    });
 
 } );

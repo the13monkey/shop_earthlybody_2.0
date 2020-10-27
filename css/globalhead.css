@@ -415,15 +415,15 @@ ul.woocommerce-mini-cart {
 
 .add_to_cart_button.loading::before {
     content: '';
-    width: 1rem; 
-    height: 1rem; 
+    width: 1.25rem; 
+    height: 1.25rem; 
     background-image: url('https://site.test/shopearthlybody/wp-content/themes/ebmarketplace/img/loader-new.gif');
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center; 
     position: absolute; 
     margin-top: -0.06rem; 
-    margin-left: -1.25rem; 
+    margin-left: -1.35rem; 
 }
 
 .add_to_cart_button.loading {
@@ -713,7 +713,12 @@ button[name="add-to-cart"] {
     position: absolute; 
     font-size: 0.75rem; 
     font-weight: 400; 
-    right: 1rem; 
+    /* right: 1rem; */
+}
+
+.woocommerce form .form-row .optional {
+    position: relative; 
+    right: -3rem; 
 }
 
 .woocommerce form .form-row-first,
@@ -781,7 +786,12 @@ button[name="add-to-cart"] {
 }
 
 .woocommerce-form-login .woocommerce-form-login__submit,
-button[name="woocommerce_checkout_place_order"] {
+button[name="woocommerce_checkout_place_order"],
+.woocommerce-form-register .woocommerce-form-register__submit,
+button[value="Reset password"],
+p.order-again a.button,
+p button[name="save_address"],
+button[name="save_account_details"] {
     width: 100%; 
     border-radius: 0px !important; 
     background: #613d20 !important; 
@@ -790,6 +800,7 @@ button[name="woocommerce_checkout_place_order"] {
     margin-right: 0px !important;
     height: 41px; 
     letter-spacing: 3px;
+    text-align: center;
 }
 
 .woocommerce-form-login .lost_password a {
@@ -812,10 +823,6 @@ button[name="woocommerce_checkout_place_order"] {
     color: #54595f;
 }
 
-.woocommerce table.shop_table td.product-total {
-    border-top: none !important; 
-}
-
 .woocommerce-checkout-review-order-table #shipping_method li {
     margin-bottom: 0px !important; 
     text-align: right;
@@ -835,7 +842,7 @@ button[name="woocommerce_checkout_place_order"] {
     width: 50vw; 
 }
 
-.woocommerce-ordering select {
+.woocommerce-ordering select, .woocommerce-address-fields__field-wrapper .woocommerce-input-wrapper {
     width: 100%; 
 }
 
@@ -936,6 +943,29 @@ button[name="woocommerce_checkout_place_order"] {
     width: 100%;
 }
 
+.woocommerce form .password-input, 
+.woocommerce-page form .password-input {
+    width: 100%; 
+}
+
+.woocommerce-form-login label, .woocommerce-form-register label {
+    font-size: 0.9rem; 
+}
+
+.woocommerce-form-login label .required, .woocommerce-form-register label .required {
+    margin-top: 2px !important; 
+}
+
+.woocommerce-MyAccount-navigation, #highUser-bg {
+    display: none; 
+}
+
+.woocommerce-MyAccount-navigation ul,
+table.woocommerce-table--order-details .woocommerce-table__product-name .wc-item-meta {
+    padding-inline-start: 0; 
+    list-style: none; 
+}
+
 @media screen and (min-width: 768px) {
 
     header {
@@ -1010,7 +1040,7 @@ button[name="woocommerce_checkout_place_order"] {
         margin-bottom: 2rem; 
     }
 
-    .woocommerce .woocommerce-ordering {
+    .woocommerce .woocommerce-ordering, p.order-again a.button {
         margin-bottom: 2rem; 
         width: 300px;
     }
@@ -1029,6 +1059,17 @@ button[name="woocommerce_checkout_place_order"] {
 
     .my-woo-product-tabs .my-woo-tab-control {
         font-size: 1.15rem; 
+    }
+
+    .woocommerce-form-login .form-row .required::after,
+    .woocommerce-form-register .form-row .required::after, 
+    .woocommerce-form-login .form-row .optional,
+    .woocommerce-form-register .form-row .optional {
+        right: 3rem !important; 
+    }
+
+    form.woocommerce-ResetPassword {
+        max-width: 600px; 
     }
 }
 
@@ -1084,7 +1125,9 @@ button[name="woocommerce_checkout_place_order"] {
     }
 
     .cart-items-count {
-        margin-top: -0.5rem; 
+        position: relative; 
+        top: -10px; 
+        left: -5px; 
     }
 
     .top-page-primary-menu {
@@ -1198,18 +1241,25 @@ button[name="woocommerce_checkout_place_order"] {
     .add_to_cart_button.loading::before {
         margin-top: 0rem; 
     }
+
+    .woocommerce-MyAccount-navigation, #HiUser-bg {
+        display: block; 
+    }
+
+    #toggleMyAccountNav, #HiUser-sm {
+        display: none; 
+    }
+
+    .woocommerce-MyAccount-navigation {
+        padding-right: 2rem; 
+    }
+
+    .woocommerce-myAccount-content form .woocommerce-addres-fields__field-wrapper .form-row .required::after, .woocommerce-myAccount-content form .woocommerce-addres-fields__field-wrapper .form-row .optional {
+        right: auto !important; 
+    }
 }
 
 @media screen and (min-width: 1366px) {
-
-    /*
-    #desktop-navbar-section,
-    #primary.content-area {
-        width: 86%; 
-        margin-left: auto; 
-        margin-right: auto; 
-    }
-    */
 
     .brands-toggle-nav .nav-link img {
         height: 30px; 

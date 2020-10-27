@@ -16,7 +16,11 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+?>
 
+<h3 class="text-center text-uppercase font-weight-light my-3"><?php esc_html_e( 'My Account', 'woocommerce' ); ?></h3>
+
+<?php 
 /**
  * My Account navigation.
  *

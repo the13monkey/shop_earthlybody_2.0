@@ -654,3 +654,12 @@ add_filter('woocommerce_product_additional_information_heading', 'isa_product_ad
 function isa_product_additional_information_heading() {
     echo '';
 }
+
+add_filter ( 'woocommerce_account_menu_items', 'misha_remove_my_account_links' );
+function misha_remove_my_account_links( $menu_links ){
+  
+	unset( $menu_links['downloads'] ); // Disable Downloads
+ 
+	return $menu_links;
+ 
+}

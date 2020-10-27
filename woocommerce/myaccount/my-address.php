@@ -42,12 +42,13 @@ $oldcol = 1;
 $col    = 1;
 ?>
 
-<p>
-	<?php echo apply_filters( 'woocommerce_my_account_my_address_description', esc_html__( 'The following addresses will be used on the checkout page by default.', 'woocommerce' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-</p>
+<div class="border-top border-bottom d-flex justify-content-between align-items-center py-3 mb-3">
+	<h5 class="mb-0" style="line-height:2rem">My addresses</h5>
+	<a href="<?php get_site_url() ?>/customer-service" target="_blank" class="btn btn-outline-secondary btn-sm">Help</a>	
+</div>
 
 <?php if ( ! wc_ship_to_billing_address_only() && wc_shipping_enabled() ) : ?>
-	<div class="u-columns woocommerce-Addresses col2-set addresses">
+	<div class="woocommerce-Addresses addresses row">
 <?php endif; ?>
 
 <?php foreach ( $get_addresses as $name => $address_title ) : ?>
@@ -57,10 +58,10 @@ $col    = 1;
 		$oldcol  = $oldcol * -1;
 	?>
 
-	<div class="u-column<?php echo $col < 0 ? 1 : 2; ?> col-<?php echo $oldcol < 0 ? 1 : 2; ?> woocommerce-Address">
+	<div class="woocommerce-Address col col-12 col-md-6>
 		<header class="woocommerce-Address-title title">
-			<h3><?php echo esc_html( $address_title ); ?></h3>
-			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit"><?php echo $address ? esc_html__( 'Edit', 'woocommerce' ) : esc_html__( 'Add', 'woocommerce' ); ?></a>
+			<h5 class="text-uppercase font-weight-light d-flex justify-content-between align-items-center"><?php echo esc_html( $address_title ); ?><a class="btn btn-outline-secondary btn-sm" href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit"><?php echo $address ? esc_html__( 'Edit', 'woocommerce' ) : esc_html__( 'Add', 'woocommerce' ); ?></a></h5>
+			
 		</header>
 		<address>
 			<?php

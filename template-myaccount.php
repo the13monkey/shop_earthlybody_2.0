@@ -9,6 +9,8 @@
 
 ?>
 
+<div class="container-fluid container-lg">
+
 <?php 
 	if ( have_posts() ) : 
 
@@ -21,6 +23,7 @@
 	endif; 
 ?>
 
+</div>
 
 <?php 
 

@@ -65,6 +65,11 @@ p.img-thumbnail-clicked {
     border: 1px solid #000; 
 }
 
+#add-variable-to-cart #add-variable-content #action-buttons button {
+    width: 100%; 
+    font-size: 0.85rem; 
+}
+
 @media screen and (min-width: 768px) {
     #added-cart-popup #cart-content, #add-variable-to-cart #add-variable-content {
         width: 600px; 
@@ -79,5 +84,15 @@ p.img-thumbnail-clicked {
     #added-cart-popup #view-bag-checkout {
         width: 50%;
         font-size: 1rem; 
+    }
+
+    #add-variable-to-cart #add-variable-content #action-buttons button {
+        width: 50%; 
+        font-size: 1.25rem; 
+    }
+
+    #add-variable-content *,
+    #added-cart-popup #cart-content * {
+        font-size: 1.25rem; 
     }
 }

@@ -104,10 +104,19 @@
         <div id="my-account-bar" class="d-flex justify-content-end align-items-center">
 
             <a href="<?php echo wc_get_page_permalink( 'myaccount' ) ?>" style="font-size:1rem;" class="text-dark border-right pr-lg-3">
+                
+                <?php if( !is_user_logged_in() ) :?>    
 
-                <i class="fa fa-user text-dark mr-1" aria-hidden="true"></i>
-                Sign In / Create An Account    
+                    <i class="fa fa-user text-dark mr-1" aria-hidden="true"></i>
+                    Sign In / Create An Account    
 
+                <?php else: ?>
+
+                    <i class="fa fa-user text-dark mr-1" aria-hidden="true"></i>
+                    Hello, <?php $current_user = wp_get_current_user(); echo $current_user->display_name; ?>
+
+                <?php endif; ?>
+                
             </a>
             
             <a id="desktop-shopping-bag" class="btn pr-0" href="<?php echo wc_get_cart_url(); ?>">
