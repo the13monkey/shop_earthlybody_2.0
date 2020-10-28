@@ -4,19 +4,47 @@ jQuery( document ).ready( function($){
 
         var theTrigger = $(this);
 
-        var image_url = theTrigger.parent().find('img.attachment-woocommerce_thumbnail').attr('src');
+        var theProduct = theTrigger.parent();
 
-        var theName = theTrigger.parent().find('.woocommerce-loop-product__title').html();
+        // Check product type 
 
-        var ifOnSale = theTrigger.parent().find('.price del').length;
+        var ifsimple = theProduct.find('.options').length; 
 
-        if (ifOnSale > 0) {
+        if ( ifsimple > 0 ) { 
 
-            var thePrice = theTrigger.parent().find('.price').find('ins').find('span.woocommerce-Price-amount').html();
+            // Variable product 
+
+            // Get Product Thumbnail URL 
+            var image_url = 'http://source.unsplash.com/400x400';
+
+            // Get Product Name 
+            var theName = 'Variable product name';
+
+            // Get Product Price 
+            var thePrice = 'Variable product price';        
 
         } else {
 
-            var thePrice = theTrigger.parent().find('span.woocommerce-Price-amount').html();
+            // Simple product
+
+            // Get Product Thumbnail URL 
+            var image_url = theProduct.find('img.attachment-woocommerce_thumbnail').attr('src');
+
+            // Get Product Name 
+            var theName = theProduct.find('.woocommerce-loop-product__title').html();
+
+            // Check If On Sale to Get Product Current Price 
+            var ifonsale = theProduct.find('.price del').length; 
+
+            if (ifonsale > 0) {
+
+                var thePrice = theProduct.find('.price').find('ins').find('span.woocommerce-Price-amount').html();
+    
+            } else {
+    
+                var thePrice = theProduct.find('span.woocommerce-Price-amount').html();
+    
+            }
 
         }
 
