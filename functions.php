@@ -590,7 +590,7 @@ function add_attributes_to_product_loop () {
 
       $variation_ids = $product->get_children();
 
-      echo '<div class="w-100 d-flex justify-content-center my-3">';
+      echo '<div class="w-100 d-flex justify-content-center my-3" id="options-row">';
 
       foreach ( $variation_ids as $variation_id ) {
 

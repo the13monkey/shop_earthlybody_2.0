@@ -133,6 +133,11 @@
 
     <div class="w-100 px-3 my-3">
 
+        <?php get_template_part( 'headers/content', 'general' ) ?>
+
+        
+
+        <!--
         <?php 
 
         wp_nav_menu (
@@ -142,7 +147,7 @@
             )
         )
 
-        ?>
+        ?> -->
 
     </div>
 

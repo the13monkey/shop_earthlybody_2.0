@@ -16,36 +16,40 @@
 
 	</div>
 
-	<div class="row justify-content-center align-items-center mt-0 mb-3" id="shop-by-brand">
+	<div class="row justify-content-center align-items-top mt-0 mb-3" id="shop-by-brand">
 	
 		<div class="shop-single-brand">
 			
-			<a href="<?php echo get_site_url() ?>/marrakesh/">
+			<a href="<?php echo get_site_url() ?>/marrakesh-hair-care/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/new_brands/marrakesh1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
+				<p class="display-5 text-dark px-3 text-center">Shop Marrakesh Hair Care</p>
 			</a>
 
 		</div>
 
 		<div class="shop-single-brand">
 			
-			<a href="<?php echo get_site_url() ?>/hempseed/">
+			<a href="<?php echo get_site_url() ?>/hemp-seed-body-care/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/new_brands/home-hempseed1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
+				<p class="display-5 text-dark px-3 text-center">Shop Hemp Seed Body Care</p>
 			</a>
 
 		</div>
 
 		<div class="shop-single-brand">
 		
-			<a href="<?php echo get_site_url() ?>/cbddaily/">
+			<a href="<?php echo get_site_url() ?>/cbd-daily-products/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/new_brands/home-cbddaily1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
+				<p class="display-5 text-dark px-3 text-center">Shop CBD Daily Products</p> 
 			</a>
 
 		</div>
 
 		<div class="shop-single-brand">
 		
-			<a href="<?php echo get_site_url() ?>/emera/">
+			<a href="<?php echo get_site_url() ?>/emera-cbd-hair-care/">
 				<img src="<?php echo get_template_directory_uri() ?>/img/new_brands/home-emera1.jpg" class="w-100 img-thumbnail rounded-0 border-0" alt="<?php echo get_bloginfo( 'name' ) ?>" />
+				<p class="display-5 text-dark px-3 text-center">Shop EMERA CBD Hair Care</p>
 			</a>
 
 		</div>

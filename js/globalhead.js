@@ -168,7 +168,7 @@ jQuery( document ).ready( function($){
 
         var theHeights = [];
 
-        $('.products .product').each( function(){
+        $('#home-new-arrival .products .product').each( function(){
 
             var height = $(this).height();
 
@@ -184,7 +184,7 @@ jQuery( document ).ready( function($){
 
         var maxHeight = Math.max.apply(Math, theHeights);
 
-        $('.products .product').each( function(){
+        $('#home-new-arrival .products .product').each( function(){
         
             $(this).css('height', maxHeight);
         

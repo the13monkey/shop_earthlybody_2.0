@@ -101,7 +101,7 @@ ul.woocommerce-mini-cart {
 .search-bar-mobile .woocommerce-product-search input, 
 .search-bar-mobile .woocommerce-product-search button {
     height: 36px; 
-    border: 1px solid #eee; 
+    border: 1px solid #613d20; 
     box-shadow: none; 
     font-size: 0.9rem;
 }
@@ -216,8 +216,8 @@ ul.woocommerce-mini-cart {
 }
 
 .product .button.add_to_cart_button.woo-default-variable-add {
-    padding-top: 6px; 
-    padding-bottom: 6px; 
+    padding-top: 0.7rem; 
+    padding-bottom: 0.7rem;
 }
 
 .product .price del {
@@ -415,20 +415,20 @@ ul.woocommerce-mini-cart {
 
 .add_to_cart_button.loading::before {
     content: '';
-    width: 1.25rem; 
-    height: 1.25rem; 
+    width: 1rem; 
+    height: 1rem; 
     background-image: url('https://site.test/shopearthlybody/wp-content/themes/ebmarketplace/img/loader-new.gif');
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center; 
     position: absolute; 
-    margin-top: -0.06rem; 
     margin-left: -1.35rem; 
 }
 
 .add_to_cart_button.loading {
     opacity: 1 !important; 
     padding-left: 1.25rem !important; 
+    cursor: no-drop !important; 
 }
 
 .cart-single-item .quantity {
@@ -966,6 +966,16 @@ table.woocommerce-table--order-details .woocommerce-table__product-name .wc-item
     list-style: none; 
 }
 
+a.menu-featured-product {
+    font-size: 1rem !important; 
+    padding: 5px !important; 
+    line-height: 1rem !important; 
+}
+
+a.menu-featured-product::after {
+    display: none !important; 
+}
+
 @media screen and (min-width: 768px) {
 
     header {
@@ -1135,10 +1145,37 @@ table.woocommerce-table--order-details .woocommerce-table__product-name .wc-item
     }
 
     .top-page-primary-menu li,
-    .brand-nav-list li {
+    .brand-nav-list li,
+    .top-page-primary-menu .menu-item-has-children:first-child .sub-menu .nav {
         display: inline-block; 
-        vertical-align: middle; 
-        margin-right: 1.5rem; 
+        vertical-align: top; 
+        margin-left: 15px; 
+        margin-right: 15px; 
+    }
+
+    .top-page-primary-menu li,
+    .brand-nav-list li {
+        width: 180px; 
+    }
+
+    .top-page-primary-menu li#shopByBrand .sub-menu li {
+        width: 120px; 
+    }
+
+    .top-page-primary-menu li#shopByProduct .sub-menu li {
+        width: 170px; 
+    }
+
+    .top-page-primary-menu .menu-item-has-children:first-child .sub-menu .nav.flex-column {
+        width: 200px;
+    }
+
+    .top-page-primary-menu .menu-item-has-children:first-child .sub-menu .nav.flex-row {
+        width: 400px;
+    }
+
+    .top-page-primary-menu .menu-item-has-children:first-child .sub-menu .nav.single-product-space {
+        width: 200px; 
     }
 
     .brand-nav-list li {
@@ -1158,11 +1195,29 @@ table.woocommerce-table--order-details .woocommerce-table__product-name .wc-item
     .top-page-primary-menu li .sub-menu,
     .brand-nav-list li .dropdown {
         position: absolute; 
-        background: #fcf7f2;
-        width: 500px; 
+        background: #fff;
+        border: 1px solid #613d20;
         z-index: 3; 
-        padding: 15px 30px; 
+        padding: 1rem; 
         text-align: left; 
+        max-height: 56vh;  
+    }
+
+    .top-page-primary-menu li .sub-menu ul.products[class*=columns-] li.product {
+        width: 100% !important; 
+        margin-bottom: 0px !important; 
+        border-left: 1px solid #613d20 !important;
+        padding-left: 2rem !important; 
+    }
+
+    .top-page-primary-menu li .sub-menu ul.products[class*=columns-] li.product img.attachment-woocommerce_thumbnail {
+        max-width: 150px !important; 
+        height: auto;
+        margin-bottom: 0px !important;  
+    }
+
+    .top-page-primary-menu li .sub-menu ul.products[class*=columns-] li.product .woocommerce-loop-product__title {
+        font-size: 0.85rem !important; 
     }
 
     .brand-nav-list .dropdown .nav-item {
