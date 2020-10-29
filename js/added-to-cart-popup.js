@@ -15,13 +15,16 @@ jQuery( document ).ready( function($){
             // Variable product 
 
             // Get Product Thumbnail URL 
-            var image_url = 'http://source.unsplash.com/400x400';
+            var image_url = theProduct.find('img.attachment-woocommerce_thumbnail').attr('src');
 
             // Get Product Name 
-            var theName = 'Variable product name';
+            var parentName = theProduct.find('.woocommerce-loop-product__title').html();
+            var variationName = theProduct.find('.options.selected').next().data('variation_name');
+            var theName = parentName +' ('+ variationName +') ';
 
             // Get Product Price 
-            var thePrice = 'Variable product price';        
+            var thePriceNumber = theProduct.find('.options.selected').next().data('variation_price');
+            var thePrice = '$'+thePriceNumber;        
 
         } else {
 
@@ -177,7 +180,13 @@ jQuery( document ).ready( function($){
 
             $('.img-thumbnail-clicked').removeClass('img-thumbnail-clicked');
 
-            $(this).parent().find('*').addClass('img-thumbnail-clicked');
+            $(this).parent().find('*').addClass('img-thumbnail-clicked'); 
+
+            // Also change selected variations for the "product in bag" popup 
+
+            var variation_id_selected = $('input.img-thumbnail-clicked').val();
+
+            $('input.variations[data-variation_id='+variation_id_selected+']').prev().click();
 
         });
 
