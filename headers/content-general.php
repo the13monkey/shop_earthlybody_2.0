@@ -6,96 +6,129 @@
 
             <a href="#">Shop by Product</a>
 
-            <ul class="sub-menu" style="display:block">
+            <ul class="sub-menu">
 
-               <div class="nav flex-column justify-content-start ml-0">
+                <div class="container-fluid">
 
-                    <button class="my-0 rounded-0 btn btn-dark w-100 text-left">CBD Topicals</button>
+                    <div class="row">
 
-                    <button class="my-0 rounded-0 btn w-100 text-left">CBD Hair Care</button>
+                        <div class="col col-3 px-0">
 
-                    <button class="my-0 rounded-0 btn w-100 text-left">Massage Lotions & Candles</button>
+                            <div class="nav flex-column justify-content-start ml-0">
 
-                    <button class="my-0 rounded-0 btn w-100 text-left">Hair Care</button>
+                                <button class="mb-1 rounded-0 btn btn-dark w-100 text-left text-uppercase py-0">CBD Topicals</button>
 
-                    <button class="my-0 rounded-0 btn w-100 text-left">Body Care</button>
+                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">CBD Hair Care</button>
 
-                    <button class="my-0 rounded-0 btn w-100 text-left">Hemp Seed by Night</button>
+                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">Massage Lotions & Candles</button>
 
-               </div>
+                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">Hair Care</button>
 
-               <div class="nav flex-row mx-0">
+                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">Body Care</button>
 
-                    <li class="nav-item">
+                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">Hemp Seed by Night</button>
 
-                        <a class="nav-link pb-0">CBD Cream</a>
+                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase text-success py-0">Free Shipping</button>
 
-                    </li>
+                            </div>
 
-                    <li class="nav-item">
+                        </div>
 
-                        <a class="nav-link pb-0">CBD Lotion</a>
+                        <div class="col col-6 px-3">
 
-                    </li>
+                            <div class="nav d-flex flex-row">
 
-                    <li class="nav-item">
+                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
+                                    
+                                    CBD Cream
+                                    
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Intensive Cream - Original Strength</a>
 
-                        <a class="nav-link pb-0">CBD Serum</a>
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Daily Intensive Cream - Triple Strength</a>
 
-                    </li>
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Intensive Cream - Original Strength (Lavender)</a>
 
-                    <li class="nav-item">
+                                </p>
 
-                        <a class="nav-link pb-0">CBD Spray</a>
+                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
 
-                    </li>
+                                    CBD Serum
 
-                    <li class="nav-item">
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Soothing Serum - Original Strength</a>
 
-                        <a class="nav-link pb-0">CBD Lip Balm & Salve</a>
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Daily Soothing Serum - Triple Strength</a>
 
-                    </li>
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Daily Soothing Serum - Original Strength (Lavender)</a>
 
-                    <li class="nav-item">
+                                </p>
 
-                        <a class="nav-link pb-0">CBD Cuticle Oil</a>
+                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
 
-                    </li>
+                                    CBD Spray
 
-                    <li class="nav-item">
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Active Spray - Original Strength</a>
 
-                        <a class="nav-link pb-0">CBD Foot Cream</a>
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Daily Active Spray - Triple Strength</a>
 
-                    </li>
+                                </p>
 
-               </div>
+                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
 
-               <div class="nav single-product-space border-left pl-3">
+                                    CBD Ultra Care
+                                   
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Cuticle Oil</a>
 
-                    <p class="w-100 text-center text-white text-uppercase bg-dark">Featured</p>
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-2 font-weight-light text-capitalize">CBD Foot Cream</a>
 
-                    <?php 
-                    
-                        $args = array(
-                            'posts_per_page' => '1',
-                            'product_cat' => 'CBD Daily Products',
-                            'post_type' => 'product',
-                            'orderby' => 'popularity',
-                        );
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Hand Wash</a>
 
-                        $query = new WP_Query( $args );
-                        if( $query->have_posts()) : while( $query->have_posts() ) : $query->the_post();
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Hand & Body Lotion</a>
 
-                            echo '<img src="'.get_the_post_thumbnail_url().'" alt="Shop Earthly Body" class="img-fluid w-100"/>';
-                            echo '<h6 class="text-center">'.get_the_title().'</h6>';
-                            echo '<a href="'.get_post_permalink().'" class="btn btn-outline-dark rounded-0 w-100 text-center my-3 menu-featured-product">Buy Now</a>';
+                                </p>
+                                
+                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
 
-                        endwhile;
-                            endif;
-                    
-                    ?>
+                                    CBD Lip Balm
 
-               </div>
+                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Lip Balm & Salve</a>
+
+                                </p>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="col col-3 border-left">
+
+                            <p class="w-100 text-center text-white text-uppercase bg-success">new!</p>
+
+                            <?php 
+
+                                $args = array(
+                                    'posts_per_page' => '1',
+                                    'product_cat' => 'CBD Daily Products',
+                                    'post_type' => 'product',
+                                    'orderby' => 'popularity',
+                                );
+
+                                $query = new WP_Query( $args );
+                                if( $query->have_posts()) : while( $query->have_posts() ) : $query->the_post();
+
+                                    echo '<img src="'.get_the_post_thumbnail_url().'" alt="Shop Earthly Body" class="img-fluid w-100"/>';
+                                    echo '<h6 class="text-center">'.get_the_title().'</h6>';
+                                    echo '<a href="'.get_post_permalink().'" class="btn btn-outline-dark rounded-0 w-100 text-center my-3 menu-featured-product">Learn more</a>';
+
+                                endwhile;
+                                    endif;
+
+                            ?>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </ul>
 

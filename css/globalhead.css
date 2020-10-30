@@ -1145,37 +1145,16 @@ a.menu-featured-product::after {
     }
 
     .top-page-primary-menu li,
-    .brand-nav-list li,
-    .top-page-primary-menu .menu-item-has-children:first-child .sub-menu .nav {
+    .brand-nav-list li {
         display: inline-block; 
         vertical-align: top; 
         margin-left: 15px; 
         margin-right: 15px; 
     }
 
-    .top-page-primary-menu li,
-    .brand-nav-list li {
-        width: 180px; 
-    }
-
-    .top-page-primary-menu li#shopByBrand .sub-menu li {
+    .top-page-primary-menu .sub-menu li,
+    .brand-nav-list .dropdown li {
         width: 120px; 
-    }
-
-    .top-page-primary-menu li#shopByProduct .sub-menu li {
-        width: 170px; 
-    }
-
-    .top-page-primary-menu .menu-item-has-children:first-child .sub-menu .nav.flex-column {
-        width: 200px;
-    }
-
-    .top-page-primary-menu .menu-item-has-children:first-child .sub-menu .nav.flex-row {
-        width: 400px;
-    }
-
-    .top-page-primary-menu .menu-item-has-children:first-child .sub-menu .nav.single-product-space {
-        width: 200px; 
     }
 
     .brand-nav-list li {
@@ -1203,21 +1182,20 @@ a.menu-featured-product::after {
         max-height: 56vh;  
     }
 
-    .top-page-primary-menu li .sub-menu ul.products[class*=columns-] li.product {
-        width: 100% !important; 
-        margin-bottom: 0px !important; 
-        border-left: 1px solid #613d20 !important;
-        padding-left: 2rem !important; 
+    .top-page-primary-menu #shopByProduct .sub-menu {
+        width: 840px; 
     }
 
-    .top-page-primary-menu li .sub-menu ul.products[class*=columns-] li.product img.attachment-woocommerce_thumbnail {
-        max-width: 150px !important; 
-        height: auto;
-        margin-bottom: 0px !important;  
+    .top-page-primary-menu #shopByProduct .sub-menu .nav-link::after {
+        display: none !important; 
     }
 
-    .top-page-primary-menu li .sub-menu ul.products[class*=columns-] li.product .woocommerce-loop-product__title {
-        font-size: 0.85rem !important; 
+    .top-page-primary-menu #shopByProduct .sub-menu .nav-link {
+        font-size: 1rem; 
+        line-height: 1.15rem; 
+        width: 180px; 
+        padding-top: 0;
+        margin-bottom: 1rem; 
     }
 
     .brand-nav-list .dropdown .nav-item {
@@ -1366,6 +1344,11 @@ a.menu-featured-product::after {
 
     .brand-captions {
         padding: 15px; 
+    }
+
+    .top-page-primary-menu .sub-menu li,
+    .brand-nav-list .dropdown li {
+        width: 180px; 
     }
 
 }
