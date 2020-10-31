@@ -135,20 +135,6 @@
 
         <?php get_template_part( 'headers/content', 'general' ) ?>
 
-        
-
-        <!--
-        <?php 
-
-        wp_nav_menu (
-            array (
-                'theme_location' => 'primary-menu',
-                'menu_class' => 'top-page-primary-menu'
-            )
-        )
-
-        ?> -->
-
     </div>
 
 </div>

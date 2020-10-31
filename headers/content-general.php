@@ -6,126 +6,148 @@
 
             <a href="#">Shop by Product</a>
 
-            <ul class="sub-menu">
+            <ul class="sub-menu" style="display:block;">
 
-                <div class="container-fluid">
+                <div class="container-fluid pr-0">
 
                     <div class="row">
 
-                        <div class="col col-3 px-0">
+                        <div class="col col-3 col-xl-2 px-0">
 
-                            <div class="nav flex-column justify-content-start ml-0">
+                            <div class="nav flex-column justify-content-start ml-0" id="tab-names">
+        
+                                <?php 
+                                    //Home Mega Menu Cat ID = 276
+                                    $parent_cat_ID = 276; 
 
-                                <button class="mb-1 rounded-0 btn btn-dark w-100 text-left text-uppercase py-0">CBD Topicals</button>
+                                    $args = array(
+                                        'hierarchical' => 1,
+                                        'show_option_none' => '',
+                                        'hide_empty' => 0,
+                                        'parent' => $parent_cat_ID, 
+                                        'taxonomy' => 'product_cat'
+                                    );
 
-                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">CBD Hair Care</button>
+                                    $subcats = get_categories($args);
 
-                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">Massage Lotions & Candles</button>
+                                    foreach ($subcats as $subcat): ?>
 
-                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">Hair Care</button>
-
-                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">Body Care</button>
-
-                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase py-0">Hemp Seed by Night</button>
-
-                                <button class="mb-1 rounded-0 btn w-100 text-left text-uppercase text-success py-0">Free Shipping</button>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col col-6 px-3">
-
-                            <div class="nav d-flex flex-row">
-
-                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
+                                    <?php 
                                     
-                                    CBD Cream
-                                    
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Intensive Cream - Original Strength</a>
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Daily Intensive Cream - Triple Strength</a>
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Intensive Cream - Original Strength (Lavender)</a>
-
-                                </p>
-
-                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
-
-                                    CBD Serum
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Soothing Serum - Original Strength</a>
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Daily Soothing Serum - Triple Strength</a>
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Daily Soothing Serum - Original Strength (Lavender)</a>
-
-                                </p>
-
-                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
-
-                                    CBD Spray
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Active Spray - Original Strength</a>
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Daily Active Spray - Triple Strength</a>
-
-                                </p>
-
-                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
-
-                                    CBD Ultra Care
-                                   
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Cuticle Oil</a>
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-2 font-weight-light text-capitalize">CBD Foot Cream</a>
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Hand Wash</a>
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark mb-1 font-weight-light text-capitalize">CBD Hand & Body Lotion</a>
-
-                                </p>
+                                        $cat_name_str = strtolower( $subcat->name ); 
+                                        $tab_name = preg_replace('/[\W]/', '_', $cat_name_str);
+                                        
+                                    ?>
+                                    <button class="rounded-0 btn w-100 text-left text-uppercase py-1 border-top" data-tab_name="<?php echo $tab_name; ?>"><?php echo str_replace( 'MM-', '', $subcat->name); ?></button>
                                 
-                                <p class="nav-link text-uppercase d-flex flex-column font-weight-bold pl-0">
-
-                                    CBD Lip Balm
-
-                                    <a href="#" class="nav-link pl-0 py-1 text-dark text-capitalize my-1 font-weight-light">CBD Daily Lip Balm & Salve</a>
-
-                                </p>
-
-
+                                <?php endforeach; ?>
+                                
                             </div>
 
                         </div>
 
-                        <div class="col col-3 border-left">
-
-                            <p class="w-100 text-center text-white text-uppercase bg-success">new!</p>
-
+                        <div class="col col-9 col-xl-10 px-3">
+                            
                             <?php 
+                                //Home Mega Menu Cat ID = 276
+                                $parent_cat_ID = 276; 
 
                                 $args = array(
-                                    'posts_per_page' => '1',
-                                    'product_cat' => 'CBD Daily Products',
-                                    'post_type' => 'product',
-                                    'orderby' => 'popularity',
+                                        'hierarchical' => 1,
+                                        'show_option_none' => '',
+                                        'hide_empty' => 0,
+                                        'parent' => $parent_cat_ID, 
+                                        'taxonomy' => 'product_cat'
                                 );
 
-                                $query = new WP_Query( $args );
-                                if( $query->have_posts()) : while( $query->have_posts() ) : $query->the_post();
+                                $subcats = get_categories($args);
 
-                                    echo '<img src="'.get_the_post_thumbnail_url().'" alt="Shop Earthly Body" class="img-fluid w-100"/>';
-                                    echo '<h6 class="text-center">'.get_the_title().'</h6>';
-                                    echo '<a href="'.get_post_permalink().'" class="btn btn-outline-dark rounded-0 w-100 text-center my-3 menu-featured-product">Learn more</a>';
+                                foreach ($subcats as $subcat): ?>
 
-                                endwhile;
-                                    endif;
+                                <?php 
+                                    
+                                    $cat_name = $subcat->name; 
 
-                            ?>
+                                    $cat_id = $subcat->term_id; 
 
+                                    $cat_name_str = strtolower( $subcat->name ); 
+                                    
+                                    $tab_name = preg_replace('/[\W]/', '_', $cat_name_str);
+
+                                    $sub_term_name = get_term_by('name', $cat_name, 'product_cat');
+
+                                    $sub_cat_ID = $sub_term_name->term_id; 
+                                        
+                                ?>
+                                
+                                <div class="nav flex-row d-none" id="tab-content__<?php echo $tab_name; ?>">
+                                
+                                    <div style="width: 60%;">
+                                
+                                        <?php 
+                                        
+                                        $args = array(
+                                            'hierarchical' => 1,
+                                            'show_option_none' => '',
+                                            'hide_empty' => 0,
+                                            'parent' => $sub_cat_ID, 
+                                            'taxonomy' => 'product_cat'
+                                        );
+        
+                                        $subSubCats = get_categories($args);
+
+                                        foreach( $subSubCats as $subSubCat ) : ?>
+
+                                            <p class="text-uppercase d-block d-xl-inline-block font-weight-bold align-top pl-xl-4">
+
+                                                <?php echo str_replace('MM-', '', $subSubCat->name); ?>
+
+                                                <?php 
+
+                                                    $subSubCatName = $subSubCat->name;
+
+                                                    $product_args = array(
+                                                        'category' => array(
+                                                            $subSubCatName
+                                                        )
+                                                    );
+
+                                                    $products = wc_get_products( $product_args );
+
+                                                    foreach ($products as $product) : ?>
+
+                                                        <a href="<?php echo get_permalink( $product->get_id() ) ?>" class="nav-link px-0 py-1 text-dark text-capitalize my-1 w-100" style="font-size: 0.95rem"><?php echo $product->get_name(); ?><i class="fa fa-angle-double-right ml-1" aria-hidden="true"></i></a>
+
+                                                    <?php endforeach; 
+                                                
+                                                ?>
+
+                                            </p>
+
+                                        <?php endforeach; ?>
+
+                                            <p class="text-uppercase d-block d-xl-inline-block font-weight-bold align-top pl-xl-4">
+
+                                                More products
+
+                                                <a href="<?php echo get_permalink( $product->get_id() ) ?>" class="nav-link px-0 py-1 text-dark text-capitalize my-1 w-100" style="font-size: 0.95rem">Shop All <?php echo str_replace('MM-', '', $cat_name); ?><i class="fa fa-angle-double-right ml-1" aria-hidden="true"></i></a>
+
+                                            </p>            
+
+                                    </div>
+
+                                    <div style="width: 40%;">
+                                
+                                                                
+                                
+                                    </div>
+
+                                </div>
+                                
+                            <?php endforeach; ?>         
+                            
                         </div>
-
+                    
                     </div>
 
                 </div>
@@ -189,6 +211,12 @@
                 </li>
 
             </ul>
+
+        </li>
+         
+        <li class="menu-item" id="shopByFragrance">
+
+            <a href="#">Shop by Fragrance</a>
 
         </li>
 

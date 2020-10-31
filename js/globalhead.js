@@ -6,11 +6,11 @@ jQuery( document ).ready( function($){
 
     } );
 
-    $( '.top-page-primary-menu .menu-item-has-children' ).click( function(event){
+    $( '.top-page-primary-menu .menu-item-has-children a:first-child' ).click( function(event){
 
         event.preventDefault();
 
-        var hasClass = $(this).hasClass('submenu-opened');
+        var hasClass = $(this).parent().hasClass('submenu-opened');
 
         if ( hasClass == false ) {
 
@@ -18,21 +18,21 @@ jQuery( document ).ready( function($){
 
             $('.submenu-opened').removeClass('submenu-opened');
 
-            $(this).addClass('submenu-opened');
+            $(this).parent().addClass('submenu-opened');
 
-            $(this).find('.sub-menu').slideDown();
+            $(this).parent().find('.sub-menu').slideDown();
 
         } else {
 
-            $(this).find('.sub-menu').slideUp();
+            $(this).parent().find('.sub-menu').slideUp();
 
-            $(this).removeClass('submenu-opened');
+            $(this).parent().removeClass('submenu-opened');
 
         }
 
-        $(this).find( '.sub-menu .menu-item' ).click( function(event) {
+        $(this).parent().find( '.sub-menu .menu-item' ).click( function(event) {
 
-            var url = $(this).find('a').attr('href');
+            var url = $(this).parent().find('a').attr('href');
 
             window.location.replace(url);
 
@@ -113,6 +113,34 @@ jQuery( document ).ready( function($){
         $( '#my-minicart' ).css( 'right', '0' );
 
     } );
+
+    $( '.top-page-primary-menu #shopByProduct .sub-menu #tab-names button ' ).first().addClass('btn-dark');
+
+    $('.top-page-primary-menu #shopByProduct .sub-menu [id^="tab-content__"]').first().removeClass('d-none').addClass('d-flex');
+
+    $('.top-page-primary-menu #shopByProduct .sub-menu #tab-names button').click(function(){
+
+        $('.top-page-primary-menu #shopByProduct .sub-menu #tab-names button.btn-dark').removeClass('btn-dark');
+
+        $(this).addClass('btn-dark');
+
+        var tabName = $(this).data('tab_name');
+
+        $('.top-page-primary-menu #shopByProduct .sub-menu [id^="tab-content__"].d-flex').removeClass('d-flex').addClass('d-none');
+
+        $('.top-page-primary-menu #shopByProduct .sub-menu #tab-content__'+tabName).removeClass('d-none').addClass('d-flex');
+
+    });
+
+    $('.top-page-primary-menu #shopByProduct .sub-menu [id^="tab-content__"]').find('a').click(function(){
+
+        $(this).addClass('bg-light');
+        
+        var url = $(this).attr('href');
+
+        window.location.replace(url);
+
+    });
 
     $( window ).scroll( function(){
 

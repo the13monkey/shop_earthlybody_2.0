@@ -1111,13 +1111,13 @@ a.menu-featured-product::after {
 
     .woocommerce-product-search input.search-field {
         padding: 8px; 
-        border: 1px solid#eee; 
+        border: 1px solid #613d20; 
         width: 100%;  
     }
 
     .woocommerce-product-search button[type="submit"] {
         padding: 8px; 
-        border: 1px solid #eee; 
+        border: 1px solid #613d20; 
         background: #fff; 
         color: #000; 
         margin-left: -5px; 
@@ -1179,11 +1179,26 @@ a.menu-featured-product::after {
         z-index: 3; 
         padding: 1rem; 
         text-align: left; 
-        max-height: 56vh;  
+        max-height: 80vh;  
     }
 
     .top-page-primary-menu #shopByProduct .sub-menu {
         width: 840px; 
+        overflow-y: scroll;
+    }
+
+    .top-page-primary-menu #shopByProduct .sub-menu::-webkit-scrollbar {
+        width: 8px; 
+    }
+
+    .top-page-primary-menu #shopByProduct .sub-menu::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 2px rgba(0,0,0,.01);
+        border-radius: 2px; 
+    }
+
+    .top-page-primary-menu #shopByProduct .sub-menu::-webkit-scrollbar-thumb {
+        background: #613d20;
+        border-radius: 2px; 
     }
 
     .top-page-primary-menu #shopByProduct .sub-menu .nav-link::after {
@@ -1196,6 +1211,10 @@ a.menu-featured-product::after {
         width: 180px; 
         padding-top: 0;
         margin-bottom: 1rem; 
+    }
+
+    .top-page-primary-menu #shopByProduct [id^="tab-content__"] p {
+        width: 100%; 
     }
 
     .brand-nav-list .dropdown .nav-item {
@@ -1349,6 +1368,14 @@ a.menu-featured-product::after {
     .top-page-primary-menu .sub-menu li,
     .brand-nav-list .dropdown li {
         width: 180px; 
+    }
+
+    .top-page-primary-menu #shopByProduct .sub-menu {
+        width: 1180px; 
+    }
+
+    .top-page-primary-menu #shopByProduct [id^="tab-content__"] p {
+        width: 46%; 
     }
 
 }
