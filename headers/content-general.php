@@ -6,7 +6,7 @@
 
             <a href="#">Shop by Product</a>
 
-            <ul class="sub-menu" style="display:block;">
+            <ul class="sub-menu">
 
                 <div class="container-fluid pr-0">
 
@@ -17,8 +17,8 @@
                             <div class="nav flex-column justify-content-start ml-0" id="tab-names">
         
                                 <?php 
-                                    //Home Mega Menu Cat ID = 276
-                                    $parent_cat_ID = 276; 
+                                    //Home Mega Menu Cat ID
+                                    $parent_cat_ID = 272; 
 
                                     $args = array(
                                         'hierarchical' => 1,
@@ -49,8 +49,8 @@
                         <div class="col col-9 col-xl-10 px-3">
                             
                             <?php 
-                                //Home Mega Menu Cat ID = 276
-                                $parent_cat_ID = 276; 
+                                //Home Mega Menu Cat ID
+                                $parent_cat_ID = 272; 
 
                                 $args = array(
                                         'hierarchical' => 1,
@@ -100,7 +100,7 @@
 
                                             <p class="text-uppercase d-block d-xl-inline-block font-weight-bold align-top pl-xl-4">
 
-                                                <?php echo str_replace('MM-', '', $subSubCat->name); ?>
+                                                <a href="#" class="category-link"><?php echo str_replace('MM-', '', $subSubCat->name); ?><i class="fa fa-angle-double-right ml-1" aria-hidden="true"></i></a>
 
                                                 <?php 
 
@@ -109,14 +109,17 @@
                                                     $product_args = array(
                                                         'category' => array(
                                                             $subSubCatName
-                                                        )
+                                                        ),
+                                                        'orderby' => array('meta_value_num' => 'DESC', 'title' => 'ASC'),
+                                                        'meta_key' => 'total_sales', 
+                                                        'limit' => 4,
                                                     );
 
                                                     $products = wc_get_products( $product_args );
 
                                                     foreach ($products as $product) : ?>
 
-                                                        <a href="<?php echo get_permalink( $product->get_id() ) ?>" class="nav-link px-0 py-1 text-dark text-capitalize my-1 w-100" style="font-size: 0.95rem"><?php echo $product->get_name(); ?><i class="fa fa-angle-double-right ml-1" aria-hidden="true"></i></a>
+                                                        <a href="<?php echo get_permalink( $product->get_id() ) ?>" class="nav-link px-0 py-1 text-dark text-capitalize my-1 w-100" style="font-size: 0.95rem"><?php echo $product->get_name(); ?></a>
 
                                                     <?php endforeach; 
                                                 
@@ -136,9 +139,37 @@
 
                                     </div>
 
-                                    <div style="width: 40%;">
+                                    <div style="width: 40%;" class="text-center border-left pl-4 pr-0">
+
+                                        <p class="text-center py-1 bg-success text-uppercase font-weight-bold w-100 text-light">Best Seller!</p>
                                 
-                                                                
+                                        <?php 
+                                        
+                                        $args = array(
+                                                    'category' => array( $cat_name ),
+                                                    'limit' => '1',
+                                                    'orderby' => array('meta_value_num' => 'DESC', 'title' => 'ASC'),
+                                                    'meta_key' => 'total_sales', 
+
+                                                );
+
+                                        $products_obj = wc_get_products( $args );
+
+                                        foreach ($products_obj as $product_obj): ?>
+
+                                            <a href="<?php echo get_permalink($product_obj->get_id()) ?>" class="mega-menu-product">
+
+                                                <img src="<?php echo wp_get_attachment_url($product_obj->get_image_id()) ?>" alt="<?php echo $product_obj->get_name() ?> | Shop Earthly Body" class="w-100" style="max-width:280px"/>
+
+                                                <h5 class="px-2 mb-0" style="font-size:0.95rem; line-height: 1.15"><?php echo $product_obj->get_name(); ?></h5>
+
+                                                <p class="w-100 text-center"><?php echo $product_obj->get_price_html() ?></p>
+
+                                                <button class="btn btn-outline-dark text-uppercase font-weight-bold rounded-0">learn more</button>
+
+                                            </a>
+
+                                        <?php endforeach; ?>                    
                                 
                                     </div>
 

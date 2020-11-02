@@ -294,8 +294,18 @@ ul.woocommerce-mini-cart {
     background-image:url('../img/new_icons/chevron-up-solid.svg');
 }
 
-.brand-nav-list .dropdown .nav-link::after {
+.brand-nav-list .dropdown .nav-link::after,
+.top-page-primary-menu .category-link::after {
     display: none; 
+}
+
+.top-page-primary-menu .category-link {
+    font-size: 1rem; 
+    line-height: 1rem; 
+}
+
+.top-page-primary-menu [id^="tab-content__"] p a:hover {
+    text-decoration: underline !important; 
 }
 
 .top-page-primary-menu .menu-item-has-children a::after,
@@ -976,6 +986,10 @@ a.menu-featured-product::after {
     display: none !important; 
 }
 
+a.mega-menu-product::after {
+    display: none !important; 
+}
+
 @media screen and (min-width: 768px) {
 
     header {
@@ -1179,7 +1193,7 @@ a.menu-featured-product::after {
         z-index: 3; 
         padding: 1rem; 
         text-align: left; 
-        max-height: 80vh;  
+        max-height: 64vh;  
     }
 
     .top-page-primary-menu #shopByProduct .sub-menu {
