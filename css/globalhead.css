@@ -990,6 +990,17 @@ a.mega-menu-product::after {
     display: none !important; 
 }
 
+.woocommerce span.onsale {
+    top: auto !important; 
+    left: auto !important; 
+    padding: .25em 2em !important; 
+    border-radius: 0px !important; 
+    line-height: 1 !important; 
+    min-height: auto !important; 
+    min-width: auto !important; 
+    text-transform: uppercase;
+}
+
 @media screen and (min-width: 768px) {
 
     header {

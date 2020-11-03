@@ -89,7 +89,7 @@
                                         $args = array(
                                             'hierarchical' => 1,
                                             'show_option_none' => '',
-                                            'hide_empty' => 0,
+                                            'hide_empty' => 1,
                                             'parent' => $sub_cat_ID, 
                                             'taxonomy' => 'product_cat'
                                         );
@@ -98,9 +98,9 @@
 
                                         foreach( $subSubCats as $subSubCat ) : ?>
 
-                                            <p class="text-uppercase d-block d-xl-inline-block font-weight-bold align-top pl-xl-4">
+                                            <p class="text-uppercase d-block d-xl-inline-block align-top pl-xl-4">
 
-                                                <a href="#" class="category-link"><?php echo str_replace('MM-', '', $subSubCat->name); ?><i class="fa fa-angle-double-right ml-1" aria-hidden="true"></i></a>
+                                                <a href="<?php echo get_category_link($subSubCat->cat_ID) ?>" class="category-link font-weight-bold"><?php echo str_replace('MM-', '', $subSubCat->name); ?><i class="fa fa-angle-double-right ml-1" aria-hidden="true"></i></a>
 
                                                 <?php 
 
@@ -119,7 +119,7 @@
 
                                                     foreach ($products as $product) : ?>
 
-                                                        <a href="<?php echo get_permalink( $product->get_id() ) ?>" class="nav-link px-0 py-1 text-dark text-capitalize my-1 w-100" style="font-size: 0.95rem"><?php echo $product->get_name(); ?></a>
+                                                        <a href="<?php echo get_permalink( $product->get_id() ) ?>" class="nav-link px-0 py-1 text-dark text-capitalize my-1 w-100 font-weight-normal" style="font-size: 0.95rem"><?php echo $product->get_name(); ?></a>
 
                                                     <?php endforeach; 
                                                 
