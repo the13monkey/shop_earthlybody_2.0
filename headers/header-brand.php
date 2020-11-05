@@ -187,7 +187,9 @@
 
                     } else {
 
-                        $html = '<li class="nav-item"><a class="nav-link" href="'. $sub_link .'">'. $subcat_name .'</a></li>';
+                        $html = '<li class="nav-item">
+                                    <a class="nav-link" href="'. $sub_link .'">'. $subcat_name .'</a>
+                                </li>';
 
                     }
                     
@@ -302,7 +304,7 @@
 
             if ( count( $sub_subcats ) > 0 ) {
 
-                $html = '<li class="nav-item has-dropdown"><a class="nav-link" href="'. $sub_link .'">'. $subcat_name .'</a><div class="dropdown">';
+                $html = '<li class="nav-item has-dropdown text-center"><a class="nav-link" href="'. $sub_link .'">'. $subcat_name .'</a><div class="dropdown text-center">';
 
                 for ( $i=0; $i<count( $sub_subcats ); $i++ ) {
 
@@ -311,7 +313,19 @@
 
                     $sub_subname = $sub_subcats[$i]->name;
 
-                    $html .= '<a href="'. $sub_sublink .'" class="nav-item">'. $sub_subname .'</a>';
+                    $thumb_id = get_woocommerce_term_meta($sub_subcats[$i]->term_id, 'thumbnail_id', true);
+                    
+                    if ( $thumb_id ) {
+                        
+                        $thumb_link = wp_get_attachment_url( $thumb_id );
+
+                    } else {
+                        
+                        $thumb_link = "http://source.unsplash.com/100x100";
+
+                    }
+
+                    $html .= '<a href="'. $sub_sublink .'" class="nav-item"><img src="'. $thumb_link .'" class="border-0 rounded-circle" width="100" height="100" /><p class="mt-2">'. $sub_subname .'</p></a>';
 
                 }
 
@@ -319,7 +333,7 @@
 
             } else {
 
-                $html = '<li class="nav-item"><a class="nav-link" href="'. $sub_link .'">'. $subcat_name .'</a></li>';
+                $html = '<li class="nav-item"><a class="nav-link" href="'. $sub_link .'"><img src="http://source.unsplash.com/100x100" class="border-0 rounded-circle" width="100" height="100" /><p>'. $subcat_name .'</p></a></li>';
 
             }
             

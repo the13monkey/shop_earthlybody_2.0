@@ -6,7 +6,7 @@
         
             <div class="row justify-content-between align-items-center p-3">
 
-                <h6 style="max-width: 80%; line-height: 1.25rem;" class="mb-0 text-uppercase font-weight-normal">It's in the Bag!</h6>
+                <h6 style="max-width: 80%; line-height: 1.25rem;" class="mb-0 text-uppercase font-weight-normal" id="add-to-bag-heading">It's in the Bag!</h6>
 
                 <button id="close-added-cart-popup" class="font-weight-normal">x</button>
 

@@ -178,7 +178,7 @@ jQuery( document ).ready( function($){
 
     $( '.brand-nav-list .has-dropdown:first-child' ).find( '.nav-link' ).text( 'Shop Products' );
 
-    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.dropdown .nav-item:last-child' ).text( 'Shop All' );
+    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.dropdown .nav-item:last-child p' ).text( 'Shop All' );
 
     $( '.brand-nav-list .has-dropdown:nth-child(2)' ).find( '.nav-link' ).text( 'Shop By Scent' );
 

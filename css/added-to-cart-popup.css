@@ -1,5 +1,6 @@
 #added-cart-popup,
-#add-variable-to-cart {
+#add-variable-to-cart,
+#buy-now-popup {
     justify-content: center; 
     align-items: center; 
     position: fixed; 
@@ -14,7 +15,8 @@
 }
 
 #added-cart-popup #cart-content,
-#add-variable-to-cart #add-variable-content {
+#add-variable-to-cart #add-variable-content,
+#buy-now-popup #buy-now-content {
     width: 80vw; 
     max-height: 80vh; 
     overflow-x: hidden; 
@@ -26,7 +28,8 @@
 }
 
 #close-added-cart-popup,
-#close-add-variable-to-cart {
+#close-add-variable-to-cart,
+#close-buy-now-popup {
     border: none; 
     box-shadow: none; 
     background: transparent; 
@@ -70,8 +73,17 @@ p.img-thumbnail-clicked {
     font-size: 0.85rem; 
 }
 
+.added-image-container #last-added-image {
+    max-width: 100%; 
+}
+
+#added-cart-popup #continue-shopping-button,
+#added-cart-popup #view-bag-checkout {
+    width: 100%;
+}
+
 @media screen and (min-width: 768px) {
-    #added-cart-popup #cart-content, #add-variable-to-cart #add-variable-content {
+    #added-cart-popup #cart-content, #add-variable-to-cart #add-variable-content, #buy-now-popup #buy-now-content  {
         width: 600px; 
         overflow-y: auto; 
     }

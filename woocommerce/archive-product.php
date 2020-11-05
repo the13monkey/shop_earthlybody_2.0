@@ -31,7 +31,25 @@ do_action( 'woocommerce_before_main_content' );
 ?>
 <header class="woocommerce-products-header">
 	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-		<h3 class="woocommerce-products-header__title page-title text-center text-uppercase text-dark font-weight-light mt-4 mb-5"><?php woocommerce_page_title(); ?></h3>
+		<h3 class="woocommerce-products-header__title page-title text-center text-uppercase text-dark font-weight-light mt-4 mb-5">
+		
+			<?php 
+
+				$category_name = get_the_archive_title();
+
+				if ( strpos( $category_name, 'MM-' ) !== false ) {
+
+					echo str_replace("MM-", "", $category_name);
+
+				} else {
+
+					echo $category_name; 
+
+				}
+
+			?>
+		
+		</h3>
 	<?php endif; ?>
 
 	<?php

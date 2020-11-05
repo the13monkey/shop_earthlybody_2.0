@@ -256,5 +256,64 @@ jQuery( document ).ready( function($){
 
     });
     
+    $('.buy_now_button').click(function(){
+
+        // Check product type 
+        var theTrigger = $(this);
+
+        var theProduct = theTrigger.parent();
+
+        // Check product type 
+
+        var ifsimple = theProduct.find('.options').length; 
+
+        if ( ifsimple > 0 ) {
+
+            // Variable product
+
+        } else {
+
+            // Simple product 
+            // Get all the information needed 
+            var product_id = theProduct.find('.my_add_simple').data('product_id');
+
+            var product_name = theProduct.find('.woocommerce-loop-product__title').html();
+
+            var product_image_url = theProduct.find('.attachment-woocommerce_thumbnail').attr('src');
+
+            // Check If On Sale to Get Product Current Price 
+            var ifonsale = theProduct.find('.price del').length; 
+
+            if (ifonsale > 0) {
+
+                var thePrice = theProduct.find('.price').find('ins').find('span.woocommerce-Price-amount').html();
     
+            } else {
+    
+                var thePrice = theProduct.find('span.woocommerce-Price-amount').html();
+    
+            }
+
+            $('#buy-now-popup #product-buy-image').attr('src', product_image_url);
+
+            $('#buy-now-popup #product-buy-name').html(product_name);
+
+            $('#buy-now-popup #product-buy-price').html(thePrice);
+
+            // Open popup 
+
+            $('#buy-now-popup').css('display', 'flex');
+
+        }
+
+        $('#close-buy-now-popup').click(function(){
+
+            $('#buy-now-popup').css('display', 'none');
+
+        });
+
+
+    });
+
+
 });
