@@ -1,38 +1,35 @@
-<div id="buy-now-popup">
+<div id="buy-variable-now">
 
-    <div id="buy-now-content">
+    <div id="buy-variable-now-content">
 
         <div class="container">
-        
+
             <div class="row justify-content-between align-items-center p-3">
 
-                <h6 style="max-width: 80%; line-height: 1.25rem;" class="mb-0 text-uppercase font-weight-normal" id="add-to-bag-heading">Buy Now</h6>
+                <h6 style="max-width: 80%; line-height: 1.25rem;" class="mb-0 text-uppercase font-weight-normal" id="confirm-variable-size">Buy Now</h6>
 
-                <button id="close-buy-now-popup" class="font-weight-normal">x</button>
+                <button id="close-buy-variable-now" class="font-weight-normal">x</button>
 
             </div>
 
             <hr class="my-0">
 
-            <div class="row justify-content-between align-items-center">
+            <div class="row justify-content-center">
 
-                <div style="width:50%" class="added-image-container text-md-center">
-
-                    <img src="" class="w-100" id="product-buy-image" />
-
-                </div>
-
-                <div style="width:50%; text-align: left; padding-right:1rem;" class="product-buy-details">
-            
-                    <h6 id="product-buy-name" class="font-weight-light"></h6>
-
-                    <h7 id="product-buy-price" class="font-weight-bold"></h7>
-
+                <div class="col col-12 text-center">
+                    <p class="text-uppercase font-weight-bold mt-3 mb-0" id="variable-product-name"></p>
+                    <p class="mb-0">Please confirm its size as below.</p>
                 </div>
 
             </div>
 
-            <hr>
+            <div class="row justify-content-center align-items-center p-3" id="buy-variations-content">
+
+                <!-- Dynamically inserted by JS -->
+
+            </div>
+
+            <hr class="mt-n3 mb-3">
 
             <div class="row justify-content-center">
 
@@ -91,12 +88,12 @@
 
             <div class="row justify-content-between align-items-center p-3">
 
-                <button class="btn btn-dark text-uppercase rounded-0 mt-1 mt-md-0 w-100" id="buy-now-checkout">Place Order</button>
+                <button class="btn btn-dark text-uppercase rounded-0 mt-1 mt-md-0 w-100" id="buy-now-variable-checkout">Place Order</button>
 
             </div>
-        
+
         </div>
-    
+
     </div>
 
 </div>

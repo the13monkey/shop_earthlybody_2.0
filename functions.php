@@ -132,11 +132,13 @@ add_action( 'wp_head', 'place_tracking_codes_head' );
 // Add added to cart popup to wp_footer 
 function add_added_to_cart_popup() {
 
-  include('added-to-cart-popup.php');
+  include('added-to-cart-popup.php'); //Simple add to cart loop button
 
-  include('add-variable-to-cart.php');
+  include('add-variable-to-cart.php'); //Variable add to cart loop button
 
-  include('buy-now.php');
+  include('buy-now.php'); //Simple buy loop button
+
+  include('buy-variable-now.php'); //Variable buy now loop button
 
 }
 
@@ -691,71 +693,301 @@ add_filter( 'get_the_archive_title', 'my_theme_archive_title' );
 /**
  * Add multiple product to cart with URL 
  */
-function webroom_add_multiple_products_to_cart( $url = false ) {
+function woocommerce_maybe_add_multiple_products_to_cart() {
   // Make sure WC is installed, and add-to-cart qauery arg exists, and contains at least one comma.
   if ( ! class_exists( 'WC_Form_Handler' ) || empty( $_REQUEST['add-to-cart'] ) || false === strpos( $_REQUEST['add-to-cart'], ',' ) ) {
-  return;
+      return;
   }
-  // Remove WooCommerce’s hook, as it’s useless (doesn’t handle multiple products).
-  remove_action( 'wp_loaded', array( 'WC_Form_Handler', 'add_to_cart_button' ), 20 );
+
+  remove_action( 'wp_loaded', array( 'WC_Form_Handler', 'add_to_cart_action' ), 20 );
+
   $product_ids = explode( ',', $_REQUEST['add-to-cart'] );
-  $count = count( $product_ids );
-  $number = 0;
-  foreach ( $product_ids as $id_and_quantity ) {
-  // Check for quantities defined in curie notation (<product_id>:<product_quantity>)
+  $count       = count( $product_ids );
+  $number      = 0;
+
+  foreach ( $product_ids as $product_id ) {
+      if ( ++$number === $count ) {
+          // Ok, final item, let's send it back to woocommerce's add_to_cart_action method for handling.
+          $_REQUEST['add-to-cart'] = $product_id;
+
+          return WC_Form_Handler::add_to_cart_action();
+      }
+
+      $product_id        = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $product_id ) );
+      $was_added_to_cart = false;
+
+      $adding_to_cart    = wc_get_product( $product_id );
+
+      if ( ! $adding_to_cart ) {
+          continue;
+      }
+
+      if ( $adding_to_cart->is_type( 'simple' ) ) {
+
+          // quantity applies to all products atm
+          $quantity          = empty( $_REQUEST['quantity'] ) ? 1 : wc_stock_amount( $_REQUEST['quantity'] );
+
+          $passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity );
+
+          if ( $passed_validation && false !== WC()->cart->add_to_cart( $product_id, $quantity ) ) {
+              wc_add_to_cart_message( array( $product_id => $quantity ), true );
+          }
+
+      } else {
+
+          $variation_id       = empty( $_REQUEST['variation_id'] ) ? '' : absint( wp_unslash( $_REQUEST['variation_id'] ) );
+          $quantity           = empty( $_REQUEST['quantity'] ) ? 1 : wc_stock_amount( wp_unslash( $_REQUEST['quantity'] ) ); // WPCS: sanitization ok.
+          $missing_attributes = array();
+          $variations         = array();
+          $adding_to_cart     = wc_get_product( $product_id );
+
+          if ( ! $adding_to_cart ) {
+            continue;
+          }
+
+          // If the $product_id was in fact a variation ID, update the variables.
+          if ( $adding_to_cart->is_type( 'variation' ) ) {
+            $variation_id   = $product_id;
+            $product_id     = $adding_to_cart->get_parent_id();
+            $adding_to_cart = wc_get_product( $product_id );
+
+            if ( ! $adding_to_cart ) {
+              continue;
+            }
+          }
+
+          // Gather posted attributes.
+          $posted_attributes = array();
+
+          foreach ( $adding_to_cart->get_attributes() as $attribute ) {
+            if ( ! $attribute['is_variation'] ) {
+              continue;
+            }
+            $attribute_key = 'attribute_' . sanitize_title( $attribute['name'] );
+
+            if ( isset( $_REQUEST[ $attribute_key ] ) ) {
+              if ( $attribute['is_taxonomy'] ) {
+                // Don't use wc_clean as it destroys sanitized characters.
+                $value = sanitize_title( wp_unslash( $_REQUEST[ $attribute_key ] ) );
+              } else {
+                $value = html_entity_decode( wc_clean( wp_unslash( $_REQUEST[ $attribute_key ] ) ), ENT_QUOTES, get_bloginfo( 'charset' ) ); // WPCS: sanitization ok.
+              }
+
+              $posted_attributes[ $attribute_key ] = $value;
+            }
+          }
+
+          // If no variation ID is set, attempt to get a variation ID from posted attributes.
+          if ( empty( $variation_id ) ) {
+            $data_store   = WC_Data_Store::load( 'product' );
+            $variation_id = $data_store->find_matching_product_variation( $adding_to_cart, $posted_attributes );
+          }
+
+          // Do we have a variation ID?
+          if ( empty( $variation_id ) ) {
+            throw new Exception( __( 'Please choose product options&hellip;', 'woocommerce' ) );
+          }
+
+          // Check the data we have is valid.
+          $variation_data = wc_get_product_variation_attributes( $variation_id );
+
+          foreach ( $adding_to_cart->get_attributes() as $attribute ) {
+            if ( ! $attribute['is_variation'] ) {
+              continue;
+            }
+
+            // Get valid value from variation data.
+            $attribute_key = 'attribute_' . sanitize_title( $attribute['name'] );
+            $valid_value   = isset( $variation_data[ $attribute_key ] ) ? $variation_data[ $attribute_key ]: '';
+
+            /**
+             * If the attribute value was posted, check if it's valid.
+             *
+             * If no attribute was posted, only error if the variation has an 'any' attribute which requires a value.
+             */
+            if ( isset( $posted_attributes[ $attribute_key ] ) ) {
+              $value = $posted_attributes[ $attribute_key ];
+
+              // Allow if valid or show error.
+              if ( $valid_value === $value ) {
+                $variations[ $attribute_key ] = $value;
+              } elseif ( '' === $valid_value && in_array( $value, $attribute->get_slugs() ) ) {
+                // If valid values are empty, this is an 'any' variation so get all possible values.
+                $variations[ $attribute_key ] = $value;
+              } else {
+                throw new Exception( sprintf( __( 'Invalid value posted for %s', 'woocommerce' ), wc_attribute_label( $attribute['name'] ) ) );
+              }
+            } elseif ( '' === $valid_value ) {
+              $missing_attributes[] = wc_attribute_label( $attribute['name'] );
+            }
+          }
+          if ( ! empty( $missing_attributes ) ) {
+            throw new Exception( sprintf( _n( '%s is a required field', '%s are required fields', count( $missing_attributes ), 'woocommerce' ), wc_format_list_of_items( $missing_attributes ) ) );
+          }
+
+        $passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity, $variation_id, $variations );
+
+        if ( $passed_validation && false !== WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $variations ) ) {
+          wc_add_to_cart_message( array( $product_id => $quantity ), true );
+        }
+      }
+  }
+}
+add_action( 'wp_loaded', 'woocommerce_maybe_add_multiple_products_to_cart', 15 );
+
+function single_product_popup () {
+
+  if ( is_product() ) {
   
-  $id_and_quantity = explode( ':', $id_and_quantity );
-  $product_id = $id_and_quantity[0];
-  $_REQUEST['quantity'] = ! empty( $id_and_quantity[1] ) ? absint( $id_and_quantity[1] ) : 1;
-  if ( ++$number === $count ) {
-  // Ok, final item, let’s send it back to woocommerce’s add_to_cart_action method for handling.
-  $_REQUEST['add-to-cart'] = $product_id;
-  return WC_Form_Handler::add_to_cart_action( $url );
+  ?>
+  <script>
+
+    jQuery(document).ready(function($){
+
+      var ifSuccess = $('.woocommerce-message.alert-success').length; 
+
+      if (ifSuccess > 0) {
+
+          var image_url = $('.woocommerce-product-gallery__image img.wp-post-image').attr('src');
+
+          var theNameHeading = $('.product_title.entry-title').html();
+
+          var theNameSubheading = $('.product_title.entry-title').next().html();
+
+          var theProductQty = $('input.qty').val();
+
+          var ifonsale = $('.entry-summary .price del').length; 
+
+          if (ifonsale>0) {
+            var thePrice = $('.entry-summary .price ins span.woocommerce-Price-amount').html();
+          } else {
+            var thePrice = $('.entry-summary span.woocommerce-Price-amount').html();
+          }
+
+          $('#last-added-image').attr('src', image_url);
+
+          $('#last-added-name').html(theNameHeading+' ('+theNameSubheading+')');
+
+          $('#last-added-price').html(thePrice+' x '+theProductQty);
+
+          $('#added-cart-popup').css('display', 'flex');
+
+      }
+
+      $('.single_buy_now_button').click(function(event){
+
+          event.preventDefault();
+
+          // Decide if product is simple or variable 
+          var ifVariable = $('.summary.entry-summary .cart').hasClass('variations_form'); 
+
+          if (ifVariable) {
+
+            console.log('variable product');
+
+          } else {
+
+            var image_url = $('.woocommerce-product-gallery__image img.wp-post-image').attr('src');
+
+            var theNameHeading = $('.product_title.entry-title').html();
+
+            var theNameSubheading = $('.product_title.entry-title').next().html();
+
+            var theProductQty = $('input.qty').val();
+
+            var product_id = $('form.cart').find('button[name="add-to-cart"]').val();
+
+            var ifonsale = $('.entry-summary .price del').length; 
+
+            if (ifonsale>0) {
+              var thePrice = $('.entry-summary .price ins span.woocommerce-Price-amount').html();
+            } else {
+              var thePrice = $('.entry-summary span.woocommerce-Price-amount').html();
+            }
+
+            $('#product-buy-image').attr('src', image_url);
+
+            if (theNameSubheading == '') {
+
+              $('#product-buy-name').html(theNameHeading);
+
+            } else {
+
+              $('#product-buy-name').html(theNameHeading+' ('+theNameSubheading+')');
+
+            }
+
+            $('#product-buy-price').html(thePrice+' x '+theProductQty);
+
+            $('#buy-now-popup').css('display', 'flex');
+
+            $('#buy-now-checkout').click(function(){
+
+              $(this).html('Processing...');
+
+              // Check if impulse buys
+              var ifImpulse = $('.impulseClicked').length;
+
+              if (ifImpulse > 0) {
+
+                  var Ids = [];
+
+                  Ids.push(product_id);
+
+                  $('.impulseClicked').each(function(){
+
+                      var impulseID = $(this).data('product_id');
+
+                      Ids.push(impulseID);
+
+                  });
+
+                  var checkoutStr = Ids.join(",");
+
+                  var checkoutURL = "https://site.test/shopearthlybody/checkout/?add-to-cart="+checkoutStr; 
+
+                  window.location.replace(checkoutURL);
+
+              } else {
+
+                  var checkoutURL2 = "https://site.test/shopearthlybody/checkout/?add-to-cart="+product_id; 
+
+                  window.location.replace(checkoutURL2);
+
+              }
+
+            });
+
+          }
+
+      });
+
+    });
+
+  </script>
+  <?php 
   }
-  $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $product_id ) );
-  $was_added_to_cart = false;
-  $adding_to_cart = wc_get_product( $product_id );
-  if ( ! $adding_to_cart ) {
-  continue;
-  }
-  $add_to_cart_handler = apply_filters( 'woocommerce_add_to_cart_handler', $adding_to_cart->get_type(), $adding_to_cart );
-  // Variable product handling
-  if ( 'variable' === $add_to_cart_handler ) {
-  woo_hack_invoke_private_method( 'WC_Form_Handler', 'add_to_cart_handler_variable', $product_id );
-  // Grouped Products
-  } elseif ( 'grouped' === $add_to_cart_handler ) {
-  woo_hack_invoke_private_method( 'WC_Form_Handler', 'add_to_cart_handler_grouped', $product_id );
-  // Custom Handler
-  } elseif ( has_action( 'woocommerce_add_to_cart_handler_' . $add_to_cart_handler ) ){
-  do_action( 'woocommerce_add_to_cart_handler_' . $add_to_cart_handler, $url );
-  // Simple Products
-  } else {
-  woo_hack_invoke_private_method( 'WC_Form_Handler', 'add_to_cart_handler_simple', $product_id );
-  }
-  }
-  }
-  // Fire before the WC_Form_Handler::add_to_cart_action callback.
-  add_action( 'wp_loaded', 'webroom_add_multiple_products_to_cart', 15 );
-  /**
-  * Invoke class private method
-  *
-  * @since 0.1.0
-  *
-  * @param string $class_name
-  * @param string $methodName
-  *
-  * @return mixed
-  */
-  function woo_hack_invoke_private_method( $class_name, $methodName ) {
-  if ( version_compare( phpversion(), '5.3', '<' ) ) {
-  throw new Exception( 'PHP version does not support ReflectionClass::setAccessible()', __LINE__ );
-  }
-  $args = func_get_args();
-  unset( $args[0], $args[1] );
-  $reflection = new ReflectionClass( $class_name );
-  $method = $reflection->getMethod( $methodName );
-  $method->setAccessible( true );
-  //$args = array_merge( array( $class_name ), $args );
-  $args = array_merge( array( $reflection ), $args );
-  return call_user_func_array( array( $method, 'invoke' ), $args );
-  }
+
+}
+
+add_action('wp_footer', 'single_product_popup');
+
+/**
+ * Reverse orders of add to cart buttons and short description on product page 
+ */
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+
+function reverse_orders_single_product () {
+
+  add_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 20);
+  add_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 30);
+
+}
+add_action('woocommerce_single_product_summary', 'reverse_orders_single_product', 1);
+
+/*@hooked woocommerce_template_single_price - 10
+		 * @hooked woocommerce_template_single_excerpt - 20
+		 * @hooked woocommerce_template_single_add_to_cart - 30
+     * 
+     do_action( 'woocommerce_single_product_summary' ); */

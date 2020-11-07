@@ -10,15 +10,15 @@ jQuery( document ).ready( function($){
 
         var ifsimple = theProduct.find('.options').length; 
 
-        if ( ifsimple > 0 ) { 
-
-            // Variable product 
+        if ( ifsimple > 0 ) { // Variable product 
 
             // Get Product Thumbnail URL 
             var image_url = theProduct.find('img.attachment-woocommerce_thumbnail').attr('src');
 
-            // Get Product Name 
-            var parentName = theProduct.find('.woocommerce-loop-product__title').html();
+            // Get Parent Product Name 
+            var parentName = theProduct.find('.woocommerce-loop-product__title').html(); 
+
+            // Get Selected Variation's Name (eg. 8 oz)
             var variationName = theProduct.find('.options.selected').next().data('variation_name');
             var theName = parentName +' ('+ variationName +') ';
 
@@ -73,42 +73,41 @@ jQuery( document ).ready( function($){
     
         }, 200 );
 
+    });
 
-        $('#close-added-cart-popup').click(function(){
+    $('#close-added-cart-popup').click(function(){
 
-            $('#added-cart-popup').css('display', 'none');
+        $('#added-cart-popup').css('display', 'none');
 
-            clearInterval(myInterval);
+        clearInterval(myInterval);
 
-            // Switch variable product my and default add to cart buttons 
+        // Switch variable product my and default add to cart buttons 
 
-            $('.woo-default-variable-add').removeClass('.ready-to-add').addClass('d-none');
+        $('.woo-default-variable-add').removeClass('.ready-to-add').addClass('d-none');
 
-            $('.my_add_variable').removeClass('d-none');
-    
-            // Remove dynamic content in the #variations-content 
+        $('.my_add_variable').removeClass('d-none');
 
-            $('#variations-content').html('');
-    
-        });
+        // Remove dynamic content in the #variations-content 
 
-        $('#continue-shopping-button').click(function(){
+        $('#variations-content').html('');
 
-            $('#added-cart-popup').css('display', 'none');
+    });
 
-            clearInterval(myInterval);
-            
-            // Switch variable product my and default add to cart buttons 
+    $('#continue-shopping-button').click(function(){
 
-            $('.woo-default-variable-add').removeClass('.ready-to-add').addClass('d-none');
+        $('#added-cart-popup').css('display', 'none');
 
-            $('.my_add_variable').removeClass('d-none');
-    
-            // Remove dynamic content in the #variations-content 
+        clearInterval(myInterval);
+        
+        // Switch variable product my and default add to cart buttons 
 
-            $('#variations-content').html('');
+        $('.woo-default-variable-add').removeClass('.ready-to-add').addClass('d-none');
 
-        });
+        $('.my_add_variable').removeClass('d-none');
+
+        // Remove dynamic content in the #variations-content 
+
+        $('#variations-content').html('');
 
     });
 
@@ -205,20 +204,6 @@ jQuery( document ).ready( function($){
 
     } );
 
-    function default_options_styles() {
-
-        $('.options:first-child').addClass('selected');
-
-        $('.options.selected').each(function(){
-
-            var variation_price__default = $(this).parent().find('input[name="variation_id"]').data('variation_price');
-
-            $(this).parent().parent().find('#variation-price--default').html('$'+variation_price__default);
-
-        });
-
-    }
-
     $('#confirm-size').click(function(){
 
         // check if size is selected
@@ -270,6 +255,110 @@ jQuery( document ).ready( function($){
         if ( ifsimple > 0 ) {
 
             // Variable product
+            // Confirm size 
+            
+            // Insert variations into the popup area 
+            var variations = $(this).parent().find('.variations');
+
+            var parent_name = $(this).parent().find('.woocommerce-loop-product__title').html();
+
+            $('#variable-product-name').html(parent_name);
+
+            var variations_array = [];
+
+            $.each( variations, function(index, item) {
+
+                variations_array.push( { variationID: $(item).data('variation_id'), variationName: $(item).data('variation_name'), variationThumbURL: $(item).data('thumb_url'), variationPrice: $(item).data('variation_price') } );
+
+            }) 
+
+            var i;
+
+            for( i=0; i< variations_array.length; i++) {
+
+                var variation_id = variations_array[i]['variationID'];
+
+                var variation_thumb_url = variations_array[i]['variationThumbURL'];
+
+                var variation_name = variations_array[i]['variationName'];
+
+                var variation_price = variations_array[i]['variationPrice'];
+
+                var width = Math.floor(100/3); 
+
+                $('#buy-variations-content').append(`<div style="width:${width}%; text-align:center;"><img class="img-thumbnail rounded-0" style="border-radius:0px!important;max-width:120px; margin-bottom: 15px;" src="${variation_thumb_url}" alt="Shop Earthly Body"/><p class="text-center mb-0">${variation_name}</p><p class="text-center">$${variation_price}</p><input type="hidden" value="${variation_id}"></div>`);
+
+            }
+
+            $('#buy-variable-now').css('display', 'flex');
+
+            var variation_id__default = $(this).parent().find('.options.selected').next().data('variation_id');
+
+            $('#buy-variations-content').find('input[value="'+variation_id__default+'"]').parent().find('*').addClass('img-thumbnail-clicked');
+
+            $('#buy-variations-content .img-thumbnail').click(function(){
+
+                $('.img-thumbnail-clicked').removeClass('img-thumbnail-clicked');
+    
+                $(this).parent().find('*').addClass('img-thumbnail-clicked'); 
+    
+                // Also change selected variations for the "product in bag" popup 
+    
+                var variation_id_selected = $('input.img-thumbnail-clicked').val();
+    
+                $('input.variations[data-variation_id='+variation_id_selected+']').prev().click();
+    
+            });
+
+            $('.impulse-button').click(function(){
+        
+                $(this).removeClass('text-success').addClass('impulseClicked text-muted');
+        
+                $(this).css('cursor', 'no-drop');
+        
+                $(this).html('Added to bag');
+        
+            });
+
+            $('#buy-now-variable-checkout').click(function(){
+
+                $(this).html('Processing...');
+
+                // Check if impulse buys
+                var ifImpulse = $('.impulseClicked').length;
+
+                var variation_id = $('input.img-thumbnail-clicked').val();
+
+                if (ifImpulse > 0) {
+
+                    var Ids = [];
+
+                    Ids.push(variation_id);
+    
+                    $('.impulseClicked').each(function(){
+    
+                        var impulseID = $(this).data('product_id');
+    
+                        Ids.push(impulseID);
+    
+                    });
+
+                    var checkoutStr = Ids.join(",");
+
+                    var checkoutURL = "https://site.test/shopearthlybody/checkout/?add-to-cart="+checkoutStr; 
+
+                    window.location.replace(checkoutURL);
+    
+                } else {
+
+                    var checkoutURL2 = "https://site.test/shopearthlybody/checkout/?add-to-cart="+variation_id; 
+
+                    window.location.replace(checkoutURL2);
+
+                }
+
+            });
+
 
         } else {
 
@@ -304,16 +393,109 @@ jQuery( document ).ready( function($){
 
             $('#buy-now-popup').css('display', 'flex');
 
+            $('.impulse-button').click(function(){
+        
+                $(this).removeClass('text-success').addClass('impulseClicked text-muted');
+        
+                $(this).css('cursor', 'no-drop');
+        
+                $(this).html('Added to bag');
+        
+            });
+
+            $('#buy-now-checkout').click(function(){
+
+                $(this).html('Processing...');
+
+                // Check if impulse buys
+                var ifImpulse = $('.impulseClicked').length;
+
+                if (ifImpulse > 0) {
+
+                    var Ids = [];
+
+                    Ids.push(product_id);
+    
+                    $('.impulseClicked').each(function(){
+    
+                        var impulseID = $(this).data('product_id');
+    
+                        Ids.push(impulseID);
+    
+                    });
+
+                    var checkoutStr = Ids.join(",");
+
+                    var checkoutURL = "https://site.test/shopearthlybody/checkout/?add-to-cart="+checkoutStr; 
+
+                    window.location.replace(checkoutURL);
+    
+                } else {
+
+                    var checkoutURL2 = "https://site.test/shopearthlybody/checkout/?add-to-cart="+product_id; 
+
+                    window.location.replace(checkoutURL2);
+
+                }
+
+            });
+
         }
-
-        $('#close-buy-now-popup').click(function(){
-
-            $('#buy-now-popup').css('display', 'none');
-
-        });
-
 
     });
 
+    $('#close-buy-now-popup').click(function(){
+
+        $('#buy-now-popup').css('display', 'none');
+
+        deSelectImpulseBuys();
+
+    });
+
+    $('#close-buy-variable-now').click(function(){
+
+        $('#buy-variable-now').css('display', 'none');
+
+        $('#buy-variations-content').html('');
+
+        deSelectImpulseBuys();
+
+    });
+
+    $('.impulse-button').click(function(){
+        
+        $(this).removeClass('text-success').addClass('impulseClicked text-muted');
+
+        $(this).css('cursor', 'no-drop');
+
+        $(this).html('Added to bag');
+
+    });
+
+    function default_options_styles() {
+
+        $('.options:first-child').addClass('selected');
+
+        $('.options.selected').each(function(){
+
+            var variation_price__default = $(this).parent().find('input[name="variation_id"]').data('variation_price');
+
+            $(this).parent().parent().find('#variation-price--default').html('$'+variation_price__default);
+
+        });
+
+    }
+
+    function deSelectImpulseBuys () {
+
+        $('.impulse-button').removeClass('text-muted impluseClicked').addClass('text-success');
+
+        $(this).css('cursor', 'pointer');
+
+        $(this).html('Add to bag');
+
+        var Ids = [];
+
+    }
 
 });

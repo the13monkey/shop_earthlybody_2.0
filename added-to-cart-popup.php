@@ -14,7 +14,7 @@
 
             <hr class="my-0">
 
-            <div class="row justify-content-between align-items-center py-3">
+            <div class="row justify-content-between align-items-center">
 
                 <div style="width:50%" class="added-image-container text-md-center">
 

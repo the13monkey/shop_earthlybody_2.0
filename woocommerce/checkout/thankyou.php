@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php else : ?>
 
-			<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received mt-3 mb-5 text-center p-3 border bg-success text-white"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received. Please note order processing can take up to 7-10 business days. All  orders are pending approval and mechandise availability. Please add einvoice@donotreply.net to your contacts to receive tracking information once your order is shipped.', 'woocommerce' ), $order ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
 			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
 
@@ -85,4 +85,13 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php endif; ?>
 
+</div>
+
+<div class="container">
+	<div class="row justify-content-center">
+		<img src="<?php echo get_template_directory_uri() ?>/img/site/share_n_save.jpg" class="img-fluid" alt="Shop Earthly Body | Thank You Page"/>
+	</div>
+	<div class="row justify-content-center my-3">
+		<p class="text-center">Refer us to your friend and get $5 per friend when they shop with us!</p>
+	</div>
 </div>

@@ -59,4 +59,4 @@ if ( $product->is_type( 'simple' ) ) {
 
 
 
-echo "<button class='button buy_now_button rounded-0 font-weight-bold text-uppercase mb-3 mt-0 text-center'>Buy It Now</button>";
+echo "<button class='button buy_now_button rounded-0 font-weight-bold text-uppercase mb-3 mt-0 text-center'>1-Click Buy</button>";

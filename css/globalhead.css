@@ -14,6 +14,34 @@ button, .btn {
     outline: none !important; 
 }
 
+div::-webkit-scrollbar {
+    width: 2px; 
+    height: 5px; 
+}
+
+div::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px rgba(0,0,0,.01);
+    border-radius: 2px; 
+}
+
+div::-webkit-scrollbar-thumb {
+    background: #613d20;
+    border-radius: 2px; 
+}
+
+.btn:focus,.btn:active,
+input[type="number"]:focus, input[type="number"]:active, input[type="number"] {
+    outline: none !important;
+    box-shadow: none !important;
+    outline: none !important; 
+ }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none !important; 
+  margin: 0 !important; 
+}
+
 header {
     max-width: 100%; 
     width: 100%; 
@@ -49,8 +77,6 @@ ul.woocommerce-mini-cart {
     background: transparent; 
     border-bottom: 1px solid #eee; 
 }
-
-
 
 /**
 * Links that don't have text decoration
@@ -562,10 +588,7 @@ a.restore-item {
     height: 42px; 
     background: #f2f2f2 !important; 
     color:  #613d20; 
-    border-left: none !important; 
-    border-right: none !important; 
-    border-bottom: 1px solid #f2f2f2 !important; 
-    border-top: 1px solid #f2f2f2 !important; 
+    border: none !important; 
 }
 
 button[name="add-to-cart"] {
@@ -992,6 +1015,30 @@ a.mega-menu-product::after {
     text-transform: uppercase;
 }
 
+.woocommerce table.shop_table td {
+    border-top: none; 
+    vertical-align: top; 
+}
+
+.woocommerce table.shop_table td a {
+    font-size: 0.85rem; 
+    line-height: 1; 
+    margin-top: 10px; 
+}
+
+.woocommerce ul.order_details {
+    padding-inline-start: 0px; 
+    text-align: center; 
+}
+
+.woocommerce ul.order_details li {
+    display: block; 
+    float: none; 
+    margin-right: 0px; 
+    margin-bottom: 10px; 
+    border-right: none; 
+}
+
 @media screen and (min-width: 768px) {
 
     header {
@@ -1096,6 +1143,31 @@ a.mega-menu-product::after {
 
     form.woocommerce-ResetPassword {
         max-width: 600px; 
+    }
+
+    .woocommerce table.shop_table td {
+        vertical-align: middle; 
+    }
+
+    .woocommerce ul.order_details li {
+        display: inline-block; 
+        vertical-align: top; 
+        border-right: 1px dashed #d3ccd2; 
+    }
+
+    .woocommerce-order-details .order_details .woocommerce-table__product-name img {
+        max-width: 150px; 
+    }
+
+    .woocommerce-order-details .order_details .woocommerce-table__product-name a {
+        padding-left: 2rem; 
+        padding-right: 2rem; 
+        line-height: 1.15; 
+        float: right; 
+        width: calc(100% - 150px);
+        height: 120px; 
+        display: flex; 
+        align-items: center; 
     }
 }
 
@@ -1205,23 +1277,6 @@ a.mega-menu-product::after {
 
     .brand-nav-list li .dropdown {
         max-width: 640px; 
-    }
-
-    .top-page-primary-menu #shopByProduct .sub-menu::-webkit-scrollbar,
-    .brand-nav-list li .dropdown::-webkit-scrollbar {
-        width: 8px; 
-    }
-
-    .top-page-primary-menu #shopByProduct .sub-menu::-webkit-scrollbar-track,
-    .brand-nav-list li .dropdown::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 2px rgba(0,0,0,.01);
-        border-radius: 2px; 
-    }
-
-    .top-page-primary-menu #shopByProduct .sub-menu::-webkit-scrollbar-thumb,
-    .brand-nav-list li .dropdown::-webkit-scrollbar-thumb {
-        background: #613d20;
-        border-radius: 2px; 
     }
 
     .top-page-primary-menu #shopByProduct .sub-menu .nav-link::after {
