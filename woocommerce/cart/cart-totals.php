@@ -21,6 +21,14 @@ defined( 'ABSPATH' ) || exit;
 
 <hr>
 
+<div id="signup-form">
+
+	<h7>Join our mailing list and we'll send you a coupon code to get 25% off on your order.</h7>
+
+	<form>Balabala</form>
+
+</div>
+
 <div class="cart_totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>

@@ -204,7 +204,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 		<div class="row p-3 border mx-1 mb-3">
 
-			<h7 class="text-uppercase font-weight-bold mb-3">Promotion Code</h7>
+			<h7 class="text-uppercase font-weight-bold mb-3">Coupon Code</h7>
 
 			<?php 
 

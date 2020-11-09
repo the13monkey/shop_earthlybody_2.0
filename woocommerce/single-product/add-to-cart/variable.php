@@ -23,9 +23,16 @@ $attribute_keys  = array_keys( $attributes );
 $variations_json = wp_json_encode( $available_variations );
 $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
 
-do_action( 'woocommerce_before_add_to_cart_form' ); ?>
+foreach( $available_variations as $variation ) : ?>
 
-<form class="variations_form cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo $variations_attr; // WPCS: XSS ok. ?>">
+	<input type="hidden" data-selected_variation_id="<?php echo $variation['variation_id'] ?>" data-selected_variation_name="" data-selected_variation_price="<?php echo $variation['display_price'] ?>" />
+
+<?php endforeach; 
+
+do_action( 'woocommerce_before_add_to_cart_form' ); ?>
+ 
+
+<form class="variations_form cart mb-3" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo $variations_attr; // WPCS: XSS ok. ?>">
 	<?php do_action( 'woocommerce_before_variations_form' ); ?>
 
 	<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
@@ -35,8 +42,20 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 			<tbody>
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 					<tr>
-						<td class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></td>
-						<td class="value">
+						<td class="label"><label class="mb-0" for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>">Select <?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></td>
+						<td>
+							<!-- Display variations --> 
+							<div id="single_product-variations-wrapper" class="d-flex justify-content-end align-items-center">
+								<?php 
+									$vals = wc_get_product_terms($product->id, $attribute_name, array('fields'=>'all'));
+									foreach ($vals as $val): ?>
+
+									<button data-variation_slug="<?php echo $val->slug ?>" class="btn btn-outline-dark ml-md-2 rounded-0 my-variation-pick"><?php echo $val->name; ?></button>
+
+								<?php endforeach; ?>
+							</div>
+						</td>
+						<td class="value d-none"> <!-- Hide! --> 
 							<?php
 								wc_dropdown_variation_attribute_options(
 									array(

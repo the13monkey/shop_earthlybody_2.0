@@ -342,6 +342,98 @@ function add_minus_to_qty_input () { // Add minus to global/quantity-input.php A
 }
 add_action( 'woocommerce_after_quantity_input_field', 'add_minus_to_qty_input' );
 
+
+add_action( 'wp_footer', 'bbloomer_add_cart_quantity_plus_minus' );
+
+function bbloomer_add_cart_quantity_plus_minus() {
+
+  if (is_product()) {
+  
+  ?>
+    <script type="text/javascript">
+          
+      jQuery(document).ready(function($){   
+        
+        $('form.cart').on( 'click', 'input.plus, input.minus', function() {
+  
+            // Get current quantity values
+            var qty = $( this ).closest( 'form.cart' ).find( '.qty' );
+            var val   = parseFloat(qty.val());
+            var max = parseFloat(qty.attr( 'max' ));
+            var min = parseFloat(qty.attr( 'min' ));
+            var step = parseFloat(qty.attr( 'step' ));
+  
+            // Change the value if plus or minus
+            if ( $( this ).is( '.plus' ) ) {
+                if ( max && ( max <= val ) ) {
+                  qty.val( max );
+                } else {
+                  qty.val( val + step );
+                }
+            } else {
+                if ( min && ( min >= val ) ) {
+                  qty.val( min );
+                } else if ( val > 1 ) {
+                  qty.val( val - step );
+                }
+            }
+              
+        }); 
+          
+      });
+
+    </script>
+  <?php
+  }
+
+  if (is_cart()) {
+
+  ?>
+
+    <script type="text/javascript">
+  
+      jQuery(document).ready(function($){   
+        
+        $('form.woocommerce-cart-form').on( 'click', 'input.plus, input.minus', function() {
+
+            $('input[type="number"]').css('cursor', 'no-drop');
+  
+            // Get current quantity values
+            var qty = $( this ).closest( 'form.woocommerce-cart-form' ).find( '.qty' );
+            var val   = parseFloat(qty.val());
+            var max = parseFloat(qty.attr( 'max' ));
+            var min = parseFloat(qty.attr( 'min' ));
+            var step = parseFloat(qty.attr( 'step' ));
+  
+            // Change the value if plus or minus
+            if ( $( this ).is( '.plus' ) ) {
+                if ( max && ( max <= val ) ) {
+                  qty.val( max ).change();
+                } else {
+                  qty.val( val + step ).change();
+                }
+            } else {
+                if ( min && ( min >= val ) ) {
+                  qty.val( min ).change();
+                } else if ( val > 1 ) {
+                  qty.val( val - step ).change();
+                }
+            }
+
+            //Auto-update
+            
+            $('button[name="update_cart"]').trigger('click');
+              
+        }); 
+          
+      });
+
+    </script>
+
+  <?php
+  }
+}
+
 // Display $0.00 when at free shipping class
 function bbloomer_add_0_to_shipping_label( $label, $method ) { 
 
@@ -415,20 +507,10 @@ function bbloomer_cart_refresh_update_qty() {
       ?>
       <script type="text/javascript">
 
-        jQuery(document).ready(function($){
-          
-          $('input.qty').on('keypress', function(e){
-
-            if (e.which == 13) {
-
-              $("[name='update_cart']").trigger("click");
-
-            }
-
-          });
-          
-        });
-
+         jQuery('div.woocommerce').on('click', 'input.qty', function(){
+            jQuery("[name='update_cart']").trigger("click");
+         });
+      
       </script>
 
       <?php
@@ -495,7 +577,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 
 // Open ship to a different address by default 
 
-add_filter( 'woocommerce_ship_to_different_address_checked', '__return_true' );
+//add_filter( 'woocommerce_ship_to_different_address_checked', '__return_true' );
 
 function checkout_progress_flow() {
 
@@ -532,7 +614,7 @@ function checkout_progress_flow() {
 
 }
 
-add_action( 'woocommerce_before_checkout_form', 'checkout_progress_flow', 1 );
+// add_action( 'woocommerce_before_checkout_form', 'checkout_progress_flow', 1 );
 
 // Hide order notes section from checkout page 
 
@@ -835,6 +917,55 @@ function woocommerce_maybe_add_multiple_products_to_cart() {
 }
 add_action( 'wp_loaded', 'woocommerce_maybe_add_multiple_products_to_cart', 15 );
 
+
+
+function single_variable_options() {
+
+  if (is_product()) {
+?>
+
+  <script>
+
+    jQuery(document).ready(function($){
+      
+      $('.my-variation-pick').click(function(event){
+
+        event.preventDefault();
+
+        $('.my-variation-pick').removeClass('btn-dark my-picked-variation').addClass('btn-outline-dark');
+
+        if ( $('.reset_variations').is(':visible') ) {
+
+            $('.reset_variations').click();
+        }
+
+        $(this).removeClass('btn-outline-dark').addClass('btn-dark my-picked-variation');
+
+        var selectedValue = $('.my-picked-variation').data('variation_slug');
+
+        $('.variations .value select').find('option[value='+selectedValue+']').prop('selected', true).trigger('change');
+
+        if ( $('.woocommerce-variation.single_variation').is(':visible') ) {
+
+          var currentPrice = $('.woocommerce-variation.single_variation').find('.woocommerce-variation-price').html();
+
+          $('.price').html(currentPrice);
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+<?php 
+  }
+  
+}
+
+add_action('wp_footer', 'single_variable_options');
+
 function single_product_popup () {
 
   if ( is_product() ) {
@@ -848,29 +979,71 @@ function single_product_popup () {
 
       if (ifSuccess > 0) {
 
-          var image_url = $('.woocommerce-product-gallery__image img.wp-post-image').attr('src');
+        // simple or variable products 
+        var ifVariable = $('.summary.entry-summary .cart').hasClass('variations_form'); 
 
-          var theNameHeading = $('.product_title.entry-title').html();
+        var image_url = $('.woocommerce-product-gallery__image img.wp-post-image').attr('src');
+
+        var theNameHeading = $('.product_title.entry-title').html();
+
+        if (ifVariable) {
+
+          var theNameSubheading = $('.my-picked-variation').html();
+
+          var selectedOption = $('.value select').val();
+
+          var theNameSubheading = $('.value option[value="'+selectedOption+'"]').html();
+
+          var variations_arr = $('form.variations_form').data('product_variations');
+
+          console.log(variations_arr);
+
+          for (var i = 0; i<variations_arr.length; i++) {
+
+            var attribute = variations_arr[i]['attributes']['attribute_pa_size'];
+
+            if ( attribute == selectedOption ) {
+
+              var thePrice = '$'+variations_arr[i]['display_price'];
+
+            }
+          }
+
+        } else {
 
           var theNameSubheading = $('.product_title.entry-title').next().html();
-
-          var theProductQty = $('input.qty').val();
 
           var ifonsale = $('.entry-summary .price del').length; 
 
           if (ifonsale>0) {
+
             var thePrice = $('.entry-summary .price ins span.woocommerce-Price-amount').html();
+
           } else {
+
             var thePrice = $('.entry-summary span.woocommerce-Price-amount').html();
+
           }
 
-          $('#last-added-image').attr('src', image_url);
+        }
+
+        var theProductQty = $('input.qty').val();
+
+        $('#last-added-image').attr('src', image_url);
+
+        if (theNameSubheading == '') {
+
+          $('#last-added-name').html(theNameHeading);
+
+        }else {
 
           $('#last-added-name').html(theNameHeading+' ('+theNameSubheading+')');
 
-          $('#last-added-price').html(thePrice+' x '+theProductQty);
+        }
 
-          $('#added-cart-popup').css('display', 'flex');
+        $('#last-added-price').html(thePrice+' x '+theProductQty);
+
+        $('#added-cart-popup').css('display', 'flex');
 
       }
 
@@ -883,7 +1056,107 @@ function single_product_popup () {
 
           if (ifVariable) {
 
-            console.log('variable product');
+            // check if size is selected 
+            var ifSelectedVariation = $('.my-picked-variation').length; 
+
+            if (ifSelectedVariation > 0) {
+
+                var theProductQty = $('form.variations_form .quantity input.qty').val();
+
+                var variation_id = $('.single_variation_wrap input.variation_id').val();
+
+                var image_url = $('.woocommerce-product-gallery__image img.wp-post-image').attr('src');
+
+                var theNameHeading = $('.product_title.entry-title').html();
+
+                var theNameSubheading = $('.my-picked-variation').html();
+
+                var thePrice = $('.price').html();
+
+                $('#product-buy-image').attr('src', image_url);
+
+                $('#product-buy-name').html(theNameHeading+' ('+theNameSubheading+')');
+
+                $('#product-buy-price').html(thePrice+' x '+theProductQty);
+
+                $('#buy-now-popup').css('display', 'flex');
+
+                $('#buy-now-checkout').click(function(){
+
+                  $(this).html('Processing...');
+
+                  // Check if impulse buys
+                  var ifImpulse = $('.impulseClicked').length;
+
+                  if (ifImpulse > 0) {
+
+                      var Ids = [];
+
+                      var theProductQtyNum = parseInt(theProductQty);
+
+                      if (theProductQtyNum > 1) {
+
+                        for (var i = 0; i<theProductQtyNum; i++) {
+
+                          Ids.push(variation_id);
+
+                        }
+
+                      } 
+
+                      $('.impulseClicked').each(function(){
+
+                          var impulseID = $(this).data('product_id');
+
+                          Ids.push(impulseID);
+
+                      });
+
+                      var checkoutStr = Ids.join(",");
+
+                      var checkoutURL = "https://site.test/shopearthlybody/checkout/?add-to-cart="+checkoutStr; 
+
+                      window.location.replace(checkoutURL);
+
+                  } else {
+
+                      var theProductQtyNum = parseInt(theProductQty);
+
+                      if (theProductQtyNum > 1) {
+
+                        variationIDs = [];
+
+                        for (var i = 0; i<theProductQtyNum; i++) {
+
+                          variationIDs.push(variation_id);
+
+                        }
+
+                        variation_id_final = variationIDs.join(",");
+
+                        var checkoutURL2 = "https://site.test/shopearthlybody/checkout/?add-to-cart="+variation_id_final; 
+
+                        window.location.replace(checkoutURL2);
+
+                      } else {
+
+                        var checkoutURL2 = "https://site.test/shopearthlybody/checkout/?add-to-cart="+variation_id; 
+
+                        window.location.replace(checkoutURL2);
+
+                      }
+        
+                  }
+
+                });
+
+            } else {
+
+                $('.variations .label .mb-0').addClass('text-danger');
+
+                alert('Please select a product size.');
+
+            }
 
           } else {
 
@@ -900,9 +1173,13 @@ function single_product_popup () {
             var ifonsale = $('.entry-summary .price del').length; 
 
             if (ifonsale>0) {
+
               var thePrice = $('.entry-summary .price ins span.woocommerce-Price-amount').html();
+
             } else {
+
               var thePrice = $('.entry-summary span.woocommerce-Price-amount').html();
+
             }
 
             $('#product-buy-image').attr('src', image_url);
@@ -930,9 +1207,15 @@ function single_product_popup () {
 
               if (ifImpulse > 0) {
 
+                  var theProductQtyNum = parseInt(theProductQty);
+
                   var Ids = [];
 
-                  Ids.push(product_id);
+                  for (var i = 0; i<theProductQtyNum; i++) {
+
+                    Ids.push(product_id);
+
+                  }
 
                   $('.impulseClicked').each(function(){
 
@@ -950,15 +1233,59 @@ function single_product_popup () {
 
               } else {
 
+                var theProductQtyNum = parseInt(theProductQty);
+
+                if (theProductQtyNum > 1) {
+
+                  productIDs = [];
+
+                  for (var i = 0; i<theProductQtyNum; i++) {
+
+                    productIDs.push(product_id);
+
+                  }
+
+                  var product_id_final = productIDs.join(",");
+
+                  var checkoutURL2 = "https://site.test/shopearthlybody/checkout/?add-to-cart="+product_id_final; 
+
+                  window.location.replace(checkoutURL2);
+
+                } else {
+
                   var checkoutURL2 = "https://site.test/shopearthlybody/checkout/?add-to-cart="+product_id; 
 
                   window.location.replace(checkoutURL2);
+
+                }
+
+                  
 
               }
 
             });
 
           }
+
+      });
+
+      $('.variable_add_to_cart_button').click(function(event){
+
+        event.preventDefault();
+
+        var ifSelectedVariation = $('.my-picked-variation').length; 
+
+        if (ifSelectedVariation > 0) {
+
+            $('.default-variable-add-to-cart').click();
+
+        } else {
+
+            $('.variations .label .mb-0').addClass('text-danger');
+
+            alert('Please select a product size.');
+
+        }
 
       });
 
@@ -986,8 +1313,3 @@ function reverse_orders_single_product () {
 }
 add_action('woocommerce_single_product_summary', 'reverse_orders_single_product', 1);
 
-/*@hooked woocommerce_template_single_price - 10
-		 * @hooked woocommerce_template_single_excerpt - 20
-		 * @hooked woocommerce_template_single_add_to_cart - 30
-     * 
-     do_action( 'woocommerce_single_product_summary' ); */
