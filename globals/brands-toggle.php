@@ -18,15 +18,15 @@
 
     </a>
 
-    <a href="<?php echo get_site_url() ?>/hempseed" class="nav-link">
-    
-        <img src="<?php echo get_template_directory_uri() ?>/img/new_logos/header-logo-hempseed.svg" alt="<?php echo get_bloginfo( 'name' ) ?>" />
-
-    </a>
-
     <a href="<?php echo get_site_url() ?>/emera" class="nav-link">
     
         <img src="<?php echo get_template_directory_uri() ?>/img/new_logos/header-logo-emera.svg" alt="<?php echo get_bloginfo( 'name' ) ?>" />
+
+    </a>
+
+    <a href="<?php echo get_site_url() ?>/hempseed" class="nav-link">
+    
+        <img src="<?php echo get_template_directory_uri() ?>/img/new_logos/header-logo-hempseed.svg" alt="<?php echo get_bloginfo( 'name' ) ?>" />
 
     </a>
 

@@ -33,9 +33,9 @@
         
     </div>
 
-    <div class="w-100 search-bar-mobile text-center">
+    <div class="w-100 search-bar-mobile text-center px-3">
 
-        <?php get_product_search_form(); ?>
+        <?php get_template_part( 'globals/search', 'general-mobile' ) ?>
 
     </div>
 
@@ -95,13 +95,13 @@
             </a> 
         </div>
 
-        <div id="desktop-search-bar" class="bg-warning">
+        <div id="desktop-search-bar" class="w-100 px-lg-5">
 
-            <?php get_product_search_form(); ?>
-
+            <?php get_template_part( 'globals/search', 'general-desktop' ) ?>             
+            
         </div>
         
-        <div id="my-account-bar" class="d-flex justify-content-end align-items-center">
+        <div id="my-account-bar" class="d-flex justify-content-start align-items-center">
 
             <a href="<?php echo wc_get_page_permalink( 'myaccount' ) ?>" style="font-size:1rem;" class="text-dark border-right pr-lg-3">
                 

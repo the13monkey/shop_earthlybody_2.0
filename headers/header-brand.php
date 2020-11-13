@@ -90,7 +90,7 @@
 
     <div class="w-100 search-bar-mobile text-center">
 
-        <?php get_product_search_form(); ?>
+        <?php get_template_part( 'globals/search', 'brand-mobile' ) ?>
 
     </div>
 
@@ -223,13 +223,13 @@
             </a> 
         </div>
 
-        <div id="desktop-search-bar" class="bg-warning">
+        <div id="desktop-search-bar" class="w-100 px-5">
 
-            <?php get_product_search_form(); ?>
+            <?php get_template_part( 'globals/search', 'brand-desktop' ) ?>
 
         </div>
         
-        <div id="my-account-bar" class="d-flex justify-content-end align-items-center">
+        <div id="my-account-bar" class="d-flex justify-content-start align-items-center">
 
             <a href="<?php echo wc_get_page_permalink( 'myaccount' ) ?>" style="font-size:1rem;" class="text-dark border-right pr-lg-3">
 
@@ -250,7 +250,7 @@
 
     </div>
 
-    <div class="w-100 px-3 text-center justify-content-start d-flex brand-nav-list">
+    <div class="w-100 px-3 text-center justify-content-start d-flex brand-nav-list my-lg-3">
 
     <?php 
 
@@ -325,7 +325,7 @@
 
                     }
 
-                    $html .= '<a href="'. $sub_sublink .'" class="nav-item"><img src="'. $thumb_link .'" class="border-0 rounded-circle" width="100" height="100" /><p class="mt-2">'. $sub_subname .'</p></a>';
+                    $html .= '<a href="'. $sub_sublink .'" class="nav-item"><img src="'. $thumb_link .'" class="border-0 rounded-circle" style="width:100px;height:100px" /><p class="mt-2">'. $sub_subname .'</p></a>';
 
                 }
 

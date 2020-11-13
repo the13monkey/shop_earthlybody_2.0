@@ -62,6 +62,7 @@ function register_theme_menus () {
 }
 add_action( 'init', 'register_theme_menus' );
 
+
 function woocommerce_theme_setup () { 
   // Set WooCommerce theme support: remove WooCommerce default CSS
 
@@ -326,7 +327,7 @@ function my_widget_shopping_cart_button_view_cart() {
 
 function my_widget_shopping_cart_button_checkout() {
 
-  echo "<a href='".wc_get_cart_url()."' class='btn bg-brown rounded-0 text-white'>Check Out</a>";;
+  echo "<a href='".wc_get_cart_url()."' class='btn bg-brown rounded-0 text-white' id='mini-cart-checkout-btn'>Check Out</a>";;
 
 }
 
@@ -643,7 +644,7 @@ add_filter( 'woocommerce_checkout_login_message', 'mycheckoutmessage_return_cust
  
 function mycheckoutmessage_return_customer_message() {
 
-  return '<h5 class="login-message text-dark font-weight-light text-uppercase mb-0">Sign in for faster checkout</h5>';
+  return '<h5 class="login-message text-dark font-weight-bold text-uppercase mb-0">Sign in for faster checkout</h5>';
 
 }
 
@@ -1313,3 +1314,45 @@ function reverse_orders_single_product () {
 }
 add_action('woocommerce_single_product_summary', 'reverse_orders_single_product', 1);
 
+// Alter search posts per page
+function myprefix_search_posts_per_page($query) {
+  if ( $query->is_search ) {
+      $query->set( 'posts_per_page', '-1' );
+  }
+  return $query;
+}
+add_filter( 'pre_get_posts','myprefix_search_posts_per_page' );
+
+function display_product_tags_loop () {
+
+  global $product; 
+
+  $taxonomy = 'product_tag';
+
+  $terms = get_the_terms( $product->get_id(), $taxonomy );
+
+  if ( $terms ) {
+
+    $class = [];
+
+    foreach ($terms as $term) {
+  
+      $name = $term->name; 
+  
+      array_push( $class, $name );
+  
+    }
+  
+    $classStr = implode("", $class);
+  
+    echo '<input class="filter" type="hidden" value="'.$classStr.'">';
+
+  } else {
+
+    echo '<input class="filter" type="hidden" value="Notags">';
+
+  }
+
+}
+
+add_action('woocommerce_after_shop_loop_item', 'display_product_tags_loop', 15);

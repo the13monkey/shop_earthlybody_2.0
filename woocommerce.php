@@ -15,17 +15,21 @@
 
             endwhile;
 
-            
 
-        } elseif ( is_product_category( array( 'Shop By Scent', 'Shop Fragrances', 'Fragrances', 'Our Fragrances' ) ) ) {
+        } elseif ( is_product_category( array( 'Shop By Scent', 'Shop Fragrances', 'Fragrances', 'Our Fragrances', 'Shop by Fragrance' ) ) ) { 
 
             wc_get_template_part( 'archive', 'fragrance' );
 
+        } elseif ( is_product_category( 'Hand &amp; Body Lotions' ) ) {
+
+            wc_get_template_part( 'archive', 'filters' );
+
         } else {
-			
-			wc_get_template_part( 'archive', 'product' );
-			
+
+            wc_get_template_part( 'archive', 'product' );
+
         }
+
         
         
     ?>

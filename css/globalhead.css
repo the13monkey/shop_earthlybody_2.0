@@ -14,17 +14,20 @@ button, .btn {
     outline: none !important; 
 }
 
-div::-webkit-scrollbar {
-    width: 2px; 
+div::-webkit-scrollbar,
+ul::-webkit-scrollbar {
+    width: 5px; 
     height: 5px; 
 }
 
-div::-webkit-scrollbar-track {
+div::-webkit-scrollbar-track,
+ul::-webkit-scrollbar-track {
     box-shadow: inset 0 0 2px rgba(0,0,0,.01);
     border-radius: 2px; 
 }
 
-div::-webkit-scrollbar-thumb {
+div::-webkit-scrollbar-thumb,
+ul::-webkit-scrollbar-thumb {
     background: #613d20;
     border-radius: 2px; 
 }
@@ -82,6 +85,14 @@ ul.woocommerce-mini-cart {
     border-bottom: 1px solid #eee; 
 }
 
+@media only screen and (max-width: 321px) {
+
+    #mini-cart-checkout-btn {
+        line-height: 3; 
+    }
+
+}
+
 /**
 * Links that don't have text decoration
 */
@@ -128,21 +139,21 @@ ul.woocommerce-mini-cart {
     height: auto; 
 }
 
-.search-bar-mobile .woocommerce-product-search input, 
-.search-bar-mobile .woocommerce-product-search button {
+.search-bar-mobile input, 
+.search-bar-mobile button {
     height: 36px; 
     border: 1px solid #613d20; 
     box-shadow: none; 
     font-size: 0.9rem;
 }
 
-.search-bar-mobile .woocommerce-product-search input {
+.search-bar-mobile input {
     padding-left: 1rem !important; 
     padding-right: 3.8rem !important; 
     width: calc(100% - 1rem);
 }
 
-.search-bar-mobile .woocommerce-product-search button {
+.search-bar-mobile button {
     position: absolute; 
     right: 0.5rem; 
     background: transparent; 
@@ -348,9 +359,15 @@ ul.woocommerce-mini-cart {
     width: 1.15rem;
     height: 1.15rem;
     margin-left: 0.5rem; 
-    margin-top: 1rem; 
     background-size: cover; 
     background-position: center; 
+}
+
+.top-page-primary-menu .menu-item-has-children a::after,
+.top-page-primary-menu .menu-item-has-children.submenu-opened a::after,
+.brand-nav-list .has-dropdown a::after,
+.brand-nav-list .has-dropdown.opened a::after {
+    margin-top: 1.05rem; 
 }
 
 .top-page-primary-menu li .sub-menu li a,
@@ -1048,6 +1065,17 @@ a.mega-menu-product::after {
     padding: 1rem; 
 }
 
+#search-general-desktop,
+#search-brand-desktop {
+    position: absolute; 
+    height: 44px;
+    margin-left: -2.5rem;  
+}
+
+ul.search-results .media:hover {
+    background: #f2f2f2; 
+}
+
 @media screen and (min-width: 768px) {
 
     header {
@@ -1212,29 +1240,8 @@ a.mega-menu-product::after {
         max-height: 80px; 
     }
 
-    .woocommerce-product-search input.search-field {
-        padding: 8px; 
-        border: 1px solid #613d20; 
-        width: 100%;  
-    }
-
-    .woocommerce-product-search button[type="submit"] {
-        padding: 8px; 
-        border: 1px solid #613d20; 
-        background: #fff; 
-        color: #000; 
-        margin-left: -5px; 
-        border-left: 1px solid #613d20;
-        position: absolute; 
-    }
-
     #my-account-bar {
-        width: 400px; 
-    }
-
-    #desktop-search-bar {
-        width: calc(100% - 660px);
-        margin-left: 60px; 
+        width: 980px; 
     }
 
     .cart-items-count {
@@ -1257,7 +1264,7 @@ a.mega-menu-product::after {
 
     .top-page-primary-menu .sub-menu li,
     .brand-nav-list .dropdown li {
-        width: 120px; 
+        width: 100px; 
     }
 
     .brand-nav-list li {
@@ -1272,6 +1279,7 @@ a.mega-menu-product::after {
     .brand-nav-list li a {
         font-size: 1rem; 
         font-weight: 500; 
+        line-height: 1; 
     }
 
     .top-page-primary-menu li .sub-menu,
@@ -1284,6 +1292,17 @@ a.mega-menu-product::after {
         text-align: left; 
         max-height: 64vh; 
         overflow-y: scroll; 
+    }
+
+    .top-page-primary-menu .menu-item-has-children a::after,
+    .top-page-primary-menu .menu-item-has-children.submenu-opened a::after,
+    .brand-nav-list .has-dropdown a::after, 
+    .brand-nav-list .has-dropdown.opened a::after {
+        margin-top: 0.12rem; 
+    }
+
+    .top-page-primary-menu #shopHempSeedByNight .sub-menu {
+        right: 0.7rem; 
     }
 
     .top-page-primary-menu #shopByProduct .sub-menu {
@@ -1426,6 +1445,10 @@ a.mega-menu-product::after {
 
     .brand-nav-list li .dropdown {
         max-width: 800px; 
+    }
+
+    .brand-nav-list li .dropdown {
+        max-width: 720px; 
     }
 
     .site-logo img {

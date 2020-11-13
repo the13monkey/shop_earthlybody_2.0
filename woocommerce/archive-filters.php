@@ -65,7 +65,110 @@ do_action( 'woocommerce_before_main_content' );
 
 <div class="container">
 
-	<?php
+	<div class="row">
+
+		<div class="col col-12 col-lg-2 border-right">
+			
+			<h7 class="font-weight-bold text-uppercase">Available Scents</h7>
+			
+			<?php 
+			
+			//Get the current category (could also put the desired slug or id into $product_category directly)
+			$term = get_queried_object();
+			$product_category = $term->slug;
+ 
+			//Iterate through all products in this category
+			$query_args = array(
+			
+			'product_cat' => $product_category,
+			'post_type' => 'product',
+			
+			//Grabs ALL post
+			'posts_per_page' => -1
+			);
+ 
+			$query = new WP_Query( $query_args );
+			$term_array = array();
+     
+			while( $query->have_posts() ) {
+				$query->the_post();
+				$terms = get_the_terms( get_the_ID(), 'product_tag' );
+				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+						foreach ( $terms as $term ) {
+							$term_array[] = $term->name;
+						}
+				}
+			}
+     
+			//Remove any duplicates.
+			$tags_unique = array_unique($term_array);
+ 
+			//Sort alphabetically
+			asort($tags_unique);
+			
+			?>
+
+			<?php foreach ($tags_unique as $unique) : ?>
+
+				<div class="form-check my-3">
+					<input class="form-check-input" type="checkbox" value="<?php echo $unique ?>">
+					<label class="form-check-label" for="defaultCheck1">
+						<?php echo $unique ?>
+					</label>
+				</div>
+			
+			<?php endforeach; ?>
+
+			<?php 
+
+			//Reset the query
+			wp_reset_postdata();
+			
+			?>
+
+			<script>
+			
+			jQuery(document).ready(function($){
+
+				$('.form-check-input').change(function(){
+
+					$('.show').removeClass('show');
+
+					var checkedBoxes = $('.form-check-input:checked');
+
+					if (checkedBoxes.length > 0 ) {
+
+						// Get all checked checkboxes
+						
+						checkedBoxes.each(function(){
+
+							var value = $(this).val();
+
+							$('.filter[value="'+value+'"]').parent().addClass('show');
+
+						});
+
+						$('.product').fadeOut();
+
+						$('.show').fadeIn();
+
+					} else {
+
+						$('.product').fadeIn();
+
+					}
+
+				});
+
+			});
+		
+			</script>
+
+		</div>
+
+		<div class="col col-12 col-lg-10">
+		
+		<?php
 			if ( woocommerce_product_loop() ) {
 
 				/**
@@ -124,6 +227,10 @@ do_action( 'woocommerce_before_main_content' );
 			do_action( 'woocommerce_sidebar' );
 
 			?>	
+		
+		</div>		
+
+	</div>
 
 </div>
 

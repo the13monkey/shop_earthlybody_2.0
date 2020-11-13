@@ -1,5 +1,59 @@
 jQuery( document ).ready( function($){
 
+    // Change texts of brand categories in the navigation 
+
+    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.nav-link' ).text( 'Shop Products' );
+
+    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.dropdown .nav-item:last-child p' ).text( 'Shop All' );
+    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.dropdown .nav-item:last-child' ).text( 'Shop All' );
+
+    $( '.brand-nav-list .has-dropdown:nth-child(2)' ).find( '.nav-link' ).text( 'Shop By Scent' );
+
+    $( '.brand-nav-list .has-dropdown:nth-child(3)' ).find( '.nav-link' ).text( 'Shop By Category' );
+
+    $( '.brand-nav-list .has-dropdown p:contains(CBD Daily CBD Hair Care)' ).text('CBD Hair Care');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Marrakesh Dreamsicle)' ).text('Dreamsicle');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Marrakesh High Tide)' ).text('High Tide');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Marrakesh Isle of You)' ).text('Isle of You');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Marrakesh Original)' ).text('Original');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Hemp Seed Body Wash)' ).text('Body Wash');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Hemp Seed Body Wash)' ).text('Body Wash');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Hemp Seed Hand & Body Lotion)' ).text('Hand & Body Lotions');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Hemp Seed Hand & Body Lotion)' ).text('Hand & Body Lotions');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Moisturizing Oil Sprays)' ).text('Body Sprays');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Moisturizing Oil Sprays)' ).text('Body Sprays');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Hemp Seed Hand Wash)' ).text('Hand Wash');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Hemp Seed Hand Wash)' ).text('Hand Wash');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Hemp Seed Massage Oils & Lotions)' ).text('Massage Oils & Lotions');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Hemp Seed Massage Oils & Lotions)' ).text('Massage Oils & Lotions');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Hemp Seed Hair Care)' ).text('Hair Care');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Hemp Seed Hair Care)' ).text('Hair Care');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Hemp Seed Gift Sets)' ).text('Gift Sets');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Hemp Seed Gift Sets)' ).text('Gift Sets');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Hemp Seed Miracle Oil Category)' ).text('Miracle Oil');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Hemp Seed Miracle Oil Category)' ).text('Miracle Oil');
+
+    $( '.brand-nav-list .has-dropdown p:contains(Hemp Seed By Night Category)' ).text('Hemp Seed By Night');
+    $( '.brand-nav-list .has-dropdown .nav-item:contains(Hemp Seed By Night Category)' ).text('Hemp Seed By Night');
+
+    $( '.showlogin' ).click( function(){
+
+        $(this).find('i').toggleClass( 'arrow-clicked' );
+
+    } );
+
     $( '#mobile-menu-toggle' ).click( function(e){
 
         $( '.mobile-menu' ).addClass( 'show-mobile-menu' );
@@ -32,7 +86,7 @@ jQuery( document ).ready( function($){
 
         $(this).parent().find( '.sub-menu .menu-item' ).click( function(event) {
 
-            var url = $(this).parent().find('a').attr('href');
+            var url = $(this).find('a').attr('href');
 
             window.location.replace(url);
 
@@ -63,8 +117,6 @@ jQuery( document ).ready( function($){
             $(this).removeClass('opened');
 
         }
-
-
 
         $(this).find( '.dropdown .nav-item' ).click( function(event){
 
@@ -171,22 +223,6 @@ jQuery( document ).ready( function($){
     $( '.added_to_cart.wc-forward' ).click( function(event){
 
         event.preventDefault();
-
-    } );
-
-    // Change texts of brand categories in the navigation 
-
-    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.nav-link' ).text( 'Shop Products' );
-
-    $( '.brand-nav-list .has-dropdown:first-child' ).find( '.dropdown .nav-item:last-child p' ).text( 'Shop All' );
-
-    $( '.brand-nav-list .has-dropdown:nth-child(2)' ).find( '.nav-link' ).text( 'Shop By Scent' );
-
-    $( '.brand-nav-list .has-dropdown:nth-child(3)' ).find( '.nav-link' ).text( 'Shop By Category' );
-
-    $( '.showlogin' ).click( function(){
-
-        $(this).find('i').toggleClass( 'arrow-clicked' );
 
     } );
 

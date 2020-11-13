@@ -19,10 +19,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// See if searchform is for general or specific brand 
+
+$url = $_SERVER['REQUEST_URI'];
+
+$url_arr = explode('/', $url);
+
+$brands_slugs = array('cbddaily', 'cbd-daily-products', 'marrakesh', 'marrakesh-hair-care', 'emera', 'emera-cbd-hair-care', 'hempseed', 'hemp-seed-body-care');
+
+$check = 0; 
+
+foreach ( $brands_slugs as $slug ) {
+
+	if ( in_array( $slug, $url_arr ) ) {
+
+		$check ++; 
+
+	}
+
+}
+
+if ( $check == 0 ) {
+
+	//General Search 
 ?>
+
+<?php 
+
+} else {
+
+	//Brand Search 
+?>
+
 <form role="search" method="get" class="woocommerce-product-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<label class="screen-reader-text" for="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>"><?php esc_html_e( 'Search for:', 'woocommerce' ); ?></label>
 	<input type="search" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" class="search-field" placeholder="<?php echo esc_attr__( 'Search products&hellip;', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
 	<button type="submit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'woocommerce' ); ?>"><i class="fa fa-search"></i></button>
 	<input type="hidden" name="post_type" value="product" />
 </form>
+
+<?php 
+}
+
+?>
+
+
